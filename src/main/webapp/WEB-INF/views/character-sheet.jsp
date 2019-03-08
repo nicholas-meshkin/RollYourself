@@ -6,11 +6,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Character</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <div class="container">
 <body>
 	<h1>Character</h1>
-	<table>
+	<p>Class: ${classDetail.name} &nbsp Race: ${raceDetail.name}</p>
+	<table class="table table-striped">
 		<tr>
 			<th>Statistics</th>
 		</tr>
@@ -20,8 +22,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<p>Class: ${classDetail.name}</p>
-	<p>Race: ${raceDetail.name}</p>
 </body>
 </div>
 </html>
