@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import rollYourself.RollYourself.model.AbilityScore;
 import rollYourself.RollYourself.model.ClassDetail;
 import rollYourself.RollYourself.model.ClassListItem;
 import rollYourself.RollYourself.model.RaceDetail;
@@ -58,6 +59,14 @@ public class RollYourselfController {
 		ModelAndView mav = new ModelAndView("skill-detail");
 		Skill skill = apiService.getSkill(/*TODO add param*/);
 		mav.addObject("skill", skill);
+		return mav;
+	}
+	
+	@RequestMapping("/ability-detail")
+	public ModelAndView abilityDetailsPage(/*TODO add param*/) {
+		ModelAndView mav = new ModelAndView("ability-score-detail");
+		AbilityScore abilityScore = apiService.abilityScoreDetail();
+		mav.addObject("abilityScore", abilityScore);
 		return mav;
 	}
 

@@ -67,6 +67,12 @@ private RestTemplate restTemplateWithUserAgent;
 		AbilityScoreList response  = restTemplateWithUserAgent.getForObject(url, AbilityScoreList.class);
 		return response.getResults();
 	}
+	public AbilityScore abilityScoreDetail(/*TODO add params*/) {
+		Integer index=4;
+		String url="http://www.dnd5eapi.co/api/ability-scores/"+index;
+		AbilityScore response = restTemplateWithUserAgent.getForObject(url, AbilityScore.class);
+		return response;
+	}
 	
 	}
 
