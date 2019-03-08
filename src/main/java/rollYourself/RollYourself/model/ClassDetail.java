@@ -18,7 +18,7 @@ public class ClassDetail {
 	@JsonProperty("saving_throws")
 	private List<AbilityScoreItem> savingThrows;
 	@JsonProperty("starting_equipment")
-	private StartingEquipment startingEquipment;
+	private StartingEquipmentItem startingEquipmentItem;
 	@JsonProperty("class_levels")
 	private ClassLevels classLevels;
 	private List<SubclassItem> subclasses;
@@ -66,11 +66,11 @@ public class ClassDetail {
 	public void setSavingThrows(List<AbilityScoreItem> savingThrows) {
 		this.savingThrows = savingThrows;
 	}
-	public StartingEquipment getStartingEquipment() {
-		return startingEquipment;
+	public StartingEquipmentItem getStartingEquipmentItem() {
+		return startingEquipmentItem;
 	}
-	public void setStartingEquipment(StartingEquipment startingEquipment) {
-		this.startingEquipment = startingEquipment;
+	public void setStartingEquipmentItem(StartingEquipmentItem startingEquipmentItem) {
+		this.startingEquipmentItem = startingEquipmentItem;
 	}
 	public ClassLevels getClassLevels() {
 		return classLevels;
@@ -100,7 +100,7 @@ public class ClassDetail {
 	public String toString() {
 		return "ClassDetail [id=" + id + ", index=" + index + ", name=" + name + ", hitDie=" + hitDie
 				+ ", proficiencyChoices=" + proficiencyChoices + ", proficiencies=" + proficiencies + ", savingThrows="
-				+ savingThrows + ", startingEquipment=" + startingEquipment + ", classLevels=" + classLevels
+				+ savingThrows + ", startingEquipmentItem=" + startingEquipmentItem + ", classLevels=" + classLevels
 				+ ", subclasses=" + subclasses + ", spellcasting=" + spellcasting + ", url=" + url + "]";
 	}
 	
