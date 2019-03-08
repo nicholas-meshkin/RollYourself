@@ -29,17 +29,45 @@ private RestTemplate restTemplateWithUserAgent;
 		return response.getResults();
 	}
 	
-	public ClassDetail getClassDetail(/*will add parameter*/) {
-		String url = "http://www.dnd5eapi.co/api/classes/2"; //TODO change url to include parameter
+	public ClassDetail getClassDetail(/*TODO add params*/) {
+		Integer index = 3; //TODO delete once parameters are implemented
+		String url = "http://www.dnd5eapi.co/api/classes/"+index; 
 		ClassDetail response = restTemplateWithUserAgent.getForObject(url, ClassDetail.class);
 		return response;
 	}
 	
 	public RaceDetail getRaceDetail(/*TODO add params*/) {
-		String url = "http://www.dnd5eapi.co/api/races/2";//TODO change url to include param
+		Integer index = 2; //TODO delete once parameters are implemented
+		String url = "http://www.dnd5eapi.co/api/races/"+index;
 		RaceDetail response = restTemplateWithUserAgent.getForObject(url, RaceDetail.class);
 		return response;
 	}
+	
+	public SubraceDetail getSubraceDetail(/*TODO add params*/) {
+		Integer index = 2; //TODO delete once parameters are implemented
+		String url = "http://www.dnd5eapi.co/api/subraces/"+index;
+		SubraceDetail response = restTemplateWithUserAgent.getForObject(url, SubraceDetail.class);
+		return response;
+	}
+	
+	public List<SkillItem> getSkillList(){
+		String url="http://www.dnd5eapi.co/api/skills";
+		SkillListResponse response = restTemplateWithUserAgent.getForObject(url, SkillListResponse.class);
+		return response.getResults();
+	}
+	public Skill getSkill(/*TODO add param*/) {
+		Integer index=4;
+		String url="http://www.dnd5eapi.co/api/skills/"+index;
+		Skill response = restTemplateWithUserAgent.getForObject(url, Skill.class);
+		return response;
+	}
+	
+	public List<AbilityScoreItem> getSavingThrowList(){
+		String url="http://www.dnd5eapi.co/api/ability-scores";
+		AbilityScoreList response  = restTemplateWithUserAgent.getForObject(url, AbilityScoreList.class);
+		return response.getResults();
+	}
+	
 	}
 
 
