@@ -10,6 +10,7 @@
 </head>
 <body>
 <table>
+
 <tr><th>Class</th><th>URL</th></tr>
 <c:forEach var="classListItem" items="${classList}">
 <tr><td>${classListItem.name}</td><td>${classListItem.url}</td></tr>

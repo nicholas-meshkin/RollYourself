@@ -1,5 +1,6 @@
 package rollYourself.RollYourself;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,13 @@ public class RollYourselfController {
 	
 	@RequestMapping("/character")
 	public ModelAndView characterSheet() {
-		ModelAndView mav = new ModelAndView("character-sheet");
 		List<Integer> stats = statRoller.getStatList();
+
 		ClassDetail classDetail = apiService.getClassDetail();
 		RaceDetail raceDetail = apiService.getRaceDetail();
+		Collections.sort(stats, Collections.reverseOrder()); 
+		
+		ModelAndView mav = new ModelAndView("character-sheet");
 		mav.addObject("classDetail", classDetail);
 		mav.addObject("stat", stats);
 		mav.addObject("raceDetail", raceDetail);
