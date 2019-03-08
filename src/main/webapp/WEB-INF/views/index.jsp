@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home</title>
+<a href="/character">Character Sheet</a>
 </head>
 <body>
 <table>
