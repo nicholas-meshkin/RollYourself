@@ -6,7 +6,10 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<div class="container">
 <body>
-
+<p>Class: ${classDetail.name}</p>
+<p>Race: ${raceDetail.name}</p>
 </body>
+</div>
 </html>

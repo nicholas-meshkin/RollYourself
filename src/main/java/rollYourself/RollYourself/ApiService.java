@@ -29,6 +29,17 @@ private RestTemplate restTemplateWithUserAgent;
 		return response.getResults();
 	}
 	
-}
+	public ClassDetail getClassDetail(/*will add parameter*/) {
+		String url = "http://www.dnd5eapi.co/api/classes/2"; //TODO change url to include parameter
+		ClassDetail response = restTemplateWithUserAgent.getForObject(url, ClassDetail.class);
+		return response;
+	}
+	
+	public RaceDetail getRaceDetail(/*TODO add params*/) {
+		String url = "http://www.dnd5eapi.co/api/races/2";//TODO change url to include param
+		RaceDetail response = restTemplateWithUserAgent.getForObject(url, RaceDetail.class);
+		return response;
+	}
+	}
 
 

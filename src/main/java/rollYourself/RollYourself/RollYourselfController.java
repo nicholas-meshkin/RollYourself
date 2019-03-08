@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import rollYourself.RollYourself.model.ClassDetail;
 import rollYourself.RollYourself.model.ClassListItem;
+import rollYourself.RollYourself.model.RaceDetail;
 
 @Controller
 public class RollYourselfController {
@@ -27,7 +29,11 @@ public class RollYourselfController {
 	public ModelAndView characterSheet() {
 		ModelAndView mav = new ModelAndView("character-sheet");
 		List<Integer> stats = statRoller.getStatList();
+		ClassDetail classDetail = apiService.getClassDetail();
+		RaceDetail raceDetail = apiService.getRaceDetail();
+		mav.addObject("classDetail", classDetail);
 		mav.addObject("stat", stats);
+		mav.addObject("raceDetail", raceDetail);
 		return mav;
 	}
 
