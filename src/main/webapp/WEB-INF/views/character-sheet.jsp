@@ -11,16 +11,29 @@
 <div class="container">
 <body>
 	<h1>Character</h1>
-	<p>Class: ${classDetail.name} &nbsp Race: ${raceDetail.name}</p>
+	<p>Class: ${character.characterClass} &nbsp Race: ${character.race} &nbsp Player Name: ${character.name}</p>
 	<table class="table table-striped">
 		<tr>
-			<th>Statistics</th>
+			<th>Characteristics</th><th>Statistics</th>
+		</tr>		
+		<tr>
+			<td>${character.characteristicSTR}</td><td>${character.strength}</td>
 		</tr>
-		<c:forEach var="s" items="${stat}">
-			<tr>
-				<td>${s}</td>
-			</tr>
-		</c:forEach>
+		<tr>
+				<td>${character.characteristicDEX}</td><td>${character.dexterity}</td>
+		</tr>
+		<tr>		
+				<td>${character.characteristicCON}</td><td>${character.constitution}</td>
+		</tr>
+		<tr>		
+				<td>${character.characteristicINT}</td><td>${character.intelligence}</td>
+		</tr>
+		<tr>		
+				<td>${character.characteristicWIS}</td><td>${character.wisdom}</td>
+		</tr>
+		<tr>		
+				<td>${character.characteristicCHA}</td><td>${character.charisma}</td>
+		</tr>	
 	</table>
 </body>
 </div>

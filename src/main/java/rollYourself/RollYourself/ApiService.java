@@ -12,7 +12,7 @@ import rollYourself.RollYourself.model.*;
 @Component
 public class ApiService {
 	
-//	private RestTemplate restTemplate = new RestTemplate();
+	private RestTemplate restTemplate = new RestTemplate();
 private RestTemplate restTemplateWithUserAgent;
 
 	{
@@ -55,6 +55,7 @@ private RestTemplate restTemplateWithUserAgent;
 		SkillListResponse response = restTemplateWithUserAgent.getForObject(url, SkillListResponse.class);
 		return response.getResults();
 	}
+	
 	public Skill getSkill(/*TODO add param*/) {
 		Integer index=4;
 		String url="http://www.dnd5eapi.co/api/skills/"+index;
@@ -67,9 +68,8 @@ private RestTemplate restTemplateWithUserAgent;
 		AbilityScoreList response  = restTemplateWithUserAgent.getForObject(url, AbilityScoreList.class);
 		return response.getResults();
 	}
-	public AbilityScore abilityScoreDetail(/*TODO add params*/) {
-		Integer index=4;
-		String url="http://www.dnd5eapi.co/api/ability-scores/"+index;
+	public AbilityScore abilityScoreDetail(int index) {
+		String url="http://www.dnd5eapi.co/api/ability-scores/" + index;
 		AbilityScore response = restTemplateWithUserAgent.getForObject(url, AbilityScore.class);
 		return response;
 	}

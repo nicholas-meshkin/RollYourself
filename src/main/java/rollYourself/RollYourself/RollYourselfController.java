@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import rollYourself.RollYourself.model.AbilityScore;
+import rollYourself.RollYourself.model.AbilityScoreList;
 import rollYourself.RollYourself.model.ClassDetail;
 import rollYourself.RollYourself.model.ClassListItem;
 import rollYourself.RollYourself.model.RaceDetail;
@@ -31,16 +32,43 @@ public class RollYourselfController {
 	
 	@RequestMapping("/character")
 	public ModelAndView characterSheet() {
+		DndCharacter dndCharacter = new DndCharacter();
+		
 		List<Integer> stats = statRoller.getStatList();
+		Collections.sort(stats, Collections.reverseOrder());
 
 		ClassDetail classDetail = apiService.getClassDetail(/*TODO add param*/);
 		RaceDetail raceDetail = apiService.getRaceDetail(/*TODO add param*/);
-		Collections.sort(stats, Collections.reverseOrder()); 
+		
+		dndCharacter.setName("Creator of Worlds");
+		dndCharacter.setCharacterClass(classDetail.getName());
+		dndCharacter.setRace(raceDetail.getName());
+		
+		int j = 0;
+		for(int i:stats) {
+			if(j == 0) {
+				dndCharacter.setStrength(i);
+			}
+			if(j == 1) {
+				dndCharacter.setDexterity(i);
+			}
+			if(j == 2) {
+				dndCharacter.setConstitution(i);
+			}
+			if(j == 3) {
+				dndCharacter.setIntelligence(i);
+			}
+			if(j == 4) {
+				dndCharacter.setWisdom(i);
+			}
+			if(j == 5) {
+				dndCharacter.setCharisma(i);
+			}
+			j++;
+		}
 		
 		ModelAndView mav = new ModelAndView("character-sheet");
-		mav.addObject("classDetail", classDetail);
-		mav.addObject("stat", stats);
-		mav.addObject("raceDetail", raceDetail);
+		mav.addObject("character", dndCharacter);
 		return mav;
 	}
 	
@@ -63,9 +91,9 @@ public class RollYourselfController {
 	}
 	
 	@RequestMapping("/ability-detail")
-	public ModelAndView abilityDetailsPage(/*TODO add param*/) {
+	public ModelAndView abilityDetailsPage(int index) {
 		ModelAndView mav = new ModelAndView("ability-score-detail");
-		AbilityScore abilityScore = apiService.abilityScoreDetail();
+		AbilityScore abilityScore = apiService.abilityScoreDetail(index);
 		mav.addObject("abilityScore", abilityScore);
 		return mav;
 	}

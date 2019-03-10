@@ -10,7 +10,8 @@
 <a href="/character">Character Sheet</a>
 </head>
 <body>
-<table class="table">
+<div class="container">
+<table class="table table-striped">
 
 <tr><th>Class</th><th>URL</th></tr>
 <c:forEach var="classListItem" items="${classList}">
@@ -18,5 +19,6 @@
 </c:forEach>
 
 </table>
+</div>
 </body>
 </html>
