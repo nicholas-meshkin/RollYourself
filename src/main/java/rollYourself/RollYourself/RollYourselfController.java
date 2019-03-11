@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import rollYourself.RollYourself.dao.QuestionResponsesDao;
 import rollYourself.RollYourself.model.AbilityScore;
 import rollYourself.RollYourself.model.AbilityScoreList;
 import rollYourself.RollYourself.model.ClassDetail;
 import rollYourself.RollYourself.model.ClassListItem;
+import rollYourself.RollYourself.model.QuestionResponses;
 import rollYourself.RollYourself.model.RaceDetail;
 import rollYourself.RollYourself.model.Skill;
 import rollYourself.RollYourself.model.SkillItem;
@@ -20,7 +22,9 @@ import rollYourself.RollYourself.model.SubraceDetail;
 
 @Controller
 public class RollYourselfController {
-	@Autowired private ApiService apiService;
+	@Autowired 
+	private ApiService apiService;
+	
 	@Autowired
 	StatRoller statRoller;
 	
@@ -29,6 +33,9 @@ public class RollYourselfController {
 	
 	@Autowired
 	SkillSetter skillSetter;
+
+	@Autowired
+	QuestionResponsesDao questionResponsesDao;
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -43,6 +50,14 @@ public class RollYourselfController {
 		
 		return new ModelAndView("questionnaire-page-1");
 	}
+	
+	
+	@RequestMapping("/submitResponses")
+	public ModelAndView submitResponses(QuestionResponses QuestionResponse) {
+		questionResponsesDao.create(QuestionResponse);
+		return new ModelAndView("redirect:/");   // CHANGE TO VIEW NEW CHARACTER jsp
+	}
+	
 	
 	
 	@RequestMapping("/character")
