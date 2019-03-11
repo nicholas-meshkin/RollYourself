@@ -24,4 +24,10 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
+<<<<<<< Updated upstream
 /src/main/resources/application.properties
+=======
+
+/src/main/resources/application.properties
+/src/main/resources/config/application.properties
+>>>>>>> Stashed changes

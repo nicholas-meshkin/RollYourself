@@ -34,6 +34,13 @@ public class RollYourselfController {
 		return mav;
 	}
 	
+	@RequestMapping("/questionnaire")
+	public ModelAndView questionnaire() {
+		
+		return new ModelAndView("questionnaire-page-1");
+	}
+	
+	
 	@RequestMapping("/character")
 	public ModelAndView characterSheet() {
 		DndCharacter dndCharacter = new DndCharacter();
