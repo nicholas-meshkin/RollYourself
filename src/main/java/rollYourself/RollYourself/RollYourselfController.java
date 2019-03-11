@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +22,9 @@ public class RollYourselfController {
 	@Autowired private ApiService apiService;
 	@Autowired
 	StatRoller statRoller;
+	
+	@Autowired
+	StatSetter statSetter;
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -39,46 +43,37 @@ public class RollYourselfController {
 
 		ClassDetail classDetail = apiService.getClassDetail(/*TODO add param*/);
 		RaceDetail raceDetail = apiService.getRaceDetail(/*TODO add param*/);
+		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
 		
 		dndCharacter.setName("Creator of Worlds");
 		dndCharacter.setCharacterClass(classDetail.getName());
 		dndCharacter.setRace(raceDetail.getName());
-		
-		int j = 0;
-		for(int i:stats) {
-			if(j == 0) {
-				dndCharacter.setStrength(i);
-			}
-			if(j == 1) {
-				dndCharacter.setDexterity(i);
-			}
-			if(j == 2) {
-				dndCharacter.setConstitution(i);
-			}
-			if(j == 3) {
-				dndCharacter.setIntelligence(i);
-			}
-			if(j == 4) {
-				dndCharacter.setWisdom(i);
-			}
-			if(j == 5) {
-				dndCharacter.setCharisma(i);
-			}
-			j++;
-		}
+		dndCharacter.setRaceDetail(raceDetail);
+		dndCharacter.setSubraceDetail(subraceDetail);
+		dndCharacter.setClassDetail(classDetail);
+		statSetter.setStats(dndCharacter);
+		statSetter.raceStatAdjust(dndCharacter);
+		statSetter.subraceStatAdjust(dndCharacter);
 		
 		ModelAndView mav = new ModelAndView("character-sheet");
 		mav.addObject("character", dndCharacter);
+		
+		List<Integer> savingThrows = statSetter.calculateSavingThrows(dndCharacter);
+		mav.addObject("savingThrows",savingThrows);
+		
+		Integer maxHp = statSetter.calculateBonus(dndCharacter.getConstitution())+dndCharacter.getClassDetail().getHitDie();
+		mav.addObject("maxHp",maxHp);
+		
 		return mav;
 	}
 	
-	@RequestMapping("/race-details")
-	public ModelAndView raceDetailsPage(/*TODO add parameter*/) {
+	@RequestMapping("/race-details/{index}")
+	public ModelAndView raceDetailsPage(@PathVariable("index") Integer index) {
 		ModelAndView mav = new ModelAndView("race-details-page");
-		RaceDetail raceDetail = apiService.getRaceDetail(/*TODO add param*/);
-		SubraceDetail subraceDetail = apiService.getSubraceDetail(/**/);
+		RaceDetail raceDetail = apiService.getRaceDetail(index);
+//		SubraceDetail subraceDetail = apiService.getSubraceDetail(/**/);
 		mav.addObject("raceDetail",raceDetail);
-		mav.addObject("subraceDetail",subraceDetail);
+//		mav.addObject("subraceDetail",subraceDetail);
 		return mav;
 	}
 	
@@ -90,8 +85,8 @@ public class RollYourselfController {
 		return mav;
 	}
 	
-	@RequestMapping("/ability-detail")
-	public ModelAndView abilityDetailsPage(int index) {
+	@RequestMapping("/ability-detail/{index}")
+	public ModelAndView abilityDetailsPage(@PathVariable("index") Integer index) {
 		ModelAndView mav = new ModelAndView("ability-score-detail");
 		AbilityScore abilityScore = apiService.abilityScoreDetail(index);
 		mav.addObject("abilityScore", abilityScore);

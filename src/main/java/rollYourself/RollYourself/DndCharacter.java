@@ -1,5 +1,9 @@
 package rollYourself.RollYourself;
 
+import rollYourself.RollYourself.model.ClassDetail;
+import rollYourself.RollYourself.model.RaceDetail;
+import rollYourself.RollYourself.model.SubraceDetail;
+
 public class DndCharacter {
 	private String name;
 	private String characterClass;
@@ -10,6 +14,9 @@ public class DndCharacter {
 	private int intelligence;
 	private int wisdom;
 	private int charisma;
+	private RaceDetail raceDetail;
+	private SubraceDetail subraceDetail;
+	private ClassDetail classDetail;
 	private final String characteristicSTR = "Strength";
 	private final String characteristicDEX = "Dexterity";
 	private final String characteristicCON = "Constitution";
@@ -91,5 +98,23 @@ public class DndCharacter {
 	}
 	public String getCharacteristicCHA() {
 		return characteristicCHA;
+	}
+	public RaceDetail getRaceDetail() {
+		return raceDetail;
+	}
+	public void setRaceDetail(RaceDetail raceDetail) {
+		this.raceDetail = raceDetail;
+	}
+	public ClassDetail getClassDetail() {
+		return classDetail;
+	}
+	public void setClassDetail(ClassDetail classDetail) {
+		this.classDetail = classDetail;
+	}
+	public SubraceDetail getSubraceDetail() {
+		return subraceDetail;
+	}
+	public void setSubraceDetail(SubraceDetail subraceDetail) {
+		this.subraceDetail = subraceDetail;
 	}	
 }

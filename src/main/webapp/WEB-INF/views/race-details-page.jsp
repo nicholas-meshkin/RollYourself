@@ -9,9 +9,9 @@
 <div class="container">
 <body>
 <p>Race: ${raceDetail.name}</p>
-<p>Subrace: ${subraceDetail.name}</p>
+<!--  <p>Subrace: ${subraceDetail.name}</p>
 <p>Description: ${subraceDetail.desc}</p>
-<p>Alignment: ${raceDetail.alignment}</p>
+<p>Alignment: ${raceDetail.alignment}</p>-->
 <p>Age: ${raceDetail.age}</p>
 <p>Size Description: ${raceDetail.sizeDescription}</p>
 <p>Language: ${raceDetail.languageDescription}</p>

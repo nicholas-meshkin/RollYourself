@@ -11,30 +11,44 @@
 <div class="container">
 <body>
 	<h1>Character</h1>
-	<p>Class: ${character.characterClass} &nbsp Race: ${character.race} &nbsp Player Name: ${character.name}</p>
+	<p>Class: ${character.characterClass} &nbsp Race: <a href="/race-details/${character.raceDetail.index}">${character.race}</a> &nbsp Subrace: ${character.subraceDetail.name} &nbsp Player Name: ${character.name}</p>
 	<table class="table table-striped">
 		<tr>
 			<th>Characteristics</th><th>Statistics</th>
 		</tr>		
 		<tr>
-			<td>${character.characteristicSTR}</td><td>${character.strength}</td>
+			<td><a href="/ability-detail/1">${character.characteristicSTR}</a></td><td>${character.strength}</td>
 		</tr>
 		<tr>
-				<td>${character.characteristicDEX}</td><td>${character.dexterity}</td>
+				<td><a href="/ability-detail/2">${character.characteristicDEX}</a></td><td>${character.dexterity}</td>
 		</tr>
 		<tr>		
-				<td>${character.characteristicCON}</td><td>${character.constitution}</td>
+				<td><a href="/ability-detail/3">${character.characteristicCON}</a></td><td>${character.constitution}</td>
 		</tr>
 		<tr>		
-				<td>${character.characteristicINT}</td><td>${character.intelligence}</td>
+				<td><a href="/ability-detail/4">${character.characteristicINT}</a></td><td>${character.intelligence}</td>
 		</tr>
 		<tr>		
-				<td>${character.characteristicWIS}</td><td>${character.wisdom}</td>
+				<td><a href="/ability-detail/5">${character.characteristicWIS}</a></td><td>${character.wisdom}</td>
 		</tr>
 		<tr>		
-				<td>${character.characteristicCHA}</td><td>${character.charisma}</td>
+				<td><a href="/ability-detail/6">${character.characteristicCHA}</a></td><td>${character.charisma}</td>
 		</tr>	
 	</table>
+	
+	<table>
+	<tr><th>Saving Throws</th></tr>
+	<tr><td>STR:</td><td>${savingThrows[0]}</td></tr>
+	<tr><td>DEX:</td><td>${savingThrows[1]}</td></tr>
+	<tr><td>CON:</td><td>${savingThrows[2]}</td></tr>
+	<tr><td>INT:</td><td>${savingThrows[3]}</td></tr>
+	<tr><td>WIS:</td><td>${savingThrows[4]}</td></tr>
+	<tr><td>CHA:</td><td>${savingThrows[5]}</td></tr>
+	</table>
+	
+	<p>Max HP: ${maxHp}</p>
+	<p>Hit Dice: 1d${character.classDetail.hitDie}</p>
+	<p>Proficiency Bonus: 2</p>
 </body>
 </div>
 </html>
