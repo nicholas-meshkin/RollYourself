@@ -24,6 +24,11 @@ public class ClassDetail {
 	private List<SubclassItem> subclasses;
 	private SpellcastingItem spellcasting;
 	private String url;
+	
+	public ProficiencyChoices getProfChoiceByIndex(Integer index) {
+		ProficiencyChoices choice = proficiencyChoices.get(index);
+		return choice;
+	}
 	public String getId() {
 		return id;
 	}

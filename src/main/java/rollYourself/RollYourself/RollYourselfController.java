@@ -15,6 +15,7 @@ import rollYourself.RollYourself.model.ClassDetail;
 import rollYourself.RollYourself.model.ClassListItem;
 import rollYourself.RollYourself.model.RaceDetail;
 import rollYourself.RollYourself.model.Skill;
+import rollYourself.RollYourself.model.SkillItem;
 import rollYourself.RollYourself.model.SubraceDetail;
 
 @Controller
@@ -25,6 +26,9 @@ public class RollYourselfController {
 	
 	@Autowired
 	StatSetter statSetter;
+	
+	@Autowired
+	SkillSetter skillSetter;
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -68,8 +72,15 @@ public class RollYourselfController {
 		List<Integer> savingThrows = statSetter.calculateSavingThrows(dndCharacter);
 		mav.addObject("savingThrows",savingThrows);
 		
+		
+		List<Integer> skills = skillSetter.setSkills(dndCharacter);
+		mav.addObject("skills",skills);
+		
 		Integer maxHp = statSetter.calculateBonus(dndCharacter.getConstitution())+dndCharacter.getClassDetail().getHitDie();
 		mav.addObject("maxHp",maxHp);
+		
+		Integer passivePerception = statSetter.calculateBonus(dndCharacter.getWisdom())+10;
+		mav.addObject("passivePerception", passivePerception);
 		
 		return mav;
 	}
@@ -84,10 +95,10 @@ public class RollYourselfController {
 		return mav;
 	}
 	
-	@RequestMapping("/skill-detail")
-	public ModelAndView skillDetailsPage(/*TODO add param*/) {
+	@RequestMapping("/skill-detail/{index}")
+	public ModelAndView skillDetailsPage(@PathVariable("index") Integer index) {
 		ModelAndView mav = new ModelAndView("skill-detail");
-		Skill skill = apiService.getSkill(/*TODO add param*/);
+		Skill skill = apiService.getSkill(index);
 		mav.addObject("skill", skill);
 		return mav;
 	}
