@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import rollYourself.RollYourself.dao.QuestionResponsesDao;
@@ -55,20 +56,65 @@ public class RollYourselfController {
 	@RequestMapping("/submitResponses")
 	public ModelAndView submitResponses(QuestionResponses QuestionResponse) {
 		questionResponsesDao.create(QuestionResponse);
-		return new ModelAndView("redirect:/");   // CHANGE TO VIEW NEW CHARACTER jsp
+		ModelAndView mav = new ModelAndView("redirect:/character");
+		Long id = QuestionResponse.getId();
+		mav.addObject("id", id);
+		return mav;
+//		return new ModelAndView("redirect:/");   // CHANGE TO VIEW NEW CHARACTER jsp
 	}
 	
 	
 	
 	@RequestMapping("/character")
-	public ModelAndView characterSheet() {
+	public ModelAndView characterSheet(@RequestParam("id") Long id) {
 		DndCharacter dndCharacter = new DndCharacter();
 		
 		List<Integer> stats = statRoller.getStatList();
 		Collections.sort(stats, Collections.reverseOrder());
 
-		ClassDetail classDetail = apiService.getClassDetail(/*TODO add param*/);
-		RaceDetail raceDetail = apiService.getRaceDetail(/*TODO add param*/);
+		QuestionResponses questionResponses = questionResponsesDao.findById(id);
+			Integer raceSelection = 0;
+		
+			if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 1;}
+			if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 2;}
+			if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 3;}
+			if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 4) ) {raceSelection = 4;}
+			if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 4;}
+			if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 5;}
+			if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 6;}
+			if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 4) ) {raceSelection = 1;}
+			if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 7;}
+			if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 8;}
+			if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 9;}
+			if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 4) ) {raceSelection = 2;}
+			if ( (questionResponses.getQ1Response() == 4) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 3;}
+			if ( (questionResponses.getQ1Response() == 4) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 7;}
+			if ( (questionResponses.getQ1Response() == 4) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 5;}
+			if ( (questionResponses.getQ1Response() == 4) && (questionResponses.getQ2Response() == 4) ) {raceSelection = 9;}
+
+			Integer classSelection = 0;
+			
+			if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 1) ) {classSelection = 1;}
+			if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 2) ) {classSelection = 2;}
+			if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 3) ) {classSelection = 3;}
+			if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 4) ) {classSelection = 4;}
+			if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 1) ) {classSelection = 5;}
+			if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 2) ) {classSelection = 6;}
+			if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 3) ) {classSelection = 7;}
+			if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 4) ) {classSelection = 8;}
+			if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 1) ) {classSelection = 9;}
+			if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 2) ) {classSelection = 10;}
+			if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 3) ) {classSelection = 11;}
+			if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 4) ) {classSelection = 12;}
+			if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 1) ) {classSelection = 1;}
+			if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 2) ) {classSelection = 10;}
+			if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 3) ) {classSelection = 5;}
+			if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 4) ) {classSelection = 9;}
+
+		
+		ClassDetail classDetail = apiService.getClassDetail(classSelection);
+		
+		RaceDetail raceDetail = apiService.getRaceDetail(raceSelection);
 		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
 		
 		dndCharacter.setName("Creator of Worlds");

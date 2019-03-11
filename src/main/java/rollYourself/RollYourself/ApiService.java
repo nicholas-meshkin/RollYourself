@@ -36,6 +36,12 @@ private RestTemplate restTemplateWithUserAgent;
 		return response;
 	}
 	
+	public ClassDetail getClassDetail(Integer index) {
+		String url = "http://www.dnd5eapi.co/api/classes/"+index; 
+		ClassDetail response = restTemplateWithUserAgent.getForObject(url, ClassDetail.class);
+		return response;
+	}
+	
 	public RaceDetail getRaceDetail(/*TODO add params*/) {
 		Integer index = 4; //TODO delete once parameters are implemented
 		String url = "http://www.dnd5eapi.co/api/races/"+index;

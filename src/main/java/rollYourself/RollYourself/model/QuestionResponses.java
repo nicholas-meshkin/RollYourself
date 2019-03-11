@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class QuestionResponses {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private Integer q1Response;
 	private Integer q2Response;
 	private Integer q3Response;
@@ -25,7 +25,7 @@ public class QuestionResponses {
 	public QuestionResponses () {}
 	
 	
-	public QuestionResponses(Integer id, Integer q1Response, Integer q2Response, Integer q3Response, Integer q4Response,
+	public QuestionResponses(Long id, Integer q1Response, Integer q2Response, Integer q3Response, Integer q4Response,
 			Integer q5Response, Integer q6Response) {
 		this.id = id;
 		this.q1Response = q1Response;
@@ -49,10 +49,10 @@ public class QuestionResponses {
 	}
 
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
