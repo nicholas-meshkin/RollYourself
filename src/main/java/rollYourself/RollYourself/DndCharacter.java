@@ -24,9 +24,17 @@ public class DndCharacter {
 	private final String characteristicWIS = "Wisdom";
 	private final String characteristicCHA = "Charisma";
 	
-	public DndCharacter() {
-		
-	}
+	private Integer q1Response;
+	private Integer q2Response;
+	private Integer q3Response;
+	private Integer q4Response;
+	private Integer q5Response;
+	private Integer q6Response;
+
+	
+
+	public DndCharacter() {	}
+	
 	public String getName() {
 		return name;
 	}
@@ -117,4 +125,49 @@ public class DndCharacter {
 	public void setSubraceDetail(SubraceDetail subraceDetail) {
 		this.subraceDetail = subraceDetail;
 	}	
+	
+	
+	public Integer getQ1Response() {
+		return q1Response;
+	}
+	public void setQ1Response(Integer q1Response) {
+		this.q1Response = q1Response;
+	}
+	
+	public Integer getQ2Response() {
+		return q2Response;
+	}
+	public void setQ2Response(Integer q2Response) {
+		this.q2Response = q2Response;
+	}
+	
+	public Integer getQ3Response() {
+		return q3Response;
+	}
+	public void setQ3Response(Integer q3Response) {
+		this.q3Response = q3Response;
+	}
+	
+	public Integer getQ4Response() {
+		return q4Response;
+	}
+	public void setQ4Response(Integer q4Response) {
+		this.q4Response = q4Response;
+	}
+	
+	public Integer getQ5Response() {
+		return q5Response;
+	}
+	public void setQ5Response(Integer q5Response) {
+		this.q5Response = q5Response;
+	}
+	
+	public Integer getQ6Response() {
+		return q6Response;
+	}
+	public void setQ6Response(Integer q6Response) {
+		this.q6Response = q6Response;
+	}
+	
+	
 }
