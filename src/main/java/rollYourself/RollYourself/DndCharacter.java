@@ -1,28 +1,44 @@
 package rollYourself.RollYourself;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import rollYourself.RollYourself.model.ClassDetail;
 import rollYourself.RollYourself.model.RaceDetail;
 import rollYourself.RollYourself.model.SubraceDetail;
 
+//Mark all entity classes with @Entity so that Hibernate knows about them.
+@Entity
+@Table(name="dndcharacters")
 public class DndCharacter {
+
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;	
 	private String name;
 	private String characterClass;
 	private String race;
-	private int strength;
-	private int dexterity;
-	private int constitution;
-	private int intelligence;
-	private int wisdom;
-	private int charisma;
+	private Integer strength;
+	private Integer dexterity;
+	private Integer constitution;
+	private Integer intelligence;
+	private Integer wisdom;
+	private Integer charisma;
+	@Transient
 	private RaceDetail raceDetail;
+	@Transient
 	private SubraceDetail subraceDetail;
+	@Transient
 	private ClassDetail classDetail;
-	private final String characteristicSTR = "Strength";
-	private final String characteristicDEX = "Dexterity";
-	private final String characteristicCON = "Constitution";
-	private final String characteristicINT = "Intelligence";
-	private final String characteristicWIS = "Wisdom";
-	private final String characteristicCHA = "Charisma";
+//	private final String characteristicSTR = "Strength";
+//	private final String characteristicDEX = "Dexterity";
+//	private final String characteristicCON = "Constitution";
+//	private final String characteristicINT = "Intelligence";
+//	private final String characteristicWIS = "Wisdom";
+//	private final String characteristicCHA = "Charisma";
 	
 	private Integer q1Response;
 	private Integer q2Response;
@@ -34,6 +50,7 @@ public class DndCharacter {
 	
 
 	public DndCharacter() {	}
+	
 	
 	public String getName() {
 		return name;
@@ -89,24 +106,24 @@ public class DndCharacter {
 	public void setRace(String race) {
 		this.race = race;
 	}
-	public String getCharacteristicSTR() {
-		return characteristicSTR;
-	}
-	public String getCharacteristicDEX() {
-		return characteristicDEX;
-	}
-	public String getCharacteristicCON() {
-		return characteristicCON;
-	}
-	public String getCharacteristicINT() {
-		return characteristicINT;
-	}
-	public String getCharacteristicWIS() {
-		return characteristicWIS;
-	}
-	public String getCharacteristicCHA() {
-		return characteristicCHA;
-	}
+//	public String getCharacteristicSTR() {
+//		return characteristicSTR;
+//	}
+//	public String getCharacteristicDEX() {
+//		return characteristicDEX;
+//	}
+//	public String getCharacteristicCON() {
+//		return characteristicCON;
+//	}
+//	public String getCharacteristicINT() {
+//		return characteristicINT;
+//	}
+//	public String getCharacteristicWIS() {
+//		return characteristicWIS;
+//	}
+//	public String getCharacteristicCHA() {
+//		return characteristicCHA;
+//	}
 	public RaceDetail getRaceDetail() {
 		return raceDetail;
 	}

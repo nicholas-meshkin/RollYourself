@@ -17,22 +17,22 @@
 			<th>Characteristics</th><th>Statistics</th>
 		</tr>		
 		<tr>
-			<td><a href="/ability-detail/1">${character.characteristicSTR}</a></td><td>${character.strength}</td>
+			<td><a href="/ability-detail/1">Strength</a></td><td>${character.strength}</td>
 		</tr>
 		<tr>
-				<td><a href="/ability-detail/2">${character.characteristicDEX}</a></td><td>${character.dexterity}</td>
+				<td><a href="/ability-detail/2">Dexterity</a></td><td>${character.dexterity}</td>
 		</tr>
 		<tr>		
-				<td><a href="/ability-detail/3">${character.characteristicCON}</a></td><td>${character.constitution}</td>
+				<td><a href="/ability-detail/3">Constitution</a></td><td>${character.constitution}</td>
 		</tr>
 		<tr>		
-				<td><a href="/ability-detail/4">${character.characteristicINT}</a></td><td>${character.intelligence}</td>
+				<td><a href="/ability-detail/4">Intelligence</a></td><td>${character.intelligence}</td>
 		</tr>
 		<tr>		
-				<td><a href="/ability-detail/5">${character.characteristicWIS}</a></td><td>${character.wisdom}</td>
+				<td><a href="/ability-detail/5">Wisdom</a></td><td>${character.wisdom}</td>
 		</tr>
 		<tr>		
-				<td><a href="/ability-detail/6">${character.characteristicCHA}</a></td><td>${character.charisma}</td>
+				<td><a href="/ability-detail/6">Charisma</a></td><td>${character.charisma}</td>
 		</tr>	
 	</table>
 	
