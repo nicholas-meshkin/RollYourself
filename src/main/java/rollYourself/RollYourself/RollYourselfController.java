@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import rollYourself.RollYourself.dao.DndCharacterDao;
 import rollYourself.RollYourself.dao.QuestionResponsesDao;
 import rollYourself.RollYourself.model.AbilityScore;
 import rollYourself.RollYourself.model.AbilityScoreList;
@@ -37,6 +38,9 @@ public class RollYourselfController {
 
 	@Autowired
 	QuestionResponsesDao questionResponsesDao;
+	
+	@Autowired
+	DndCharacterDao dndCharacterDao;
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -123,9 +127,17 @@ public class RollYourselfController {
 		dndCharacter.setRaceDetail(raceDetail);
 		dndCharacter.setSubraceDetail(subraceDetail);
 		dndCharacter.setClassDetail(classDetail);
+		dndCharacter.setQ1Response(questionResponses.getQ1Response());
+		dndCharacter.setQ2Response(questionResponses.getQ2Response());
+		dndCharacter.setQ3Response(questionResponses.getQ3Response());
+		dndCharacter.setQ4Response(questionResponses.getQ4Response());
+		dndCharacter.setQ5Response(questionResponses.getQ5Response());
+		dndCharacter.setQ6Response(questionResponses.getQ6Response());
 		statSetter.setStats(dndCharacter);
 		statSetter.raceStatAdjust(dndCharacter);
 		statSetter.subraceStatAdjust(dndCharacter);
+		
+		dndCharacterDao.create(dndCharacter);
 		
 		ModelAndView mav = new ModelAndView("character-sheet");
 		mav.addObject("character", dndCharacter);
