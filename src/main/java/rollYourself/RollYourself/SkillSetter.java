@@ -20,8 +20,8 @@ public class SkillSetter {
 		List<ProficiencyItem> chosen = new ArrayList<>();
 		Integer numChoices = dndCharacter.getClassDetail().getProfChoiceByIndex(0).getChoose();
 		Random rand = new Random();
-		for(int i=0; i<numChoices-1;i++) {
-			int roll = rand.nextInt(numChoices-i);
+		for(int i=0; i<numChoices;i++) {
+			int roll = rand.nextInt(choices.size());
 			chosen.add(choices.get(roll));
 			choices.remove(roll);
 		}
@@ -53,7 +53,6 @@ public class SkillSetter {
 		if(profNames.contains("Skill: Sleight of Hand")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getDexterity()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getDexterity()));}
 		if(profNames.contains("Skill: Stealth")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getDexterity()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getDexterity()));}
 		if(profNames.contains("Skill: Survival")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
-		
 		return skills;
 	}
 }

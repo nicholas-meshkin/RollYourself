@@ -15,8 +15,24 @@ public class StatSetter {
 	StatRoller statRoller;
 	
 	public Integer calculateBonus(Integer abilityScore) {
-		Integer bonus = (abilityScore/2)-5;
+		Integer bonus;
+		if(abilityScore%2==0) {
+			bonus = (abilityScore/2)-5;
+		}else {
+			bonus = ((abilityScore-1)/2)-5;
+		}
 		return bonus;
+	}
+	
+	public List<Integer> calculateAbilityBonuses (DndCharacter dndCharacter){
+		List<Integer> abilityBonuses = new ArrayList<>();
+		abilityBonuses.add(calculateBonus(dndCharacter.getStrength()));
+		abilityBonuses.add(calculateBonus(dndCharacter.getDexterity()));
+		abilityBonuses.add(calculateBonus(dndCharacter.getConstitution()));
+		abilityBonuses.add(calculateBonus(dndCharacter.getIntelligence()));
+		abilityBonuses.add(calculateBonus(dndCharacter.getWisdom()));
+		abilityBonuses.add(calculateBonus(dndCharacter.getCharisma()));
+		return abilityBonuses;
 	}
 	
 	public List<Integer> calculateSavingThrows(DndCharacter dndCharacter){

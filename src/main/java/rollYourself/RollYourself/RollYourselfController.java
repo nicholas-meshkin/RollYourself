@@ -1,5 +1,6 @@
 package rollYourself.RollYourself;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import rollYourself.RollYourself.model.AbilityScore;
 import rollYourself.RollYourself.model.AbilityScoreList;
 import rollYourself.RollYourself.model.ClassDetail;
 import rollYourself.RollYourself.model.ClassListItem;
+import rollYourself.RollYourself.model.Equipment;
+import rollYourself.RollYourself.model.PropertyItem;
 import rollYourself.RollYourself.model.QuestionResponses;
 import rollYourself.RollYourself.model.RaceDetail;
 import rollYourself.RollYourself.model.Skill;
@@ -41,6 +44,8 @@ public class RollYourselfController {
 	
 	@Autowired
 	DndCharacterDao dndCharacterDao;
+	@Autowired
+	DecisionTree decisionTree;
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -71,43 +76,9 @@ public class RollYourselfController {
 		dndCharacter.setQ6Response( QuestionResponse.getQ6Response() );
 		
 		//determine class from responses
-		Integer raceSelection = 0;
-	
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 1;}
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 2;}
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 3;}
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 4;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 4;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 5;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 6;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 1;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 7;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 8;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 9;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 2;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 3;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 7;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 5;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 9;}
+		Integer raceSelection = decisionTree.selectRace(dndCharacter);
+		Integer classSelection = decisionTree.selectClass(dndCharacter);
 		
-		Integer classSelection = 0;
-		
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 1;}
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 2;}
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 3;}
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 4;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 5;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 6;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 7;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 8;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 9;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 10;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 11;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 12;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 1;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 10;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 5;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 9;}
 
 		
 		ClassDetail classDetail = apiService.getClassDetail(classSelection);		
@@ -115,8 +86,8 @@ public class RollYourselfController {
 		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
 		
 
-		dndCharacter.setCharacterClass(classDetail.getName());
-		dndCharacter.setRace(raceDetail.getName());
+//		dndCharacter.setCharacterClass(classDetail.getName());
+//		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
 		dndCharacter.setSubraceDetail(subraceDetail);
 		dndCharacter.setClassDetail(classDetail);
@@ -125,7 +96,7 @@ public class RollYourselfController {
 		//call method that rolls stats and assigns them / set stat values on character
 		statSetter.setStats(dndCharacter);
 
-		dndCharacter.setName("Creator of Worlds");
+		dndCharacter.setName("Creator of Worlds");//TODO make method that gets name
 		//create character row in the dao
 		dndCharacterDao.create(dndCharacter);
 	
@@ -140,49 +111,13 @@ public class RollYourselfController {
 	public ModelAndView characterCreate(@RequestParam("id") Long id) {
 		DndCharacter dndCharacter = dndCharacterDao.findById(id);
 		
-		Integer raceSelection = 0;
-		
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 1;}
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 2;}
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 3;}
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 4;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 4;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 5;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 6;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 1;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 7;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 8;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 9;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 2;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 3;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 7;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 5;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 9;}
-		Integer classSelection = 0;
-		
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 1;}
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 2;}
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 3;}
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 4;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 5;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 6;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 7;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 8;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 9;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 10;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 11;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 12;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 1;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 10;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 5;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 9;}
-
+		Integer raceSelection = decisionTree.selectRace(dndCharacter);
+		Integer classSelection = decisionTree.selectClass(dndCharacter);
 		
 		ClassDetail classDetail = apiService.getClassDetail(classSelection);		
 		RaceDetail raceDetail = apiService.getRaceDetail(raceSelection);
 		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
 		
-
 		dndCharacter.setCharacterClass(classDetail.getName());
 		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
@@ -199,6 +134,9 @@ public class RollYourselfController {
 		List<Integer> savingThrows = statSetter.calculateSavingThrows(dndCharacter);
 		mav.addObject("savingThrows",savingThrows);
 				
+		List<Integer> abilityBonuses = statSetter.calculateAbilityBonuses(dndCharacter);
+		mav.addObject("abilityBonuses",abilityBonuses);
+		
 		List<Integer> skills = skillSetter.setSkills(dndCharacter);
 		mav.addObject("skills",skills);
 		
@@ -207,6 +145,19 @@ public class RollYourselfController {
 		
 		Integer passivePerception = statSetter.calculateBonus(dndCharacter.getWisdom())+10;
 		mav.addObject("passivePerception", passivePerception);
+		
+		List<Equipment> weaponList = decisionTree.selectWeapons(classSelection);
+		weaponList = decisionTree.setWeaponStats(weaponList, dndCharacter);
+		mav.addObject("weaponList", weaponList);
+		
+		
+		List<Equipment> armorList = decisionTree.selectArmor(classSelection);
+		Integer aC = decisionTree.calculateAC(classSelection, dndCharacter, armorList);
+		mav.addObject("armorList", armorList);
+		mav.addObject("aC",aC);
+		
+		List<Equipment> otherEquipmentList = decisionTree.selectOtherEquipment(classSelection);
+		mav.addObject("otherEquipmentList", otherEquipmentList);
 		
 		return mav;
 	}
@@ -229,7 +180,13 @@ public class RollYourselfController {
 //		mav.addObject("subraceDetail",subraceDetail);
 		return mav;
 	}
-	
+	@RequestMapping("language-detail/{index}")
+	public ModelAndView languageDedailPage(@PathVariable("index") Integer index) {
+		ModelAndView mav = new ModelAndView("language-detail");
+		RaceDetail raceDetail = apiService.getRaceDetail(index);
+		mav.addObject("raceDetail",raceDetail);
+		return mav;
+	}
 	@RequestMapping("/skill-detail/{index}")
 	public ModelAndView skillDetailsPage(@PathVariable("index") Integer index) {
 		ModelAndView mav = new ModelAndView("skill-detail");

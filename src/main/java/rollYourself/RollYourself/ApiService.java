@@ -91,6 +91,11 @@ private RestTemplate restTemplateWithUserAgent;
 		return response;
 	}
 	
+	public Equipment getEquipment(Integer index) {
+		String url = "http://www.dnd5eapi.co/api/equipment/"+index;
+		Equipment response = restTemplateWithUserAgent.getForObject(url, Equipment.class);
+		return response;
+	}
 	}
 
 

@@ -14,25 +14,25 @@
 	<p>Class: ${character.characterClass} &nbsp Race: <a href="/race-details/${character.raceDetail.index}">${character.race}</a> &nbsp Subrace: ${character.subraceDetail.name} &nbsp Player Name: ${character.name}</p>
 	<table class="table table-striped">
 		<tr>
-			<th>Characteristics</th><th>Statistics</th>
+			<th>Ability</th><th>Score</th><th>Modifier</th>
 		</tr>		
 		<tr>
-			<td><a href="/ability-detail/1">Strength</a></td><td>${character.strength}</td>
+			<td><a href="/ability-detail/1">Strength</a></td><td>${character.strength}</td><td>${abilityBonuses[0]}</td>
 		</tr>
 		<tr>
-				<td><a href="/ability-detail/2">Dexterity</a></td><td>${character.dexterity}</td>
+				<td><a href="/ability-detail/2">Dexterity</a></td><td>${character.dexterity}</td><td>${abilityBonuses[1]}</td>
 		</tr>
 		<tr>		
-				<td><a href="/ability-detail/3">Constitution</a></td><td>${character.constitution}</td>
+				<td><a href="/ability-detail/3">Constitution</a></td><td>${character.constitution}</td><td>${abilityBonuses[2]}</td>
 		</tr>
 		<tr>		
-				<td><a href="/ability-detail/4">Intelligence</a></td><td>${character.intelligence}</td>
+				<td><a href="/ability-detail/4">Intelligence</a></td><td>${character.intelligence}</td><td>${abilityBonuses[3]}</td>
 		</tr>
 		<tr>		
-				<td><a href="/ability-detail/5">Wisdom</a></td><td>${character.wisdom}</td>
+				<td><a href="/ability-detail/5">Wisdom</a></td><td>${character.wisdom}</td><td>${abilityBonuses[4]}</td>
 		</tr>
 		<tr>		
-				<td><a href="/ability-detail/6">Charisma</a></td><td>${character.charisma}</td>
+				<td><a href="/ability-detail/6">Charisma</a></td><td>${character.charisma}</td><td>${abilityBonuses[5]}</td>
 		</tr>	
 	</table>
 	
@@ -68,13 +68,32 @@
 	<tr><td><a href="/skill-detail/18">Survival:</a></td><td>${skills[17]}</td></tr>
 	</table>
 	
+	<table>
+	<tr><th>Weapon</th><th>Range</th><th>Attack Bonus</th><th>Damage</th><th>Damage Type</th></tr>
+	<c:forEach var="weapon" items="${weaponList}">
+	<tr><td>${weapon.name}</td><td>${weapon.weaponRange}</td><td>${weapon.atkBonus}</td><td>${weapon.damage.diceCount}d${weapon.damage.diceValue} + ${weapon.dmgBonus}</td><td>${weapon.damage.damageTypeItem.name}</td></tr>
+	</c:forEach>
+	</table>
 	
+	<p>Armor Class: ${aC}</p>
+	
+	<div>
+	<h3>Armor & Other Equipment</h3>
+	<c:forEach var="armor" items="${armorList}">
+	<p>${armor.name}</p>
+	</c:forEach>
+	<c:forEach var="item" items="${otherEquipmentList}">
+	<p>${item.name}</p>
+	</c:forEach>
+	</div>
+
 	
 	<p>Max HP: ${maxHp}</p>
 	<p>Hit Dice: 1d${character.classDetail.hitDie}</p>
 	<p>Proficiency Bonus: 2</p>
 	<p>Passive Perception: ${passivePerception}</p>
 	<p>Proficiencies:</p><ul><c:forEach var="prof" items="${character.classDetail.proficiencies}"><li>${prof.name}</li></c:forEach></ul>
+	<p><a href="/language-detail/${character.raceDetail.index}">Languages Spoken:</a></p><ul><c:forEach var="lang" items="${character.raceDetail.languages}"><li>${lang.name}</li></c:forEach></ul>
 	<!-- TODO add only non-skill proficiencies from race -->
 </body>
 </div>

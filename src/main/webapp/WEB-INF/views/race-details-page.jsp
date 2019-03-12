@@ -14,7 +14,7 @@
 <p>Alignment: ${raceDetail.alignment}</p>-->
 <p>Age: ${raceDetail.age}</p>
 <p>Size Description: ${raceDetail.sizeDescription}</p>
-<p>Language: ${raceDetail.languageDescription}</p>
+<!-- <p>Language: ${raceDetail.languageDescription}</p> I put this in its own thing-->
 
 </body>
 </div>
