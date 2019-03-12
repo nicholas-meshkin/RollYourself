@@ -36,8 +36,8 @@
 		</tr>	
 	</table>
 	
-	<table>
-	<tr><th>Saving Throws</th></tr>
+	<table class="table table-striped">
+	<tr><th>Characteristic</th><th>Saving Throws</th></tr>
 	<tr><td>STR:</td><td>${savingThrows[0]}</td></tr>
 	<tr><td>DEX:</td><td>${savingThrows[1]}</td></tr>
 	<tr><td>CON:</td><td>${savingThrows[2]}</td></tr>
@@ -46,7 +46,7 @@
 	<tr><td>CHA:</td><td>${savingThrows[5]}</td></tr>
 	</table>
 	
-	<table>
+	<table class="table table-striped">
 	<tr><th>Skill</th><th>Bonus</th></tr>
 	<tr><td><a href="/skill-detail/1">Acrobatics:</a></td><td>${skills[0]}</td></tr>
 	<tr><td><a href="/skill-detail/2">Animal Handling:</a></td><td>${skills[1]}</td></tr>
