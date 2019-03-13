@@ -9,8 +9,8 @@
 
 </head>
 <body>
-
-<form action="submitResponses">
+<div class="container">
+<form action="/submitResponses">
 
 Your listed height:
 <div>
@@ -95,6 +95,6 @@ Your feelings about men&#39;s facial hair:
 </form>
 </div>
 
-
+</div>
 </body>
 </html>
