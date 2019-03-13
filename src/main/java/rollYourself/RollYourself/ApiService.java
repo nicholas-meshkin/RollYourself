@@ -68,13 +68,6 @@ private RestTemplate restTemplateWithUserAgent;
 		return response.getResults();
 	}
 	
-	public Skill getSkill(/*TODO add param*/) {
-		Integer index=4;
-		String url="http://www.dnd5eapi.co/api/skills/"+index;
-		Skill response = restTemplateWithUserAgent.getForObject(url, Skill.class);
-		return response;
-	}
-	
 	public Skill getSkill(Integer index) {
 		String url="http://www.dnd5eapi.co/api/skills/"+index;
 		Skill response = restTemplateWithUserAgent.getForObject(url, Skill.class);
