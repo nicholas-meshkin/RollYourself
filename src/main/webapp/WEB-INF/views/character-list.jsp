@@ -34,10 +34,10 @@
 			<tr>
 				<td>${character.name}</td>
 				<td>${character.race}</td>
-				<td>${character.class}</td>	
+				<td>${character.characterClass}</td>	
 				
 				<td>
-						<a href="/character?id=${ character.id }">Details</a>
+						<form action="/displayCharacter"><input type="hidden" name="id" value="${character.id}" /><button type="submit">Details</button></form>   
 				</td>
 			</tr>
 			

@@ -11,7 +11,7 @@
 <div class="container">
 <body>
 	<h1>Character</h1>
-	<p>Class: ${character.characterClass} &nbsp Race: <a href=" " title="${raceDetail.age}${raceDetail.sizeDescription}">${character.race}</a> &nbsp Subrace: ${character.subraceDetail.name} &nbsp Player Name: ${character.name}</p>
+	<p>Class: ${character.characterClass} &nbsp Race: <a href=" " title="${raceDetail.age}${raceDetail.sizeDescription}">${character.race}</a> <!--&nbsp Subrace: ${character.subraceDetail.name}--> &nbsp Player Name: ${character.name}</p>
 	<table class="table table-striped">
 		<tr>
 			<th>Ability</th><th>Score</th><th>Modifier</th>

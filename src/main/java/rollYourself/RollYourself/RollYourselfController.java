@@ -89,8 +89,8 @@ public class RollYourselfController {
 		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
 		
 
-//		dndCharacter.setCharacterClass(classDetail.getName());
-//		dndCharacter.setRace(raceDetail.getName());
+		dndCharacter.setCharacterClass(classDetail.getName());
+		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
 		dndCharacter.setSubraceDetail(subraceDetail);
 		dndCharacter.setClassDetail(classDetail);
@@ -128,7 +128,7 @@ public class RollYourselfController {
 		dndCharacter.setClassDetail(classDetail);
 
 		statSetter.raceStatAdjust(dndCharacter);
-		statSetter.subraceStatAdjust(dndCharacter);
+		//statSetter.subraceStatAdjust(dndCharacter);
 		
 		
 		ModelAndView mav = new ModelAndView("character-sheet");
@@ -187,7 +187,6 @@ public class RollYourselfController {
 	ModelAndView mav = new ModelAndView("character-list");
 	List<DndCharacter> dndcharacters = dndCharacterDao.findAll();
 	mav.addObject("characterlist", dndcharacters);
-
 	return mav;
 	}
 	
