@@ -283,4 +283,16 @@ public class RollYourselfController {
 		return mav;
 	}
 
+	//for our use, not a user page
+	@RequestMapping("/profChoiceList")
+	public ModelAndView profPage(){
+		ModelAndView mav = new ModelAndView("prof-page");
+		List<ClassDetail> classList = new ArrayList<>();
+		for(int i=1;i<13;i++) {
+			classList.add(apiService.getClassDetail(i));
+		}
+		
+		mav.addObject("classList", classList);
+		return mav;
+	}
 }
