@@ -33,6 +33,8 @@ public class Equipment {
 	@JsonProperty("throw_range")
 	private ThrowRange throwRange;
 	private String url;
+	private Integer atkBonus;
+	private Integer dmgBonus;
 	public String getId() {
 		return id;
 	}
@@ -140,6 +142,18 @@ public class Equipment {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public Integer getAtkBonus() {
+		return atkBonus;
+	}
+	public void setAtkBonus(Integer atkBonus) {
+		this.atkBonus = atkBonus;
+	}
+	public Integer getDmgBonus() {
+		return dmgBonus;
+	}
+	public void setDmgBonus(Integer dmgBonus) {
+		this.dmgBonus = dmgBonus;
 	}
 	@Override
 	public String toString() {

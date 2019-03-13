@@ -8,6 +8,7 @@ public class Damage {
 	private Integer diceCount;
 	@JsonProperty("dice_value")
 	private Integer diceValue;
+	@JsonProperty("damage_type")
 	private DamageTypeItem damageTypeItem;
 	public Integer getDiceCount() {
 		return diceCount;
