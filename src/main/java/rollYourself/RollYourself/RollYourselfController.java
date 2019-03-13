@@ -118,6 +118,33 @@ public class RollYourselfController {
 		
 		ClassDetail classDetail = apiService.getClassDetail(classSelection);		
 		RaceDetail raceDetail = apiService.getRaceDetail(raceSelection);
+		
+		AbilityScore abilityScore1 = apiService.abilityScoreDetail(1);
+		AbilityScore abilityScore2 = apiService.abilityScoreDetail(2);
+		AbilityScore abilityScore3 = apiService.abilityScoreDetail(3);
+		AbilityScore abilityScore4 = apiService.abilityScoreDetail(4);
+		AbilityScore abilityScore5 = apiService.abilityScoreDetail(5);
+		AbilityScore abilityScore6 = apiService.abilityScoreDetail(6);
+		
+		Skill skill1 = apiService.getSkill(1);
+		Skill skill2 = apiService.getSkill(2);
+		Skill skill3 = apiService.getSkill(3);
+		Skill skill4 = apiService.getSkill(4);
+		Skill skill5 = apiService.getSkill(5);
+		Skill skill6 = apiService.getSkill(6);
+		Skill skill7 = apiService.getSkill(7);
+		Skill skill8 = apiService.getSkill(8);
+		Skill skill9 = apiService.getSkill(9);
+		Skill skill10 = apiService.getSkill(10);
+		Skill skill11 = apiService.getSkill(11);
+		Skill skill12 = apiService.getSkill(12);
+		Skill skill13 = apiService.getSkill(13);
+		Skill skill14 = apiService.getSkill(14);
+		Skill skill15 = apiService.getSkill(15);
+		Skill skill16 = apiService.getSkill(16);
+		Skill skill17 = apiService.getSkill(17);
+		Skill skill18 = apiService.getSkill(18);
+		
 		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
 		
 		dndCharacter.setCharacterClass(classDetail.getName());
@@ -135,6 +162,32 @@ public class RollYourselfController {
 		
 		mav.addObject("classDetail", classDetail);	
 		mav.addObject("raceDetail", raceDetail);
+		
+		mav.addObject("abilityScore1", abilityScore1);
+		mav.addObject("abilityScore2", abilityScore2);
+		mav.addObject("abilityScore3", abilityScore3);
+		mav.addObject("abilityScore4", abilityScore4);
+		mav.addObject("abilityScore5", abilityScore5);
+		mav.addObject("abilityScore6", abilityScore6);
+		
+		mav.addObject("skill1", skill1);
+		mav.addObject("skill2", skill2);
+		mav.addObject("skill3", skill3);
+		mav.addObject("skill4", skill4);
+		mav.addObject("skill5", skill5);
+		mav.addObject("skill6", skill6);
+		mav.addObject("skill7", skill7);
+		mav.addObject("skill8", skill8);
+		mav.addObject("skill9", skill9);
+		mav.addObject("skill10", skill10);
+		mav.addObject("skill11", skill11);
+		mav.addObject("skill12", skill12);
+		mav.addObject("skill13", skill13);
+		mav.addObject("skill14", skill14);
+		mav.addObject("skill15", skill15);
+		mav.addObject("skill16", skill16);
+		mav.addObject("skill17", skill17);
+		mav.addObject("skill18", skill18);
 		
 		List<Integer> savingThrows = statSetter.calculateSavingThrows(dndCharacter);
 		mav.addObject("savingThrows",savingThrows);
