@@ -95,12 +95,16 @@
 	<p>Proficiencies:</p><ul><c:forEach var="prof" items="${character.classDetail.proficiencies}"><li>${prof.name}</li></c:forEach></ul>
 	<p><a href="/language-detail/${character.raceDetail.index}">Languages Spoken:</a></p><ul><c:forEach var="lang" items="${character.raceDetail.languages}"><li>${lang.name}</li></c:forEach></ul>
 	<!-- TODO add only non-skill proficiencies from race -->
+	<!--
 	<p>Cantrips Known:</p><ul><c:forEach var="spell" items="${cantrips}"><li><a href="/spell-detail/${spell.index}">${spell.name}</a></li></c:forEach></ul>
 	<p>First Level Spells Known:</p><ul><c:forEach var="spell" items="${firstLevelSpells}"><li><a href="/spell-detail/${spell.index}">${spell.name}</a></li></c:forEach></ul>
 	<p>Spell Slots: ${spellInfo.firstLevelSlots}</p>
 	<p>Spellcasting Ability: ${spellInfo.spellcastingAbility}</p>
 	<p>Spell Attack Modifier: ${spellInfo.spellAttackModifier}</p>
 	<p>Spell Save DC: ${spellInfo.spellSaveDc}</p>
+	<c:forEach var="item" items="${spellcasting.info}">
+	<p>${item.desc}</p>
+	</c:forEach> -->
 	
 </body>
 </div>

@@ -120,7 +120,11 @@ private RestTemplate restTemplateWithUserAgent;
 		return response;
 	}
 	
-	
+	public Spellcasting getSpellcastingDetail(Integer index) {
+		String url = "http://www.dnd5eapi.co/api/spellcasting/"+index;
+		Spellcasting response = restTemplateWithUserAgent.getForObject(url,Spellcasting.class);
+		return response;
+	}
 	
 	}
 

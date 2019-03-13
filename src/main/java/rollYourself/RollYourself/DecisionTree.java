@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 
 import rollYourself.RollYourself.dao.QuestionResponsesDao;
 import rollYourself.RollYourself.model.ClassListItem;
+import rollYourself.RollYourself.model.DescriptionItem;
 import rollYourself.RollYourself.model.Equipment;
 import rollYourself.RollYourself.model.PropertyItem;
 import rollYourself.RollYourself.model.QuestionResponses;
 import rollYourself.RollYourself.model.Spell;
 import rollYourself.RollYourself.model.SpellInfo;
+import rollYourself.RollYourself.model.Spellcasting;
 
 @Component
 public class DecisionTree {
@@ -473,6 +475,27 @@ public class DecisionTree {
 		}
 		
 		return spellInfo;
+	}
+	
+	public Spellcasting getSpellcasting(DndCharacter dndCharacter) {
+		Spellcasting spellcasting = new Spellcasting();
+		if(dndCharacter.getClassDetail().getName().equals("Bard")) {spellcasting = apiService.getSpellcastingDetail(1);}
+		else if(dndCharacter.getClassDetail().getName().equals("Cleric")) {spellcasting = apiService.getSpellcastingDetail(2);}
+		else if(dndCharacter.getClassDetail().getName().equals("Druid")) {spellcasting = apiService.getSpellcastingDetail(3);}
+		else if(dndCharacter.getClassDetail().getName().equals("Sorcerer")) {spellcasting = apiService.getSpellcastingDetail(6);}
+		else if(dndCharacter.getClassDetail().getName().equals("Warlock")) {spellcasting = apiService.getSpellcastingDetail(7);}
+		else if(dndCharacter.getClassDetail().getName().equals("Wizard")) {spellcasting = apiService.getSpellcastingDetail(8);}
+		else {
+			List<DescriptionItem> info = new ArrayList<>();
+			List<String> noInfo = new ArrayList<>();
+			DescriptionItem blank = new DescriptionItem();
+			noInfo.add("N/A");
+			blank.setDesc(noInfo);
+			blank.setName("N/A");
+			info.add(blank);info.add(blank);info.add(blank);info.add(blank);info.add(blank);info.add(blank);
+			spellcasting.setInfo(info);
+			}
+		return spellcasting;
 	}
 	
 }
