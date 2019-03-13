@@ -11,7 +11,7 @@
 <div class="container">
 <body>
 	<h1>Character</h1>
-	<p>Class: ${character.characterClass} &nbsp Race: <a href="/race-details/${character.raceDetail.index}">${character.race}</a> &nbsp Subrace: ${character.subraceDetail.name} &nbsp Player Name: ${character.name}</p>
+	<p>Class: ${character.characterClass} &nbsp Race: <a href=" " title="${raceDetail.age}${raceDetail.sizeDescription}">${character.race}</a> &nbsp Subrace: ${character.subraceDetail.name} &nbsp Player Name: ${character.name}</p>
 	<table class="table table-striped">
 		<tr>
 			<th>Ability</th><th>Score</th><th>Modifier</th>
@@ -68,7 +68,7 @@
 	<tr><td><a href="/skill-detail/18">Survival:</a></td><td>${skills[17]}</td></tr>
 	</table>
 	
-	<table>
+	<table class="table table-striped">
 	<tr><th>Weapon</th><th>Range</th><th>Attack Bonus</th><th>Damage</th><th>Damage Type</th></tr>
 	<c:forEach var="weapon" items="${weaponList}">
 	<tr><td>${weapon.name}</td><td>${weapon.weaponRange}</td><td>${weapon.atkBonus}</td><td>${weapon.damage.diceCount}d${weapon.damage.diceValue} + ${weapon.dmgBonus}</td><td>${weapon.damage.damageTypeItem.name}</td></tr>

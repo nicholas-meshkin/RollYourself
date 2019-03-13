@@ -131,6 +131,9 @@ public class RollYourselfController {
 		ModelAndView mav = new ModelAndView("character-sheet");
 		mav.addObject("character", dndCharacter);
 		
+		mav.addObject("classDetail", classDetail);	
+		mav.addObject("raceDetail", raceDetail);
+		
 		List<Integer> savingThrows = statSetter.calculateSavingThrows(dndCharacter);
 		mav.addObject("savingThrows",savingThrows);
 				
