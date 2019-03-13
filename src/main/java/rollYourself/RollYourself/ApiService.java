@@ -1,5 +1,6 @@
 package rollYourself.RollYourself;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -96,6 +97,31 @@ private RestTemplate restTemplateWithUserAgent;
 		Equipment response = restTemplateWithUserAgent.getForObject(url, Equipment.class);
 		return response;
 	}
+	
+	public List<SpellItem> getSpellList(){
+		String url = "http://www.dnd5eapi.co/api/spells";
+		SpellList response = restTemplateWithUserAgent.getForObject(url, SpellList.class);
+		return response.getResults();
+	}
+	
+	public List<Spell> getAllSpells(){
+		List<SpellItem> itemList = getSpellList();
+		List<Spell> list = new ArrayList<>();
+		for(int i=0;i<itemList.size();i++) {
+			Spell spell = restTemplateWithUserAgent.getForObject(itemList.get(i).getUrl(), Spell.class);
+			list.add(spell);
+		}
+		return list;
+	}
+	
+	public Spell getSpellDetail(Integer index) {
+		String url = "http://www.dnd5eapi.co/api/spells/"+index;
+		Spell response = restTemplateWithUserAgent.getForObject(url,Spell.class);
+		return response;
+	}
+	
+	
+	
 	}
 
 

@@ -23,6 +23,8 @@ import rollYourself.RollYourself.model.QuestionResponses;
 import rollYourself.RollYourself.model.RaceDetail;
 import rollYourself.RollYourself.model.Skill;
 import rollYourself.RollYourself.model.SkillItem;
+import rollYourself.RollYourself.model.Spell;
+import rollYourself.RollYourself.model.SpellInfo;
 import rollYourself.RollYourself.model.SubraceDetail;
 
 @Controller
@@ -159,6 +161,16 @@ public class RollYourselfController {
 		List<Equipment> otherEquipmentList = decisionTree.selectOtherEquipment(classSelection);
 		mav.addObject("otherEquipmentList", otherEquipmentList);
 		
+//		if(dndCharacter.getClassDetail().getSpellcasting()!=null) {
+			List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
+			List<Spell> firstLevelSpells = decisionTree.chooseFirstLevelSpells(dndCharacter);
+			SpellInfo spellInfo = decisionTree.getSpellcastingInfo(dndCharacter);
+			mav.addObject("cantrips", cantrips);
+			mav.addObject("firstLevelSpells", firstLevelSpells);
+			mav.addObject("spellInfo",spellInfo);
+			
+//		}
+		
 		return mav;
 	}
 
@@ -200,6 +212,14 @@ public class RollYourselfController {
 		ModelAndView mav = new ModelAndView("ability-score-detail");
 		AbilityScore abilityScore = apiService.abilityScoreDetail(index);
 		mav.addObject("abilityScore", abilityScore);
+		return mav;
+	}
+	
+	@RequestMapping("/spell-detail/{index}")
+	public ModelAndView spellDetailPage(@PathVariable("index") Integer index) {
+		ModelAndView mav = new ModelAndView("spell-detail");
+		Spell spell = apiService.getSpellDetail(index);
+		mav.addObject("spell",spell);
 		return mav;
 	}
 

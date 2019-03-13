@@ -2,14 +2,17 @@ package rollYourself.RollYourself;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import rollYourself.RollYourself.dao.QuestionResponsesDao;
+import rollYourself.RollYourself.model.ClassListItem;
 import rollYourself.RollYourself.model.Equipment;
 import rollYourself.RollYourself.model.PropertyItem;
 import rollYourself.RollYourself.model.QuestionResponses;
+import rollYourself.RollYourself.model.Spell;
+import rollYourself.RollYourself.model.SpellInfo;
 
 @Component
 public class DecisionTree {
@@ -300,6 +303,176 @@ public class DecisionTree {
 			}
 		}
 		return weaponList;
+	}
+	
+	public List<Spell> getAllClassSpellsByLevel(DndCharacter dndCharacter, Integer level){
+		String charClass = dndCharacter.getClassDetail().getName();
+		List<Spell> allSpells = apiService.getAllSpells();
+		List<Spell> mySpells = new ArrayList<>();
+		for(int i=0;i<allSpells.size();i++) {
+			List<ClassListItem> classItems = allSpells.get(i).getClasses();
+			List<String> classes = new ArrayList<>();
+			for(int j=0;j<classItems.size();j++) {classes.add(classItems.get(j).getName());}
+			if(allSpells.get(i).getLevel()==level && classes.contains(charClass)) {
+				mySpells.add(allSpells.get(i));
+			}
+		}
+		return mySpells;
+	}
+	public List<Spell> chooseCantrips(DndCharacter dndCharacter){
+		Random rand = new Random();
+		List<Spell> classCantrips = getAllClassSpellsByLevel(dndCharacter, 0);
+		List<Spell> myCantrips = new ArrayList<>();
+		if(dndCharacter.getClassDetail().getIndex()==2) {
+			for(int i=0;i<2;i++) {
+				int selection = rand.nextInt(classCantrips.size());
+				myCantrips.add(classCantrips.get(selection));
+				classCantrips.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==3) {
+			for(int i=0;i<3;i++) {
+				int selection = rand.nextInt(classCantrips.size());
+				myCantrips.add(classCantrips.get(selection));
+				classCantrips.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==4) {
+			for(int i=0;i<2;i++) {
+				int selection = rand.nextInt(classCantrips.size());
+				myCantrips.add(classCantrips.get(selection));
+				classCantrips.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==10) {
+			for(int i=0;i<4;i++) {
+				int selection = rand.nextInt(classCantrips.size());
+				myCantrips.add(classCantrips.get(selection));
+				classCantrips.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==11) {
+			for(int i=0;i<2;i++) {
+				int selection = rand.nextInt(classCantrips.size());
+				myCantrips.add(classCantrips.get(selection));
+				classCantrips.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==12) {
+			for(int i=0;i<3;i++) {
+				int selection = rand.nextInt(classCantrips.size());
+				myCantrips.add(classCantrips.get(selection));
+				classCantrips.remove(selection);
+			}
+		}
+		else {
+			Spell noSpell = new Spell();
+			noSpell.setName("none");
+			myCantrips.add(noSpell);
+		}
+		return myCantrips;
+	}
+	
+	public List<Spell> chooseFirstLevelSpells(DndCharacter dndCharacter){
+		Random rand = new Random();
+		List<Spell> classFirstLvls = getAllClassSpellsByLevel(dndCharacter, 1);
+		List<Spell> myFirstLvls = new ArrayList<>();
+		if(dndCharacter.getClassDetail().getIndex()==2) {
+			for(int i=0;i<4;i++) {
+				int selection = rand.nextInt(classFirstLvls.size());
+				myFirstLvls.add(classFirstLvls.get(selection));
+				classFirstLvls.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==3) {
+			for(int i=0;i<(1+statSetter.calculateBonus(dndCharacter.getWisdom()));i++) {
+				int selection = rand.nextInt(classFirstLvls.size());
+				myFirstLvls.add(classFirstLvls.get(selection));
+				classFirstLvls.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==4) {
+			for(int i=0;i<(1+statSetter.calculateBonus(dndCharacter.getWisdom()));i++) {
+				int selection = rand.nextInt(classFirstLvls.size());
+				myFirstLvls.add(classFirstLvls.get(selection));
+				classFirstLvls.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==10) {
+			for(int i=0;i<2;i++) {
+				int selection = rand.nextInt(classFirstLvls.size());
+				myFirstLvls.add(classFirstLvls.get(selection));
+				classFirstLvls.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==11) {
+			for(int i=0;i<2;i++) {
+				int selection = rand.nextInt(classFirstLvls.size());
+				myFirstLvls.add(classFirstLvls.get(selection));
+				classFirstLvls.remove(selection);
+			}
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==12) {
+			for(int i=0;i<6;i++) {
+				int selection = rand.nextInt(classFirstLvls.size());
+				myFirstLvls.add(classFirstLvls.get(selection));
+				classFirstLvls.remove(selection);
+			}
+		}
+		else {
+			Spell noSpell = new Spell();
+			noSpell.setName("none");
+			myFirstLvls.add(noSpell);
+		}
+		return myFirstLvls;
+	}
+	
+	public SpellInfo getSpellcastingInfo(DndCharacter dndCharacter) {
+		SpellInfo spellInfo = new SpellInfo();
+		if(dndCharacter.getClassDetail().getIndex()==2) {
+			spellInfo.setSpellAttackModifier(2+statSetter.calculateBonus(dndCharacter.getCharisma()));
+			spellInfo.setSpellcastingAbility("CHA");
+			spellInfo.setSpellSaveDc(8+2+statSetter.calculateBonus(dndCharacter.getCharisma()));
+			spellInfo.setFirstLevelSlots(2);
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==3) {
+			spellInfo.setSpellAttackModifier(2+statSetter.calculateBonus(dndCharacter.getWisdom()));
+			spellInfo.setSpellcastingAbility("WIS");
+			spellInfo.setSpellSaveDc(8+2+statSetter.calculateBonus(dndCharacter.getWisdom()));
+			spellInfo.setFirstLevelSlots(2);
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==4) {
+			spellInfo.setSpellAttackModifier(2+statSetter.calculateBonus(dndCharacter.getWisdom()));
+			spellInfo.setSpellcastingAbility("WIS");
+			spellInfo.setSpellSaveDc(8+2+statSetter.calculateBonus(dndCharacter.getWisdom()));
+			spellInfo.setFirstLevelSlots(2);
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==10) {
+			spellInfo.setSpellAttackModifier(2+statSetter.calculateBonus(dndCharacter.getCharisma()));
+			spellInfo.setSpellcastingAbility("CHA");
+			spellInfo.setSpellSaveDc(8+2+statSetter.calculateBonus(dndCharacter.getCharisma()));
+			spellInfo.setFirstLevelSlots(2);
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==11) {
+			spellInfo.setSpellAttackModifier(2+statSetter.calculateBonus(dndCharacter.getCharisma()));
+			spellInfo.setSpellcastingAbility("CHA");
+			spellInfo.setSpellSaveDc(8+2+statSetter.calculateBonus(dndCharacter.getCharisma()));
+			spellInfo.setFirstLevelSlots(1);
+		}
+		else if(dndCharacter.getClassDetail().getIndex()==12) {
+			spellInfo.setSpellAttackModifier(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));
+			spellInfo.setSpellcastingAbility("INT");
+			spellInfo.setSpellSaveDc(8+2+statSetter.calculateBonus(dndCharacter.getIntelligence()));
+			spellInfo.setFirstLevelSlots(2);
+		}
+		else {
+			spellInfo.setSpellAttackModifier(0);
+			spellInfo.setSpellcastingAbility("N/A");
+			spellInfo.setSpellSaveDc(0);
+			spellInfo.setFirstLevelSlots(0);
+		}
+		
+		return spellInfo;
 	}
 	
 }
