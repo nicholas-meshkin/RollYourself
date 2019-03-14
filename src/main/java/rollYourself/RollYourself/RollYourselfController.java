@@ -1,5 +1,8 @@
 package rollYourself.RollYourself;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -48,11 +51,14 @@ public class RollYourselfController {
 	
 	@Autowired
 	DndCharacterDao dndCharacterDao;
+	
 	@Autowired
 	DecisionTree decisionTree;
 	
-	@Autowired
+
 	SpellsDao spellsDao;
+
+	Names names;
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -129,11 +135,12 @@ public class RollYourselfController {
 		Integer raceSelection = decisionTree.selectRace(dndCharacter);
 		Integer classSelection = decisionTree.selectClass(dndCharacter);
 		
-
 		
 		ClassDetail classDetail = apiService.getClassDetail(classSelection);		
 		RaceDetail raceDetail = apiService.getRaceDetail(raceSelection);
 //		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
+		
+		
 		
 
 		dndCharacter.setCharacterClass(classDetail.getName());
@@ -145,8 +152,11 @@ public class RollYourselfController {
 
 		//call method that rolls stats and assigns them / set stat values on character
 		statSetter.setStats(dndCharacter);
-
-		dndCharacter.setName("Creator of Worlds");//TODO make method that gets name
+		
+		// method that selects name from name bank according to character's race
+		dndCharacter.setName(names.selectName(dndCharacter));
+		
+		
 		//create character row in the dao
 		dndCharacterDao.create(dndCharacter);
 	
@@ -291,6 +301,7 @@ public class RollYourselfController {
 	mav.addObject("characterlist", dndcharacters);
 	return mav;
 	}
+		
 	
 	@RequestMapping("/race-details/{index}")
 	public ModelAndView raceDetailsPage(@PathVariable("index") Integer index) {
