@@ -15,6 +15,9 @@ public class SkillSetter {
 	@Autowired
 	StatSetter statSetter;
 	
+	@Autowired
+	DecisionTree decisionTree;
+	
 	public List<ProficiencyItem> rollClassSkillProfs(DndCharacter dndCharacter){
 		List<ProficiencyItem> choices = dndCharacter.getClassDetail().getProfChoiceByIndex(0).getFrom();
 		List<ProficiencyItem> chosen = new ArrayList<>();
@@ -28,31 +31,33 @@ public class SkillSetter {
 		return chosen;
 	}
 	
+//	public List<ProficiencyItem> getProfChoices(DndCharacter dndCharacter){
+//		List<ProficiencyItem> chosen = decisionTree.chooseProfs(dndCharacter);
+//		return chosen;
+//	}
+	
 	public List<Integer> setSkills(DndCharacter dndCharacter){
-		List<ProficiencyItem> profs = rollClassSkillProfs(dndCharacter);
-		List<String> profNames = new ArrayList<>();
-		for(ProficiencyItem item: profs) {
-			profNames.add(item.getName());
-		}
+		
+		List<String> profNames = decisionTree.chooseProfs(dndCharacter);
 		List<Integer> skills = new ArrayList<>();
-		if(profNames.contains("Skill: Acrobatics")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getDexterity()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getDexterity()));}
-		if(profNames.contains("Skill: Animal Handling")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
-		if(profNames.contains("Skill: Arcana")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
-		if(profNames.contains("Skill: Athletics")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getStrength()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getStrength()));}
-		if(profNames.contains("Skill: Deception")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getCharisma()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getCharisma()));}
-		if(profNames.contains("Skill: History")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
-		if(profNames.contains("Skill: Insight")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
-		if(profNames.contains("Skill: Intimidation")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getCharisma()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getCharisma()));}
-		if(profNames.contains("Skill: Investigation")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
-		if(profNames.contains("Skill: Medicine")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
-		if(profNames.contains("Skill: Nature")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
-		if(profNames.contains("Skill: Perception")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
-		if(profNames.contains("Skill: Performance")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getCharisma()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getCharisma()));}
-		if(profNames.contains("Skill: Persuasion")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getCharisma()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getCharisma()));}
-		if(profNames.contains("Skill: Religion")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
-		if(profNames.contains("Skill: Sleight of Hand")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getDexterity()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getDexterity()));}
-		if(profNames.contains("Skill: Stealth")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getDexterity()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getDexterity()));}
-		if(profNames.contains("Skill: Survival")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
+		if(profNames.contains("Acrobatics")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getDexterity()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getDexterity()));}
+		if(profNames.contains("Animal Handling")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
+		if(profNames.contains("Arcana")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
+		if(profNames.contains("Athletics")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getStrength()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getStrength()));}
+		if(profNames.contains("Deception")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getCharisma()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getCharisma()));}
+		if(profNames.contains("History")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
+		if(profNames.contains("Insight")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
+		if(profNames.contains("Intimidation")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getCharisma()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getCharisma()));}
+		if(profNames.contains("Investigation")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
+		if(profNames.contains("Medicine")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
+		if(profNames.contains("Nature")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
+		if(profNames.contains("Perception")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
+		if(profNames.contains("Performance")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getCharisma()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getCharisma()));}
+		if(profNames.contains("Persuasion")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getCharisma()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getCharisma()));}
+		if(profNames.contains("Religion")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getIntelligence()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getIntelligence()));}
+		if(profNames.contains("Sleight of Hand")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getDexterity()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getDexterity()));}
+		if(profNames.contains("Stealth")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getDexterity()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getDexterity()));}
+		if(profNames.contains("Survival")) {skills.add(2+statSetter.calculateBonus(dndCharacter.getWisdom()));}else {skills.add(statSetter.calculateBonus(dndCharacter.getWisdom()));}
 		return skills;
 	}
 }

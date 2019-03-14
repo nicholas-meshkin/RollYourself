@@ -8,11 +8,15 @@ import org.springframework.stereotype.Component;
 
 import rollYourself.RollYourself.dao.QuestionResponsesDao;
 import rollYourself.RollYourself.model.ClassListItem;
+import rollYourself.RollYourself.model.DescriptionItem;
 import rollYourself.RollYourself.model.Equipment;
+import rollYourself.RollYourself.model.ProficiencyItem;
 import rollYourself.RollYourself.model.PropertyItem;
 import rollYourself.RollYourself.model.QuestionResponses;
+import rollYourself.RollYourself.model.SkillItem;
 import rollYourself.RollYourself.model.Spell;
 import rollYourself.RollYourself.model.SpellInfo;
+import rollYourself.RollYourself.model.Spellcasting;
 
 @Component
 public class DecisionTree {
@@ -473,6 +477,168 @@ public class DecisionTree {
 		}
 		
 		return spellInfo;
+	}
+	
+	public Spellcasting getSpellcasting(DndCharacter dndCharacter) {
+		Spellcasting spellcasting = new Spellcasting();
+		if(dndCharacter.getClassDetail().getName().equals("Bard")) {spellcasting = apiService.getSpellcastingDetail(1);}
+		else if(dndCharacter.getClassDetail().getName().equals("Cleric")) {spellcasting = apiService.getSpellcastingDetail(2);}
+		else if(dndCharacter.getClassDetail().getName().equals("Druid")) {spellcasting = apiService.getSpellcastingDetail(3);}
+		else if(dndCharacter.getClassDetail().getName().equals("Sorcerer")) {spellcasting = apiService.getSpellcastingDetail(6);}
+		else if(dndCharacter.getClassDetail().getName().equals("Warlock")) {spellcasting = apiService.getSpellcastingDetail(7);}
+		else if(dndCharacter.getClassDetail().getName().equals("Wizard")) {spellcasting = apiService.getSpellcastingDetail(8);}
+		else {
+			List<DescriptionItem> info = new ArrayList<>();
+			List<String> noInfo = new ArrayList<>();
+			DescriptionItem blank = new DescriptionItem();
+			noInfo.add("N/A");
+			blank.setDesc(noInfo);
+			blank.setName("N/A");
+			info.add(blank);info.add(blank);info.add(blank);info.add(blank);info.add(blank);info.add(blank);
+			spellcasting.setInfo(info);
+			}
+		return spellcasting;
+	}
+	
+	public List<String> chooseProfs(DndCharacter dndCharacter){
+		List<String> chosen = new ArrayList<>();
+		List<SkillItem> skills = apiService.getSkillList();
+		if(dndCharacter.getClassDetail().getIndex()==1) {
+			if((dndCharacter.getQ5Response() == 1)){
+				chosen.add(skills.get(1).getName());
+			}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(10).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(17).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(3).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(7).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(11).getName());}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==2) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(1).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(17).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(10).getName());}
+			if((dndCharacter.getQ5Response() == 4)){chosen.add(skills.get(9).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(5).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(9).getName());}
+			if((dndCharacter.getQ6Response() == 4)){chosen.add(skills.get(11).getName());}
+			if(((dndCharacter.getQ5Response() == 1) || (dndCharacter.getQ5Response() == 2)) && ((dndCharacter.getQ6Response() == 1) || (dndCharacter.getQ6Response() == 2))) {
+				chosen.add(skills.get(16).getName());
+			}
+			if(((dndCharacter.getQ5Response() == 1) || (dndCharacter.getQ5Response() == 2)) && ((dndCharacter.getQ6Response() == 3) || (dndCharacter.getQ6Response() == 4))) {
+				chosen.add(skills.get(4).getName());
+			}
+			if(((dndCharacter.getQ5Response() == 3) || (dndCharacter.getQ5Response() == 4)) && ((dndCharacter.getQ6Response() == 1) || (dndCharacter.getQ6Response() == 2))) {
+				chosen.add(skills.get(13).getName());
+			}
+			if(((dndCharacter.getQ5Response() == 3) || (dndCharacter.getQ5Response() == 4)) && ((dndCharacter.getQ6Response() == 3) || (dndCharacter.getQ6Response() == 4))) {
+				chosen.add(skills.get(12).getName());
+			}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==3) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(13).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(9).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(5).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(14).getName());}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==4) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(1).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(10).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(17).getName());}
+			if((dndCharacter.getQ5Response() == 4)){chosen.add(skills.get(9).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(2).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(11).getName());}
+			if((dndCharacter.getQ6Response() == 4)){chosen.add(skills.get(14).getName());}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==5) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(3).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(7).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(11).getName());}
+			if((dndCharacter.getQ5Response() == 4)){chosen.add(skills.get(0).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(1).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(5).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ6Response() == 4)){chosen.add(skills.get(17).getName());}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==6) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(0).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(3).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(16).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(5).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(14).getName());}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==7) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(3).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(7).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(9).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(5).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(14).getName());}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==8) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(1).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(10).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(17).getName());}
+			if((dndCharacter.getQ5Response() == 4)){chosen.add(skills.get(8).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(3).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(11).getName());}
+			if((dndCharacter.getQ6Response() == 4)){chosen.add(skills.get(16).getName());}
+			if(((dndCharacter.getQ5Response() == 1) || (dndCharacter.getQ5Response() == 2)) && ((dndCharacter.getQ6Response() == 1) || (dndCharacter.getQ6Response() == 2))) {
+				chosen.add(skills.get(17).getName());
+			}
+			if(((dndCharacter.getQ5Response() == 1) || (dndCharacter.getQ5Response() == 2)) && ((dndCharacter.getQ6Response() == 3) || (dndCharacter.getQ6Response() == 4))) {
+				chosen.add(skills.get(9).getName());
+			}
+			if(((dndCharacter.getQ5Response() == 3) || (dndCharacter.getQ5Response() == 4)) && ((dndCharacter.getQ6Response() == 1) || (dndCharacter.getQ6Response() == 2))) {
+				chosen.add(skills.get(16).getName());
+			}
+			if(((dndCharacter.getQ5Response() == 3) || (dndCharacter.getQ5Response() == 4)) && ((dndCharacter.getQ6Response() == 3) || (dndCharacter.getQ6Response() == 4))) {
+				chosen.add(skills.get(11).getName());
+			}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==9) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(3).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(8).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(13).getName());}
+			if((dndCharacter.getQ5Response() == 4)){chosen.add(skills.get(0).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(4).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(11).getName());}
+			if((dndCharacter.getQ6Response() == 4)){chosen.add(skills.get(8).getName());}
+			if((dndCharacter.getQ5Response() == 1) || (dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(12).getName());}
+			if((dndCharacter.getQ5Response() == 3) || (dndCharacter.getQ5Response() == 4)){chosen.add(skills.get(15).getName());}
+			chosen.add(skills.get(16).getName());
+		}
+		if(dndCharacter.getClassDetail().getIndex()==10) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(7).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(13).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(2).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(14).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(4).getName());}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==11) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(5).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(7).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(10).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(2).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(4).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(14).getName());}
+			if((dndCharacter.getQ6Response() == 4)){chosen.add(skills.get(8).getName());}
+		}
+		if(dndCharacter.getClassDetail().getIndex()==12) {
+			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(6).getName());}
+			if((dndCharacter.getQ5Response() == 2)){chosen.add(skills.get(5).getName());}
+			if((dndCharacter.getQ5Response() == 3)){chosen.add(skills.get(9).getName());}
+			if((dndCharacter.getQ6Response() == 1)){chosen.add(skills.get(2).getName());}
+			if((dndCharacter.getQ6Response() == 2)){chosen.add(skills.get(14).getName());}
+			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(8).getName());}
+		}
+		return chosen;
 	}
 	
 }

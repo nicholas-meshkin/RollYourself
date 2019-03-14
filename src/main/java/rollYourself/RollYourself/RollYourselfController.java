@@ -25,6 +25,7 @@ import rollYourself.RollYourself.model.Skill;
 import rollYourself.RollYourself.model.SkillItem;
 import rollYourself.RollYourself.model.Spell;
 import rollYourself.RollYourself.model.SpellInfo;
+import rollYourself.RollYourself.model.Spellcasting;
 import rollYourself.RollYourself.model.SubraceDetail;
 
 @Controller
@@ -92,8 +93,8 @@ public class RollYourselfController {
 		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
 		
 
-//		dndCharacter.setCharacterClass(classDetail.getName());
-//		dndCharacter.setRace(raceDetail.getName());
+		dndCharacter.setCharacterClass(classDetail.getName());
+		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
 		dndCharacter.setSubraceDetail(subraceDetail);
 		dndCharacter.setClassDetail(classDetail);
@@ -158,7 +159,7 @@ public class RollYourselfController {
 		dndCharacter.setClassDetail(classDetail);
 
 		statSetter.raceStatAdjust(dndCharacter);
-		statSetter.subraceStatAdjust(dndCharacter);
+		//statSetter.subraceStatAdjust(dndCharacter);
 		
 		
 		ModelAndView mav = new ModelAndView("character-sheet");
@@ -222,12 +223,16 @@ public class RollYourselfController {
 		mav.addObject("otherEquipmentList", otherEquipmentList);
 		
 //		if(dndCharacter.getClassDetail().getSpellcasting()!=null) {
-			List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
-			List<Spell> firstLevelSpells = decisionTree.chooseFirstLevelSpells(dndCharacter);
-			SpellInfo spellInfo = decisionTree.getSpellcastingInfo(dndCharacter);
-			mav.addObject("cantrips", cantrips);
-			mav.addObject("firstLevelSpells", firstLevelSpells);
-			mav.addObject("spellInfo",spellInfo);
+		
+		//TODO: fix spell thing so it isn't making 300 requests every time page is loaded
+//			List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
+//			List<Spell> firstLevelSpells = decisionTree.chooseFirstLevelSpells(dndCharacter);
+//			SpellInfo spellInfo = decisionTree.getSpellcastingInfo(dndCharacter);
+//			Spellcasting spellcasting = decisionTree.getSpellcasting(dndCharacter);
+//			mav.addObject("cantrips", cantrips);
+//			mav.addObject("firstLevelSpells", firstLevelSpells);
+//			mav.addObject("spellInfo",spellInfo);
+//			mav.addObject("spellcasting",spellcasting);
 			
 //		}
 		
@@ -239,7 +244,6 @@ public class RollYourselfController {
 	ModelAndView mav = new ModelAndView("character-list");
 	List<DndCharacter> dndcharacters = dndCharacterDao.findAll();
 	mav.addObject("characterlist", dndcharacters);
-
 	return mav;
 	}
 	
@@ -283,4 +287,16 @@ public class RollYourselfController {
 		return mav;
 	}
 
+	//for our use, not a user page
+	@RequestMapping("/profChoiceList")
+	public ModelAndView profPage(){
+		ModelAndView mav = new ModelAndView("prof-page");
+		List<ClassDetail> classList = new ArrayList<>();
+		for(int i=1;i<13;i++) {
+			classList.add(apiService.getClassDetail(i));
+		}
+		
+		mav.addObject("classList", classList);
+		return mav;
+	}
 }
