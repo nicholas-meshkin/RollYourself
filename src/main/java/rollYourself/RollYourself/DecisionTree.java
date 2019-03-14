@@ -33,22 +33,15 @@ public class DecisionTree {
 	public Integer selectRace(DndCharacter dndCharacter) {
 		Integer raceSelection = 0;
 		
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 1;}
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 2;}
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 3;}
-		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 4;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 4;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 5;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 6;}
-		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 1;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 7;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 8;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 9;}
-		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 2;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 3;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 7;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 5;}
-		if ( (dndCharacter.getQ1Response() == 4) && (dndCharacter.getQ2Response() == 4) ) {raceSelection = 9;}
+		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 1;}
+		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 2;}
+		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 3;}
+		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 4;}
+		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 5;}
+		if ( (dndCharacter.getQ1Response() == 3) && (dndCharacter.getQ2Response() == 3) ) {raceSelection = 6;}
+		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 2) ) {raceSelection = 7;}
+		if ( (dndCharacter.getQ1Response() == 1) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 8;}
+		if ( (dndCharacter.getQ1Response() == 2) && (dndCharacter.getQ2Response() == 1) ) {raceSelection = 9;}
 		return raceSelection;
 	}
 	
@@ -56,22 +49,15 @@ public class DecisionTree {
 		QuestionResponses questionResponses = questionResponsesDao.findById(id);
 		Integer raceSelection = 0;
 	
-		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 1;}
-		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 2;}
-		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 3;}
-		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 4) ) {raceSelection = 4;}
-		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 4;}
-		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 5;}
-		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 6;}
-		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 4) ) {raceSelection = 1;}
-		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 7;}
-		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 8;}
-		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 9;}
-		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 4) ) {raceSelection = 2;}
-		if ( (questionResponses.getQ1Response() == 4) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 3;}
-		if ( (questionResponses.getQ1Response() == 4) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 7;}
-		if ( (questionResponses.getQ1Response() == 4) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 5;}
-		if ( (questionResponses.getQ1Response() == 4) && (questionResponses.getQ2Response() == 4) ) {raceSelection = 9;}
+		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 1;}
+		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 2;}
+		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 3;}
+		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 4;}
+		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 5;}
+		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 6;}
+		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 7;}
+		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 8;}
+		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 9;}
 		return raceSelection;
 	}
 	
@@ -103,21 +89,17 @@ public class DecisionTree {
 		Integer classSelection = 0;
 		
 		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 1;}
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 2;}
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 3;}
-		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 4;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 5;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 6;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 7;}
-		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 8;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 9;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 10;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 11;}
-		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 12;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 1;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 10;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 5;}
-		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 4) ) {classSelection = 9;}
+		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 2;}
+		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 3;}
+		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 4;}
+		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 5;}
+		if ( (dndCharacter.getQ3Response() == 1) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 6;}
+		if ( (dndCharacter.getQ3Response() == 4) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 7;}
+		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 8;}
+		if ( (dndCharacter.getQ3Response() == 2) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 9;}
+		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 1) ) {classSelection = 10;}
+		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 2) ) {classSelection = 11;}
+		if ( (dndCharacter.getQ3Response() == 3) && (dndCharacter.getQ4Response() == 3) ) {classSelection = 12;}
 		return classSelection;
 	}
 	
@@ -647,61 +629,30 @@ public class DecisionTree {
 			alignment = "True Neutral";
 			return alignment;
 		}
-		if(dndCharacter.getQ8Response() == 1) {
-			alignment += "Lawful";
-		}else if(dndCharacter.getQ8Response() == 2) {
-			alignment += "Neutral";
-		}else if(dndCharacter.getQ8Response() == 3) {
-			alignment += "Chaotic";
-		}
-		if(dndCharacter.getQ7Response() == 1) {
-			alignment += " Good";
-		}else if(dndCharacter.getQ7Response() == 2) {
-			alignment += " Neutral";
-		}else if(dndCharacter.getQ7Response() == 3) {
-			alignment += " Evil";
-		}
+		if(dndCharacter.getQ8Response() == 1) {alignment += "Lawful";
+		}else if(dndCharacter.getQ8Response() == 2) {alignment += "Neutral";
+		}else if(dndCharacter.getQ8Response() == 3) {alignment += "Chaotic";}
+		
+		if(dndCharacter.getQ7Response() == 1) {alignment += " Good";
+		}else if(dndCharacter.getQ7Response() == 2) {alignment += " Neutral";
+		}else if(dndCharacter.getQ7Response() == 3) {alignment += " Evil";}
 		return alignment;
 	}
 	
 	public String selectPage2(Integer classSelection){
 		String page2 = "questionnaire-page-2-";
-			if (classSelection == 1){
-				page2 += "barbarian";
-			}
-			if (classSelection == 2){
-				page2 += "bard";
-			}
-			if (classSelection == 3){
-				page2 += "cleric";
-			}
-			if (classSelection == 4){
-				page2 += "druid";
-			}
-			if (classSelection == 5){
-				page2 += "fighter";
-			}
-			if (classSelection == 6){
-				page2 += "monk";
-			}
-			if (classSelection == 7){
-				page2 += "paladin";
-			}
-			if (classSelection == 8){
-				page2 += "ranger";
-			}
-			if (classSelection == 9){
-				page2 += "rogue";
-			}
-			if (classSelection == 10){
-				page2 += "sorcerer";
-			}
-			if (classSelection == 11){
-				page2 += "warlock";
-			}
-			if (classSelection == 12){
-				page2 += "wizard";
-			}
+			if (classSelection == 1){page2 += "barbarian";}
+			if (classSelection == 2){page2 += "bard";}
+			if (classSelection == 3){page2 += "cleric";}
+			if (classSelection == 4){page2 += "druid";}
+			if (classSelection == 5){page2 += "fighter";}
+			if (classSelection == 6){page2 += "monk";}
+			if (classSelection == 7){page2 += "paladin";}
+			if (classSelection == 8){page2 += "ranger";}
+			if (classSelection == 9){page2 += "rogue";}
+			if (classSelection == 10){page2 += "sorcerer";}
+			if (classSelection == 11){page2 += "warlock";}
+			if (classSelection == 12){page2 += "wizard";}
 			return page2;
 	}
 	
