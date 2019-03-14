@@ -99,14 +99,15 @@
 	<p>Traits:</p><ul><c:forEach var="trait" items="${character.raceDetail.traits}"><li>${trait.name}</li></c:forEach></ul>
 	<p><a href="/language-detail/${character.raceDetail.index}">Languages Spoken:</a></p><ul><c:forEach var="lang" items="${character.raceDetail.languages}"><li>${lang.name}</li></c:forEach></ul>
 	<!-- TODO add only non-skill proficiencies from race -->
-	<!--
-	<p>Cantrips Known:</p><ul><c:forEach var="spell" items="${cantrips}"><li><a href="/spell-detail/${spell.index}">${spell.name}</a></li></c:forEach></ul>
-	<p>First Level Spells Known:</p><ul><c:forEach var="spell" items="${firstLevelSpells}"><li><a href="/spell-detail/${spell.index}">${spell.name}</a></li></c:forEach></ul>
-	<p>Spell Slots: ${spellInfo.firstLevelSlots}</p>
-	<p>Spellcasting Ability: ${spellInfo.spellcastingAbility}</p>
+	
+	<a href="" title="${spellcasting.info[0].desc}">Cantrips Known:</a><ul><c:forEach var="spell" items="${cantrips}"><li><a href="/spell-detail/${spell.index}">${spell.name}</a></li></c:forEach></ul>
+	<a href="" title="${spellcasting.info[1].desc}">First Level Spells Known:</a><ul><c:forEach var="spell" items="${firstLevelSpells}"><li><a href="/spell-detail/${spell.index}">${spell.name}</a></li></c:forEach></ul>
+	<a>Spell Slots: ${spellInfo.firstLevelSlots}</a>
+	<p></p>
+	<a href="" title="${spellcasting.info[3].desc}">Spellcasting Ability:</a><span> ${spellInfo.spellcastingAbility}</span>
 	<p>Spell Attack Modifier: ${spellInfo.spellAttackModifier}</p>
 	<p>Spell Save DC: ${spellInfo.spellSaveDc}</p>
-	<c:forEach var="item" items="${spellcasting.info}">
+	<!--<c:forEach var="item" items="${spellcasting.info}">
 	<p>${item.desc}</p>
 	</c:forEach> -->
 	<a href="/">Home</a>

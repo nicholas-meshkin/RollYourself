@@ -9,19 +9,17 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name="spellsdetails")
+@Table(name="spelllist")
 public class SpellsDetails {
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@JsonProperty("index")
-	private Long id;
+	@Id
+	private Integer id;
 	private String name;
 	private Integer level;
 	private String classes;
-	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -46,5 +44,6 @@ public class SpellsDetails {
 	public String toString() {
 		return "SpellsDetails [id=" + id + ", name=" + name + ", level=" + level + ", classes=" + classes + "]";
 	}
+	
 	
 }

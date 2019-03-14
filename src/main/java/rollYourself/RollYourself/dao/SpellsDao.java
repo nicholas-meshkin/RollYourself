@@ -22,15 +22,16 @@ public class SpellsDao {
 		em.persist(spellsDetails);
 	}
 	
-	public SpellsDetails findById(Long id) {
+	public SpellsDetails findById(Integer id) {
 		return em.find(SpellsDetails.class, id);
 	}
 	
 	public List<SpellsDetails> findByClassAndLevel(String classes, Integer level) {
-		List<SpellsDetails> spellList = new ArrayList<>();
-		em.createQuery("from SpellsDetails where level=:level AND LIKE classes=:classes", SpellsDetails.class)
-		.setParameter("level", level).setParameter("classes", classes).getResultList();
-		
-		return spellList;
+//		List<SpellsDetails> spellList = new ArrayList<>();
+//		em.createQuery("FROM SpellsDetails WHERE level=:level AND classes LIKE :classes", SpellsDetails.class)
+//		.setParameter("level", level).setParameter("classes", "%"+classes+"%").getResultList();
+		return em.createQuery("FROM SpellsDetails WHERE level = :level AND classes LIKE :classes", SpellsDetails.class).setParameter("level", level).setParameter("classes", "%"+classes+"%").getResultList();
+//		System.out.println(spellList.get(0));
+//		return spellList;
 	}
 }

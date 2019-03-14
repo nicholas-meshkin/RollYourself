@@ -55,9 +55,10 @@ public class RollYourselfController {
 	@Autowired
 	DecisionTree decisionTree;
 	
-
+	@Autowired
 	SpellsDao spellsDao;
-
+	
+	@Autowired
 	Names names;
 	
 	@RequestMapping("/")
@@ -66,7 +67,9 @@ public class RollYourselfController {
 		
 		List<ClassListItem> classList = apiService.getClassList();
 		mav.addObject("classList", classList);
+//		decisionTree.spellsDB(); TODO change this to if statement that checks for empty table
 		return mav;
+		
 	}
 	
 	@RequestMapping("/questionnaire")
@@ -280,14 +283,14 @@ public class RollYourselfController {
 //		if(dndCharacter.getClassDetail().getSpellcasting()!=null) {
 		
 		//TODO: fix spell thing so it isn't making 300 requests every time page is loaded
-//			List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
-//			List<Spell> firstLevelSpells = decisionTree.chooseFirstLevelSpells(dndCharacter);
-//			SpellInfo spellInfo = decisionTree.getSpellcastingInfo(dndCharacter);
-//			Spellcasting spellcasting = decisionTree.getSpellcasting(dndCharacter);
-//			mav.addObject("cantrips", cantrips);
-//			mav.addObject("firstLevelSpells", firstLevelSpells);
-//			mav.addObject("spellInfo",spellInfo);
-//			mav.addObject("spellcasting",spellcasting);
+			List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
+			List<Spell> firstLevelSpells = decisionTree.chooseFirstLevelSpells(dndCharacter);
+			SpellInfo spellInfo = decisionTree.getSpellcastingInfo(dndCharacter);
+			Spellcasting spellcasting = decisionTree.getSpellcasting(dndCharacter);
+			mav.addObject("cantrips", cantrips);
+			mav.addObject("firstLevelSpells", firstLevelSpells);
+			mav.addObject("spellInfo",spellInfo);
+			mav.addObject("spellcasting",spellcasting);
 			
 //		}
 		

@@ -26,6 +26,7 @@ What most describes your philosophy on your own lifespan?
   <option value="1">Quality over quantity</option>
   <option value="2">I don't think about mortality</option>
   <option value="3">I'm gonna live as long as I possible can</option>
+  </select>
 </div>
 <p></p>
 

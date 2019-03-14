@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import rollYourself.RollYourself.dao.QuestionResponsesDao;
+import rollYourself.RollYourself.dao.SpellsDao;
 import rollYourself.RollYourself.model.ClassListItem;
 import rollYourself.RollYourself.model.DescriptionItem;
 import rollYourself.RollYourself.model.Equipment;
@@ -26,6 +27,9 @@ public class DecisionTree {
 	
 	@Autowired
 	private StatSetter statSetter;
+	
+	@Autowired
+	private SpellsDao spellsDao;
 	
 	@Autowired
 	QuestionResponsesDao questionResponsesDao;
@@ -293,18 +297,15 @@ public class DecisionTree {
 	
 	public List<Spell> getAllClassSpellsByLevel(DndCharacter dndCharacter, Integer level){
 		String charClass = dndCharacter.getClassDetail().getName();
-		List<Spell> allSpells = apiService.getAllSpells();
+//		List<Spell> allSpells = apiService.getAllSpells();
+		List<SpellsDetails> list= spellsDao.findByClassAndLevel(charClass, level);
 		List<Spell> mySpells = new ArrayList<>();
-		for(int i=0;i<allSpells.size();i++) {
-			List<ClassListItem> classItems = allSpells.get(i).getClasses();
-			List<String> classes = new ArrayList<>();
-			for(int j=0;j<classItems.size();j++) {classes.add(classItems.get(j).getName());}
-			if(allSpells.get(i).getLevel()==level && classes.contains(charClass)) {
-				mySpells.add(allSpells.get(i));
+		for(SpellsDetails i : list) {
+			mySpells.add(apiService.getSpellDetail(i.getId()));
 			}
-		}
 		return mySpells;
 	}
+	
 	public List<Spell> chooseCantrips(DndCharacter dndCharacter){
 		Random rand = new Random();
 		List<Spell> classCantrips = getAllClassSpellsByLevel(dndCharacter, 0);
@@ -656,7 +657,7 @@ public class DecisionTree {
 			return page2;
 	}
 	
-	private void spellsDB() {
+	public void spellsDB() {
 		List<Spell> allSpells = apiService.getAllSpells();
 		for(Spell i : allSpells) {
 			SpellsDetails x = new SpellsDetails();
@@ -669,12 +670,12 @@ public class DecisionTree {
 			}
 			for(int h=0;h<y.size();h++) {
 				classes += y.get(h) + " ";
-				x.setClasses(classes);
-			}//TODO put classes string into database
-			
+			}
+			x.setId(i.getIndex());
+			x.setClasses(classes);
 			x.setName(i.getName());
-			System.out.println(x);
-			//spellsDao.create(x);
+//			System.out.println(x);
+			spellsDao.create(x);
 		}
 	}
 }
