@@ -113,7 +113,6 @@ private RestTemplate restTemplateWithUserAgent;
 		for(int i=0;i<itemList.size();i++) {
 			SpellsDetails spell = restTemplateWithUserAgent.getForObject(itemList.get(i).getUrl(), SpellsDetails.class);
 			list.add(spell);
-			System.out.println(spell);
 		}
 		return list;
 	}

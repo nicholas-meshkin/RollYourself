@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import rollYourself.RollYourself.dao.DndCharacterDao;
 import rollYourself.RollYourself.dao.QuestionResponsesDao;
+import rollYourself.RollYourself.dao.SpellsDao;
 import rollYourself.RollYourself.model.AbilityScore;
 import rollYourself.RollYourself.model.AbilityScoreList;
 import rollYourself.RollYourself.model.ClassDetail;
@@ -51,12 +52,12 @@ public class RollYourselfController {
 	DecisionTree decisionTree;
 	
 	@Autowired
-	SpellsDetails spellDetails;
+	SpellsDao spellsDao;
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
 		ModelAndView mav = new ModelAndView("index");
-		List<SpellsDetails> spell = apiService.getAllSpellsDB();
+		
 		List<ClassListItem> classList = apiService.getClassList();
 		mav.addObject("classList", classList);
 		return mav;

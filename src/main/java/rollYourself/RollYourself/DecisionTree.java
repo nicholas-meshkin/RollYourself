@@ -641,4 +641,25 @@ public class DecisionTree {
 		return chosen;
 	}
 	
+	private void spellsDB() {
+		List<Spell> allSpells = apiService.getAllSpells();
+		for(Spell i : allSpells) {
+			SpellsDetails x = new SpellsDetails();
+			x.setLevel(i.getLevel());
+			List<String> y = new ArrayList<>();
+			List<ClassListItem> z = i.getClasses();
+			String classes = "";
+			for(int j=0;j<z.size();j++) {
+				y.add(z.get(j).getName());
+			}
+			for(int h=0;h<y.size();h++) {
+				classes += y.get(h) + " ";
+				x.setClasses(classes);
+			}//TODO put classes string into database
+			
+			x.setName(i.getName());
+			System.out.println(x);
+			//spellsDao.create(x);
+		}
+	}
 }
