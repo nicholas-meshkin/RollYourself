@@ -107,6 +107,17 @@ private RestTemplate restTemplateWithUserAgent;
 		return list;
 	}
 	
+	public List<SpellsDetails> getAllSpellsDB(){
+		List<SpellItem> itemList = getSpellList();
+		List<SpellsDetails> list = new ArrayList<>();
+		for(int i=0;i<itemList.size();i++) {
+			SpellsDetails spell = restTemplateWithUserAgent.getForObject(itemList.get(i).getUrl(), SpellsDetails.class);
+			list.add(spell);
+			System.out.println(spell);
+		}
+		return list;
+	}
+	
 	public Spell getSpellDetail(Integer index) {
 		String url = "http://www.dnd5eapi.co/api/spells/"+index;
 		Spell response = restTemplateWithUserAgent.getForObject(url,Spell.class);

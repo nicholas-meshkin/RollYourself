@@ -49,9 +49,13 @@ public class RollYourselfController {
 	@Autowired
 	DecisionTree decisionTree;
 	
+	@Autowired
+	SpellsDetails spellDetails;
+	
 	@RequestMapping("/")
 	public ModelAndView home() {
 		ModelAndView mav = new ModelAndView("index");
+		List<SpellsDetails> spell = apiService.getAllSpellsDB();
 		List<ClassListItem> classList = apiService.getClassList();
 		mav.addObject("classList", classList);
 		return mav;
