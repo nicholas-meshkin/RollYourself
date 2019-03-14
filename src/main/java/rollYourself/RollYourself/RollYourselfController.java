@@ -64,6 +64,46 @@ public class RollYourselfController {
 		return new ModelAndView("questionnaire-page-1");
 	}
 	
+	@RequestMapping("/questionnaire-page-2")
+	public ModelAndView page2(@RequestParam ("q1Response") Integer q1Response,
+							@RequestParam ("q2Response") Integer q2Response,
+							@RequestParam ("q3Response") Integer q3Response,
+							@RequestParam ("q4Response") Integer q4Response) {
+		
+		DndCharacter dndCharacter = new DndCharacter();
+		//set responses
+		dndCharacter.setQ1Response(q1Response);
+		dndCharacter.setQ2Response(q2Response);
+		dndCharacter.setQ3Response(q3Response);
+		dndCharacter.setQ4Response(q4Response);
+		Integer classSelection = decisionTree.selectClass(dndCharacter);
+		String page2 = decisionTree.selectPage2(classSelection);
+		ModelAndView mav = new ModelAndView(page2);
+		mav.addObject("dndCharacter", dndCharacter);
+		return mav;
+	}
+	
+	@RequestMapping("/questionnaire-page-3")
+	public ModelAndView page3(@RequestParam ("q1Response") Integer q1Response,
+							@RequestParam ("q2Response") Integer q2Response,
+							@RequestParam ("q3Response") Integer q3Response,
+							@RequestParam ("q4Response") Integer q4Response,
+							@RequestParam ("q5Response") Integer q5Response,
+							@RequestParam ("q6Response") Integer q6Response) {
+		
+		DndCharacter dndCharacter = new DndCharacter();
+		//set responses
+		dndCharacter.setQ1Response(q1Response);
+		dndCharacter.setQ2Response(q2Response);
+		dndCharacter.setQ3Response(q3Response);
+		dndCharacter.setQ4Response(q4Response);
+		dndCharacter.setQ5Response(q5Response);
+		dndCharacter.setQ6Response(q6Response);
+	
+		ModelAndView mav = new ModelAndView("questionnaire-page-3");
+		mav.addObject("dndCharacter", dndCharacter);
+		return mav;
+	}
 	
 	@RequestMapping("/submitResponses")
 	public ModelAndView submitResponses(QuestionResponses QuestionResponse) {
@@ -77,6 +117,8 @@ public class RollYourselfController {
 		dndCharacter.setQ4Response( QuestionResponse.getQ4Response() );
 		dndCharacter.setQ5Response( QuestionResponse.getQ5Response() );
 		dndCharacter.setQ6Response( QuestionResponse.getQ6Response() );
+		dndCharacter.setQ7Response( QuestionResponse.getQ7Response() );
+		dndCharacter.setQ8Response( QuestionResponse.getQ8Response() );
 		
 		//determine class from responses
 		Integer raceSelection = decisionTree.selectRace(dndCharacter);
@@ -86,13 +128,13 @@ public class RollYourselfController {
 		
 		ClassDetail classDetail = apiService.getClassDetail(classSelection);		
 		RaceDetail raceDetail = apiService.getRaceDetail(raceSelection);
-		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
+//		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
 		
 
 		dndCharacter.setCharacterClass(classDetail.getName());
 		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
-		dndCharacter.setSubraceDetail(subraceDetail);
+//		dndCharacter.setSubraceDetail(subraceDetail);
 		dndCharacter.setClassDetail(classDetail);
 
 
@@ -202,6 +244,8 @@ public class RollYourselfController {
 		Integer maxHp = statSetter.calculateBonus(dndCharacter.getConstitution())+dndCharacter.getClassDetail().getHitDie();
 		mav.addObject("maxHp",maxHp);
 		
+		String alignment = decisionTree.selectAlignment(dndCharacter);
+		mav.addObject("alignment", alignment);
 		Integer passivePerception = statSetter.calculateBonus(dndCharacter.getWisdom())+10;
 		mav.addObject("passivePerception", passivePerception);
 		

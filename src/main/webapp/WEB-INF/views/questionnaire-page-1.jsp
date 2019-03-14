@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-<form action="/submitResponses">
+<form action="/questionnaire-page-2">
 
 Your listed height:
 <div>

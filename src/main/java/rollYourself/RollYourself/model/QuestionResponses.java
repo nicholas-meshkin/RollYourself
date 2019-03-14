@@ -20,6 +20,8 @@ public class QuestionResponses {
 	private Integer q4Response;
 	private Integer q5Response;
 	private Integer q6Response;
+	private Integer q7Response;
+	private Integer q8Response;
 	
 	
 	public QuestionResponses () {}
@@ -96,6 +98,26 @@ public class QuestionResponses {
 	}
 	public void setQ6Response(Integer q6Response) {
 		this.q6Response = q6Response;
+	}
+
+
+	public Integer getQ7Response() {
+		return q7Response;
+	}
+
+
+	public void setQ7Response(Integer q7Response) {
+		this.q7Response = q7Response;
+	}
+
+
+	public Integer getQ8Response() {
+		return q8Response;
+	}
+
+
+	public void setQ8Response(Integer q8Response) {
+		this.q8Response = q8Response;
 	}
 	
 

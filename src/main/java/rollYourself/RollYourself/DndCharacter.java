@@ -46,6 +46,26 @@ public class DndCharacter {
 	private Integer q4Response;
 	private Integer q5Response;
 	private Integer q6Response;
+	private Integer q7Response;
+	public Integer getQ7Response() {
+		return q7Response;
+	}
+
+
+	public void setQ7Response(Integer q7Response) {
+		this.q7Response = q7Response;
+	}
+
+
+	public Integer getQ8Response() {
+		return q8Response;
+	}
+
+
+	public void setQ8Response(Integer q8Response) {
+		this.q8Response = q8Response;
+	}
+	private Integer q8Response;
 
 	
 

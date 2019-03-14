@@ -641,4 +641,67 @@ public class DecisionTree {
 		return chosen;
 	}
 	
+	public String selectAlignment(DndCharacter dndCharacter) {
+		String alignment = "";
+		if(dndCharacter.getQ7Response() == 2 && (dndCharacter.getQ8Response() == 2)){
+			alignment = "True Neutral";
+			return alignment;
+		}
+		if(dndCharacter.getQ8Response() == 1) {
+			alignment += "Lawful";
+		}else if(dndCharacter.getQ8Response() == 2) {
+			alignment += "Neutral";
+		}else if(dndCharacter.getQ8Response() == 3) {
+			alignment += "Chaotic";
+		}
+		if(dndCharacter.getQ7Response() == 1) {
+			alignment += " Good";
+		}else if(dndCharacter.getQ7Response() == 2) {
+			alignment += " Neutral";
+		}else if(dndCharacter.getQ7Response() == 3) {
+			alignment += " Evil";
+		}
+		return alignment;
+	}
+	
+	public String selectPage2(Integer classSelection){
+		String page2 = "questionnaire-page-2-";
+			if (classSelection == 1){
+				page2 += "barbarian";
+			}
+			if (classSelection == 2){
+				page2 += "bard";
+			}
+			if (classSelection == 3){
+				page2 += "cleric";
+			}
+			if (classSelection == 4){
+				page2 += "druid";
+			}
+			if (classSelection == 5){
+				page2 += "fighter";
+			}
+			if (classSelection == 6){
+				page2 += "monk";
+			}
+			if (classSelection == 7){
+				page2 += "paladin";
+			}
+			if (classSelection == 8){
+				page2 += "ranger";
+			}
+			if (classSelection == 9){
+				page2 += "rogue";
+			}
+			if (classSelection == 10){
+				page2 += "sorcerer";
+			}
+			if (classSelection == 11){
+				page2 += "warlock";
+			}
+			if (classSelection == 12){
+				page2 += "wizard";
+			}
+			return page2;
+	}
 }
