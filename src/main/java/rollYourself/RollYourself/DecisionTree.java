@@ -259,9 +259,12 @@ public class DecisionTree {
 					aC+=item.getArmorClass().getBase();
 				}else if(!item.getArmorClass().getDexBonus()){
 					aC+=(item.getArmorClass().getBase()-10);
-				}else if(item.getArmorClass().getDexBonus() &&  item.getArmorClass().getMaxBonus()==null){
+				}else if(item.getArmorClass().getDexBonus() 
+						&&  item.getArmorClass().getMaxBonus()==null){
 					aC+=item.getArmorClass().getBase() - 10 + statSetter.calculateBonus(dndCharacter.getDexterity());
-				} else if(item.getArmorClass().getDexBonus() &&  item.getArmorClass().getMaxBonus()!=null && statSetter.calculateBonus(dndCharacter.getDexterity())<item.getArmorClass().getMaxBonus()){
+				} else if(item.getArmorClass().getDexBonus() 
+						&&  item.getArmorClass().getMaxBonus()!=null 
+						&& statSetter.calculateBonus(statSetter.calculateBonus(dndCharacter.getDexterity()))<item.getArmorClass().getMaxBonus()){
 					aC+=item.getArmorClass().getBase() - 10 + statSetter.calculateBonus(dndCharacter.getDexterity());
 				}else {
 					aC+=(item.getArmorClass().getBase() - 10 + item.getArmorClass().getMaxBonus());
@@ -368,43 +371,37 @@ public class DecisionTree {
 			for(int i=0;i<4;i++) {
 				int selection = rand.nextInt(classFirstLvls.size());
 				myFirstLvls.add(classFirstLvls.get(selection));
-				classFirstLvls.remove(selection);
-			}
+				classFirstLvls.remove(selection);}
 		}
 		else if(dndCharacter.getClassDetail().getIndex()==3) {
 			for(int i=0;i<(1+statSetter.calculateBonus(dndCharacter.getWisdom()));i++) {
 				int selection = rand.nextInt(classFirstLvls.size());
 				myFirstLvls.add(classFirstLvls.get(selection));
-				classFirstLvls.remove(selection);
-			}
+				classFirstLvls.remove(selection);}
 		}
 		else if(dndCharacter.getClassDetail().getIndex()==4) {
 			for(int i=0;i<(1+statSetter.calculateBonus(dndCharacter.getWisdom()));i++) {
 				int selection = rand.nextInt(classFirstLvls.size());
 				myFirstLvls.add(classFirstLvls.get(selection));
-				classFirstLvls.remove(selection);
-			}
+				classFirstLvls.remove(selection);}
 		}
 		else if(dndCharacter.getClassDetail().getIndex()==10) {
 			for(int i=0;i<2;i++) {
 				int selection = rand.nextInt(classFirstLvls.size());
 				myFirstLvls.add(classFirstLvls.get(selection));
-				classFirstLvls.remove(selection);
-			}
+				classFirstLvls.remove(selection);}
 		}
 		else if(dndCharacter.getClassDetail().getIndex()==11) {
 			for(int i=0;i<2;i++) {
 				int selection = rand.nextInt(classFirstLvls.size());
 				myFirstLvls.add(classFirstLvls.get(selection));
-				classFirstLvls.remove(selection);
-			}
+				classFirstLvls.remove(selection);}
 		}
 		else if(dndCharacter.getClassDetail().getIndex()==12) {
 			for(int i=0;i<6;i++) {
 				int selection = rand.nextInt(classFirstLvls.size());
 				myFirstLvls.add(classFirstLvls.get(selection));
-				classFirstLvls.remove(selection);
-			}
+				classFirstLvls.remove(selection);}
 		}
 		else {
 			Spell noSpell = new Spell();
@@ -506,17 +503,13 @@ public class DecisionTree {
 			if((dndCharacter.getQ6Response() == 3)){chosen.add(skills.get(9).getName());}
 			if((dndCharacter.getQ6Response() == 4)){chosen.add(skills.get(11).getName());}
 			if(((dndCharacter.getQ5Response() == 1) || (dndCharacter.getQ5Response() == 2)) && ((dndCharacter.getQ6Response() == 1) || (dndCharacter.getQ6Response() == 2))) {
-				chosen.add(skills.get(16).getName());
-			}
+				chosen.add(skills.get(16).getName());}
 			if(((dndCharacter.getQ5Response() == 1) || (dndCharacter.getQ5Response() == 2)) && ((dndCharacter.getQ6Response() == 3) || (dndCharacter.getQ6Response() == 4))) {
-				chosen.add(skills.get(4).getName());
-			}
+				chosen.add(skills.get(4).getName());}
 			if(((dndCharacter.getQ5Response() == 3) || (dndCharacter.getQ5Response() == 4)) && ((dndCharacter.getQ6Response() == 1) || (dndCharacter.getQ6Response() == 2))) {
-				chosen.add(skills.get(13).getName());
-			}
+				chosen.add(skills.get(13).getName());}
 			if(((dndCharacter.getQ5Response() == 3) || (dndCharacter.getQ5Response() == 4)) && ((dndCharacter.getQ6Response() == 3) || (dndCharacter.getQ6Response() == 4))) {
-				chosen.add(skills.get(12).getName());
-			}
+				chosen.add(skills.get(12).getName());}
 		}
 		if(dndCharacter.getClassDetail().getIndex()==3) {
 			if((dndCharacter.getQ5Response() == 1)){chosen.add(skills.get(13).getName());}

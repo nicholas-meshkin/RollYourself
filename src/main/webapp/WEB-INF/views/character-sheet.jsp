@@ -97,7 +97,7 @@
 
 	
 	<p>Passive Perception: ${passivePerception}</p>
-	<p>Proficiencies:</p><ul><c:forEach var="prof" items="${character.classDetail.proficiencies}"><li>${prof.name}</li></c:forEach></ul>
+	<p>Proficiencies:</p><ul><c:forEach var="prof" items="${character.classDetail.proficiencies}"><li>${prof.name}</li></c:forEach><c:forEach var="prof" items="${character.raceDetail.startingProficiencies}"><li>${prof.name}</li></c:forEach></ul>
 	<p>Traits:</p><ul><c:forEach var="trait" items="${character.raceDetail.traits}"><li>${trait.name}</li></c:forEach></ul>
 	<p><a href="/language-detail/${character.raceDetail.index}">Languages Spoken:</a></p><ul><c:forEach var="lang" items="${character.raceDetail.languages}"><li>${lang.name}</li></c:forEach></ul>
 	<!-- TODO add only non-skill proficiencies from race -->

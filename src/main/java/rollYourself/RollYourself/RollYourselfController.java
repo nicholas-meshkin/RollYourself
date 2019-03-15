@@ -304,7 +304,7 @@ public class RollYourselfController {
 		List<Equipment> otherEquipmentList = decisionTree.selectOtherEquipment(classSelection);
 		mav.addObject("otherEquipmentList", otherEquipmentList);
 		
-//		if(dndCharacter.getClassDetail().getSpellcasting()!=null) {
+		if(dndCharacter.getClassDetail().getSpellcasting()!=null && !dndCharacter.getClassDetail().getSpellcasting().getCharClass().equals("Ranger")) {
 		
 		
 		List<String>cantString = Arrays.asList(dndCharacter.getCantrips().split((",")));
@@ -330,7 +330,7 @@ public class RollYourselfController {
 			mav.addObject("spellInfo",spellInfo);
 			mav.addObject("spellcasting",spellcasting);
 			
-//		}
+		}
 		
 		return mav;
 	}
