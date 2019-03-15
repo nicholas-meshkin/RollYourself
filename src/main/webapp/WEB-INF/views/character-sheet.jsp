@@ -11,13 +11,15 @@
 <div class="container">
 <body>
 	<h1>Character</h1>
-	<p>Class: ${character.characterClass} &nbsp Race: <a href=" " title="${raceDetail.age} ${raceDetail.sizeDescription}">${character.race}</a> <!--&nbsp Subrace: ${character.subraceDetail.name}--> &nbsp Character Name: ${character.name}</p>
+	<p>Class: ${character.characterClass} &nbsp Race: <a href=" " title="${raceDetail.age} ${raceDetail.sizeDescription}">${character.race}</a> &nbsp Character Name: ${character.name}</p>
 	<p>Alignment: ${alignment}</p>
 	<p>Max HP: ${maxHp}</p>
+	<p>Experience Points:</p>
 	<p>Initiative: ${abilityBonuses[1]}</p>
 	<p>Speed: ${character.raceDetail.speed}</p>
 	<p>Hit Dice: 1d${character.classDetail.hitDie}</p>
 	<p>Proficiency Bonus: 2</p>
+	
 	<table class="table table-striped">
 		<tr>
 			<th>Ability</th><th>Score</th><th>Modifier</th>

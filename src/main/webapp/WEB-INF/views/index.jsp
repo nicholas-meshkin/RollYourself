@@ -12,8 +12,6 @@
 <body>
 <div class="container">
 <h1>Welcome to RollYourself!</h1>
-<a href="/character">Character Sheet</a>
-<p></p>
 <a href="/questionnaire">Take our questionnaire to create your personal D&D avatar.</a>
 <p></p>
 <a href="/viewCharacterList">View a list of saved characters</a>

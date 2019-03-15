@@ -18,7 +18,7 @@ public class Names {
 		List<String> nameList = new ArrayList<>();
 		race = dndCharacter.getRace();
 		Random rand = new Random();
-		int x = rand.nextInt(20) + 1;
+		int x = rand.nextInt(20);
 		
 		if (dndCharacter.getRace().equals("Human")) {
 		

@@ -27,6 +27,8 @@ public class DndCharacter {
 	private Integer intelligence;
 	private Integer wisdom;
 	private Integer charisma;
+	private String cantrips;
+	private String firstLevelSpells;
 	@Transient
 	private RaceDetail raceDetail;
 	@Transient
@@ -47,6 +49,9 @@ public class DndCharacter {
 	private Integer q5Response;
 	private Integer q6Response;
 	private Integer q7Response;
+	private Integer q8Response;
+	
+	
 	public Integer getQ7Response() {
 		return q7Response;
 	}
@@ -65,7 +70,7 @@ public class DndCharacter {
 	public void setQ8Response(Integer q8Response) {
 		this.q8Response = q8Response;
 	}
-	private Integer q8Response;
+	
 
 	
 
@@ -211,6 +216,26 @@ public class DndCharacter {
 	}
 	public void setQ6Response(Integer q6Response) {
 		this.q6Response = q6Response;
+	}
+
+
+	public String getCantrips() {
+		return cantrips;
+	}
+
+
+	public void setCantrips(String cantrips) {
+		this.cantrips = cantrips;
+	}
+
+
+	public String getFirstLevelSpells() {
+		return firstLevelSpells;
+	}
+
+
+	public void setFirstLevelSpells(String firstLevelSpells) {
+		this.firstLevelSpells = firstLevelSpells;
 	}
 	
 	

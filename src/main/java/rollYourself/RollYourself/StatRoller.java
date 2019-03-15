@@ -12,7 +12,7 @@ public class StatRoller {
         List<Integer> statList = new ArrayList<>();
         for (int i = 0;i<6;i++) {
             statList.add(getStat());
-        }
+        }//TODO add method to reroll if total is below a certain level
         return statList;
     }
     public static int getStat() {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -145,7 +146,9 @@ public class RollYourselfController {
 		
 		
 		
-
+		
+		
+		
 		dndCharacter.setCharacterClass(classDetail.getName());
 		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
@@ -159,6 +162,24 @@ public class RollYourselfController {
 		// method that selects name from name bank according to character's race
 		dndCharacter.setName(names.selectName(dndCharacter));
 		
+		List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
+		String myCantrips="";
+		for(int i=0;i<cantrips.size();i++) {
+			myCantrips += cantrips.get(i).getIndex()+",";
+		}
+		List<Spell> firstLevelSpells = decisionTree.chooseFirstLevelSpells(dndCharacter);
+		String myFirstLvlSpells="";
+		for(int i=0;i<firstLevelSpells.size();i++) {
+			myFirstLvlSpells += firstLevelSpells.get(i).getIndex()+",";
+		}
+		
+//		List<String>cantString = Arrays.asList(myCantrips.split(","));
+//		List<Integer> cants = new ArrayList<>();
+//		for (String i : cantString) {
+//		    cants.add(Integer.valueOf(i));
+//		}
+		dndCharacter.setCantrips(myCantrips);
+		dndCharacter.setFirstLevelSpells(myFirstLvlSpells);
 		
 		//create character row in the dao
 		dndCharacterDao.create(dndCharacter);
@@ -277,14 +298,31 @@ public class RollYourselfController {
 		mav.addObject("armorList", armorList);
 		mav.addObject("aC",aC);
 		
+		List<String> profNames = decisionTree.chooseProfs(dndCharacter);
+		mav.addObject("profNames", profNames);
+		
 		List<Equipment> otherEquipmentList = decisionTree.selectOtherEquipment(classSelection);
 		mav.addObject("otherEquipmentList", otherEquipmentList);
 		
 //		if(dndCharacter.getClassDetail().getSpellcasting()!=null) {
 		
-		//TODO: fix spell thing so it isn't making 300 requests every time page is loaded
-			List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
-			List<Spell> firstLevelSpells = decisionTree.chooseFirstLevelSpells(dndCharacter);
+		
+		List<String>cantString = Arrays.asList(dndCharacter.getCantrips().split((",")));
+		List<String>firstString = Arrays.asList(dndCharacter.getFirstLevelSpells().split((",")));
+		
+		List<Integer> cants = new ArrayList<>();
+		List<Integer> firsts = new ArrayList<>();
+		
+		for (String i : cantString) {cants.add(Integer.valueOf(i));}
+		for (String i : firstString) {firsts.add(Integer.valueOf(i));}
+		
+		List<Spell> cantrips = new ArrayList<>();
+		List<Spell> firstLevelSpells = new ArrayList<>();
+		for (Integer i : cants) {cantrips.add(apiService.getSpellDetail(i));}
+		for (Integer i : firsts) {firstLevelSpells.add(apiService.getSpellDetail(i));}
+		
+//			List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
+//			List<Spell> firstLevelSpells = decisionTree.chooseFirstLevelSpells(dndCharacter);
 			SpellInfo spellInfo = decisionTree.getSpellcastingInfo(dndCharacter);
 			Spellcasting spellcasting = decisionTree.getSpellcasting(dndCharacter);
 			mav.addObject("cantrips", cantrips);
