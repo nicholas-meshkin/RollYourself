@@ -12,20 +12,13 @@
 <div class="container">
 <form action="/questionnaire-page-2">
 
-What most describes your philosophy on your own lifespan?
+Select the statement that best fits your approach to life:
 <div>
-<!--  <select name="q1Response">
-  <option value = "1"></option>
-  <option value="1">5&#39;6&#34; or less</option>
-  <option value="2">5&#39;6&#34; - 6&#39;0&#34;</option>
-  <option value="3">6&#39;0&#34; - 6&#39;6&#34;</option>
-  <option value="4">Over 6&#39;6&#34;</option>
-</select>-->
 <select name="q1Response">
   <option value = "1"></option>
-  <option value="1">Quality over quantity</option>
-  <option value="2">I don't think about mortality</option>
-  <option value="3">I'm gonna live as long as I possible can</option>
+  <option value="1"> Live fast; die young.</option>
+  <option value="2">Don&#39;t overthink it: accept your fate.</option>
+  <option value="3">Try to live long and prosper.</option>
   </select>
 </div>
 <p></p>
@@ -35,9 +28,9 @@ How would you spend a free weekend with no responsibilities?
 <div>
 <select name="q2Response">
   <option value = "1"></option>
-  <option value="1">Adventure getaway out of town.</option>
-  <option value="2">Stay at home and spend time with my family.</option>
-  <option value="3">Go out for a nice dinner with friends.</option>
+  <option value="1"> It&#39;s &#34;Me Time&#34;: stay home and do what I want.</option>
+  <option value="2">Spend time with my family: maybe visit with relatives.</option>
+  <option value="3">Let&#39;s party! Time to go out with friends & meet new people.</option>
 </select>
 </div>
 <p></p>
@@ -55,55 +48,19 @@ Which field best represents your current, former, or future occupation?
 </div>
 <p></p>
 
-<!-- 
-A friend tells you they&#39;re having a conflict with a co-worker. You are more likely to:
+
+Which best describes your attitude toward learning?
 <div>
 <select name="q4Response">
   <option value = "1"></option>
-  <option value="1">Confront your friend&#39;s co-worker and tell them off.</option>
-  <option value="2">Empathize with your friend, but tell them it&#39;s better to just give in to avoid conflicts.</option>
-  <option value="3">Talk to both people and offer to mediate a resolution.</option>
-</select>
-</div>
-<p></p>
- -->
-How did you feel about school?
-<div>
-<select name="q4Response">
-  <option value = "1"></option>
-  <option value="1">Hated it</option>
-  <option value="2">It served its purpose.</option>
-  <option value="3">Knowledge is Power!</option>
-</select>
-</div>
-<p></p>
-<!-- 
-You win an all-expenses-paid trip of your choice. Which do you choose?
-<div>
-<select name="q5Response">
-  <option value = "1"></option>
-  <option value="1">A cruise</option>
-  <option value="2">A trip to Las Vegas with $5,000 gambling money</option>
-  <option value="3">A trip to Hawaii</option>
-  <option value="4">Keep the trip; give me the cash value.</option>
+  <option value="1">I&#39;ve already graduated, so no thanks.</option>
+  <option value="2">Only if this learning helps me make money.</option>
+  <option value="3">The pursuit of knowledge is its own reward.</option>
 </select>
 </div>
 <p></p>
 
 
-Your feelings about men&#39;s facial hair:
-<div>
-<select name="q6Response">
-  <option value = "1"></option>
-  <option value="1">I prefer a clean-shaven look & a smooth feel.</option>
-  <option value="2">I like facial hair, if it&#39;s well-kempt.</option>
-  <option value="3">The more hirsute, the merrier -- max beard!</option>
-  <option value="4">Whatever floats your boat -- Idc.</option>
-</select>
-</div>
-<p></p>
-
- -->
 <div>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>

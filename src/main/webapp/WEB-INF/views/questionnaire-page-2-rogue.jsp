@@ -5,6 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <div class="container">
 <body>
@@ -13,6 +15,7 @@
 <input type="hidden" name="q2Response" value="${dndCharacter.q2Response}"/>
 <input type="hidden" name="q3Response" value="${dndCharacter.q3Response}"/>
 <input type="hidden" name="q4Response" value="${dndCharacter.q4Response}"/>
+<p>
 What comes to mind when you hear the word "Fight"?
 <select name="q5Response">
   <option value = "1"></option>
@@ -21,7 +24,8 @@ What comes to mind when you hear the word "Fight"?
   <option value="3">Talk</option>
   <option value="4">Run</option>
 </select>
-
+</p>
+<p>
 What do you think about the supernatural?
 <select name="q6Response">
   <option value = "1"></option>
@@ -30,6 +34,7 @@ What do you think about the supernatural?
   <option value="3">People who believe in that stuff are dumb</option>
   <option value="4">I would believe in the supernatural if I saw some proof</option>
 </select>
+</p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>
 </body>
