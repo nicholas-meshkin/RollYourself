@@ -5,6 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <div class="container">
 <body>
@@ -13,21 +15,24 @@
 <input type="hidden" name="q2Response" value="${dndCharacter.q2Response}"/>
 <input type="hidden" name="q3Response" value="${dndCharacter.q3Response}"/>
 <input type="hidden" name="q4Response" value="${dndCharacter.q4Response}"/>
-What comes to mind when you hear the word "Nature"?
+<p>
+Word association: I say, &#39;NATURE.&#39; You say __________
 <select name="q5Response">
   <option value = "1"></option>
   <option value="1">Animals</option>
-  <option value="2">Discovery</option>
+  <option value="2">Biology</option>
   <option value="3">Camping</option>
 </select>
-
-What is your reaction to the word "Fight"?
+</p>
+<p>
+ I say, &#39;COMPETITION.&#39; You say __________?
 <select name="q6Response">
   <option value = "1"></option>
-  <option value="1">Win</option>
-  <option value="2">Agression</option>
-  <option value="3">Avoid</option>
+  <option value="1">Play</option>
+  <option value="2">Dominate</option>
+  <option value="3">Strategize</option>
 </select>
+</p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>
 </body>
