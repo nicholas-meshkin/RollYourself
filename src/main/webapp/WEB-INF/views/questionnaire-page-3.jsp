@@ -21,16 +21,16 @@
 What do you think of cats?
 <select name="q7Response">
   <option value = "1"></option>
-  <option value="1">OH MY GOD I LOVE THEM AND THEIR CUTE LITTLE FACES</option>
-  <option value="2">I can take 'em or leave 'em</option>
-  <option value="3">I loathe cats.</option>
+  <option value="1">OMG! I LOVE THEM AND THEIR CUTE LITTLE FACES!</option>
+  <option value="2">I can take 'em or leave 'em.</option>
+  <option value="3">i loathe cats.</option>
 </select>
 </p>
 <p>
 How do you think political change should come about?
 <select name="q8Response">
   <option value = "1"></option>
-  <option value="1">By whatever method is chosen in the law</option>
+  <option value="1">By methods established in the law</option>
   <option value="2">According to the will of the people</option>
   <option value="3">By any means necessary</option>
 </select>

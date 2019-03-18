@@ -6,10 +6,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>character list</title>
-</head>
-<body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-	<div class="container">
+</head>
+<div class="container">
+
+<body>
 
 <h1>Character List</h1>
 		
@@ -38,9 +40,11 @@
 				<td>
 						<form action="/displayCharacter"><input type="hidden" name="id" value="${character.id}" /><button type="submit">Details</button></form>   
 				</td>
+				
 				<td>
-						<form action="/deleteChar"><input type="hidden" name="id" value="${character.id}" /><button type="submit">Delete</button></form>   
+						<form action="/deleteChar"><input type="hidden" name="id" value="${character.id}" /><button type="submit" onclick="return confirm('Are you sure?')">Delete</button></form>   
 				</td>
+
 			</tr>
 			
 			</c:forEach>
@@ -48,11 +52,8 @@
 			
 	</table>
 			
-		<ul>		
-			<a href="/" class="btn btn-secondary ml-3">home</a>
-		</ul>
-
-	</div>
+			<a href="/" class="btn btn-secondary mb-5">home</a>
 
 </body>
+</div>
 </html>
