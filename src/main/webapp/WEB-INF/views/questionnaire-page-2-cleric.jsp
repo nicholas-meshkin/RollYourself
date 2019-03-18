@@ -16,12 +16,12 @@
 <input type="hidden" name="q3Response" value="${dndCharacter.q3Response}"/>
 <input type="hidden" name="q4Response" value="${dndCharacter.q4Response}"/>
 <p>
- I say, &#39;COMPETITION.&#39; You say __________
+Word association: I say, &#39;COMPETITION.&#39; You say __________
 <select name="q5Response">
   <option value = "1"></option>
-  <option value="1">Talk</option>
-  <option value="2">Injury</option>
-  <option value="3">War</option>
+  <option value="1">Talk</option> <!-- maybe fix -->
+  <option value="2">Injury</option><!-- maybe fix -->
+  <option value="3">War</option> <!-- maybe fix -->
 </select>
 </p>
 <p>

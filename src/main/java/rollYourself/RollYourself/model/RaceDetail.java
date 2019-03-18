@@ -20,6 +20,8 @@ public class RaceDetail {
 	private String sizeDescription;
 	@JsonProperty("starting_proficiencies")
 	private List<ProficiencyItem> startingProficiencies;
+//	@JsonProperty("starting_proficiency_options")
+//	private List<ProficiencyChoices> proficiencyChoices;
 	private List<LanguageItem> languages;
 	@JsonProperty("language_desc")
 	private String languageDescription;
@@ -116,6 +118,12 @@ public class RaceDetail {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+//	public List<ProficiencyChoices> getProficiencyChoices() {
+//		return proficiencyChoices;
+//	}
+//	public void setProficiencyChoices(List<ProficiencyChoices> proficiencyChoices) {
+//		this.proficiencyChoices = proficiencyChoices;
+//	}
 	@Override
 	public String toString() {
 		return "RaceDetail [id=" + id + ", index=" + index + ", name=" + name + ", speed=" + speed + ", abilityBonuses="

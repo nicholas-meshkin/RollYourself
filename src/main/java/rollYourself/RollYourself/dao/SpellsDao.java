@@ -1,6 +1,6 @@
 package rollYourself.RollYourself.dao;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import rollYourself.RollYourself.DndCharacter;
+//import rollYourself.RollYourself.DndCharacter;
 import rollYourself.RollYourself.SpellsDetails;
 
 @Repository

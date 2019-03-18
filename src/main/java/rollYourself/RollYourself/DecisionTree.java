@@ -11,9 +11,9 @@ import rollYourself.RollYourself.dao.SpellsDao;
 import rollYourself.RollYourself.model.ClassListItem;
 import rollYourself.RollYourself.model.DescriptionItem;
 import rollYourself.RollYourself.model.Equipment;
-import rollYourself.RollYourself.model.ProficiencyItem;
+//import rollYourself.RollYourself.model.ProficiencyItem;
 import rollYourself.RollYourself.model.PropertyItem;
-import rollYourself.RollYourself.model.QuestionResponses;
+//import rollYourself.RollYourself.model.QuestionResponses;
 import rollYourself.RollYourself.model.SkillItem;
 import rollYourself.RollYourself.model.Spell;
 import rollYourself.RollYourself.model.SpellInfo;
@@ -49,46 +49,46 @@ public class DecisionTree {
 		return raceSelection;
 	}
 	
-	public Integer selectRace(Long id) {
-		QuestionResponses questionResponses = questionResponsesDao.findById(id);
-		Integer raceSelection = 0;
+//	public Integer selectRace(Long id) {
+//		QuestionResponses questionResponses = questionResponsesDao.findById(id);
+//		Integer raceSelection = 0;
+//	
+//		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 1;}
+//		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 2;}
+//		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 3;}
+//		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 4;}
+//		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 5;}
+//		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 6;}
+//		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 7;}
+//		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 8;}
+//		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 9;}
+//		return raceSelection;
+//	}
 	
-		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 1;}
-		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 2;}
-		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 3;}
-		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 4;}
-		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 5;}
-		if ( (questionResponses.getQ1Response() == 3) && (questionResponses.getQ2Response() == 3) ) {raceSelection = 6;}
-		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 2) ) {raceSelection = 7;}
-		if ( (questionResponses.getQ1Response() == 1) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 8;}
-		if ( (questionResponses.getQ1Response() == 2) && (questionResponses.getQ2Response() == 1) ) {raceSelection = 9;}
-		return raceSelection;
-	}
-	
-	public Integer selectClass(Long id) {
-		QuestionResponses questionResponses = questionResponsesDao.findById(id);
-		Integer classSelection = 0;
-		
-		if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 1) ) {classSelection = 1;}
-		if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 2) ) {classSelection = 2;}
-		if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 3) ) {classSelection = 3;}
-		if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 4) ) {classSelection = 4;}
-		if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 1) ) {classSelection = 5;}
-		if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 2) ) {classSelection = 6;}
-		if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 3) ) {classSelection = 7;}
-		if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 4) ) {classSelection = 8;}
-		if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 1) ) {classSelection = 9;}
-		if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 2) ) {classSelection = 10;}
-		if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 3) ) {classSelection = 11;}
-		if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 4) ) {classSelection = 12;}
-		if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 1) ) {classSelection = 1;}
-		if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 2) ) {classSelection = 10;}
-		if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 3) ) {classSelection = 5;}
-		if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 4) ) {classSelection = 9;}
-		
-		return classSelection;
-	}
-	
+//	public Integer selectClass(Long id) {
+//		QuestionResponses questionResponses = questionResponsesDao.findById(id);
+//		Integer classSelection = 0;
+//		
+//		if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 1) ) {classSelection = 1;}
+//		if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 2) ) {classSelection = 2;}
+//		if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 3) ) {classSelection = 3;}
+//		if ( (questionResponses.getQ3Response() == 1) && (questionResponses.getQ4Response() == 4) ) {classSelection = 4;}
+//		if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 1) ) {classSelection = 5;}
+//		if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 2) ) {classSelection = 6;}
+//		if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 3) ) {classSelection = 7;}
+//		if ( (questionResponses.getQ3Response() == 2) && (questionResponses.getQ4Response() == 4) ) {classSelection = 8;}
+//		if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 1) ) {classSelection = 9;}
+//		if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 2) ) {classSelection = 10;}
+//		if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 3) ) {classSelection = 11;}
+//		if ( (questionResponses.getQ3Response() == 3) && (questionResponses.getQ4Response() == 4) ) {classSelection = 12;}
+//		if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 1) ) {classSelection = 1;}
+//		if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 2) ) {classSelection = 10;}
+//		if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 3) ) {classSelection = 5;}
+//		if ( (questionResponses.getQ3Response() == 4) && (questionResponses.getQ4Response() == 4) ) {classSelection = 9;}
+//		
+//		return classSelection;
+//	}
+//	
 	public Integer selectClass(DndCharacter dndCharacter) {
 		Integer classSelection = 0;
 		
@@ -483,6 +483,12 @@ public class DecisionTree {
 	public List<String> chooseProfs(DndCharacter dndCharacter){
 		List<String> chosen = new ArrayList<>();
 		List<SkillItem> skills = apiService.getSkillList();
+		if(dndCharacter.getRaceDetail().getIndex()==2) {
+			chosen.add("Perception");
+		}
+		if(dndCharacter.getRaceDetail().getIndex()==8) {
+			chosen.add("Intimidation");
+		}
 		if(dndCharacter.getClassDetail().getIndex()==1) {
 			if((dndCharacter.getQ5Response() == 1)){
 				chosen.add(skills.get(1).getName());

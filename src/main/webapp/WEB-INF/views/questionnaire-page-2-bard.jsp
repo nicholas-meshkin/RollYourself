@@ -16,13 +16,13 @@
 <input type="hidden" name="q3Response" value="${dndCharacter.q3Response}"/>
 <input type="hidden" name="q4Response" value="${dndCharacter.q4Response}"/>
 <p>
-What comes to mind when you hear "Nature"?
+Word association: I say, &#39;NATURE.&#39; You say __________
 <select name="q5Response">
   <option value = "1"></option>
   <option value="1">Animals</option>
   <option value="2">Camping</option>
-  <option value="3">Discovery</option>
-  <option value="4">Science</option>
+  <option value="3">Biology</option>
+  <option value="4">Chemicals</option> <!-- maybe fix -->
 </select>
 </p>
 <p>
