@@ -19,18 +19,18 @@
 Word association: I say, &#39;COMPETITION.&#39; You say __________
 <select name="q5Response">
   <option value = "1"></option>
-  <option value="1">Talk</option> <!-- maybe fix -->
+  <option value="1">Team</option> <!-- maybe fix -->
   <option value="2">Injury</option><!-- maybe fix -->
-  <option value="3">War</option> <!-- maybe fix -->
+  <option value="3">Fame</option> <!-- maybe fix -->
 </select>
 </p>
 <p>
-What do you think about the supernatural?
+I say, &#39;SUPERNATURAL.&#39; You say __________
 <select name="q6Response">
   <option value = "1"></option>
-  <option value="1">I do not believe in anything supernatural</option>
-  <option value="2">I believe in the supernatural</option>
-</select>
+  <option value="1">ESP</option>
+  <option value="2">God</option>
+  </select>
 </p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>

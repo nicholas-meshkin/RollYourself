@@ -21,17 +21,17 @@
   <option value = "1"></option>
   <option value="1">Strategize</option>
   <option value="2">Dominate</option>
-  <option value="3">Talk</option><!-- Fix -->
+  <option value="3">Team</option><!-- Fix -->
 </select>
 </p>
 <p>
-What do you think about the supernatural?
+I say, &#39;SUPERNATURAL&#39; You say __________
 <select name="q6Response">
   <option value = "1"></option>
-  <option value="1">I wish that supernatural things were real</option>
-  <option value="2">I believe in the supernatural</option>
-  <option value="3">Belief in the supernatural can be useful</option>
-</select>
+  <option value="1">Stonehenge</option>
+  <option value="2">God</option>
+  <option value="3">Fake</option>
+  </select>
 </p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>

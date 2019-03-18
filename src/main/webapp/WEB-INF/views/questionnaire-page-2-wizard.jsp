@@ -16,22 +16,22 @@
 <input type="hidden" name="q3Response" value="${dndCharacter.q3Response}"/>
 <input type="hidden" name="q4Response" value="${dndCharacter.q4Response}"/>
 <p>
-What comes to mind when you hear "Farming"?
+I say, &#39;AGRICULTURE.&#39; You say __________
 <select name="q5Response">
   <option value = "1"></option>
-  <option value="1">Efficiency</option>
-  <option value="2">People</option>
+  <option value="1">Silo</option>
+  <option value="2">Scythe</option>
   <option value="3">Drought</option>
 </select>
 </p>
 <p>
-What do you think about the supernatural?
+I say, &#39;SUPERNATURAL.&#39; You say __________
 <select name="q6Response">
   <option value = "1"></option>
-  <option value="1">I wish that supernatural things were real</option>
-  <option value="2">I believe in the supernatural</option>
-  <option value="3">I would believe in the supernatural if I saw some proof</option>
-</select>
+  <option value="1">Stonehenge</option>
+  <option value="2">God</option>
+  <option value="3">Ouija</option>
+  </select>
 </p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>

@@ -22,7 +22,7 @@ Word association: I say, &#39;NATURE.&#39; You say __________
   <option value="1">Animals</option>
   <option value="2">Biology</option>
   <option value="3">Camping</option>
-  <option value="4">Chemicals</option><!-- maybe fix -->
+  <option value="4">Binoculars</option><!-- maybe fix -->
 </select>
 </p>
 <p>
@@ -31,8 +31,8 @@ Word association: I say, &#39;NATURE.&#39; You say __________
   <option value = "1"></option>
   <option value="1">Play</option>
   <option value="2">Strategize</option>
-  <option value="3">Avoid</option><!-- Fix -->
-  <option value="4">Hide</option><!-- fix -->
+  <option value="3">Analytics</option><!-- Fix -->
+  <option value="4">Cheat</option><!-- fix -->
 </select>
 </p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>

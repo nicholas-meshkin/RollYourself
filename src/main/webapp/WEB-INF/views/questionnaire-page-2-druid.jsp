@@ -22,17 +22,17 @@ Word association: I say, &#39;NATURE.&#39; You say __________
   <option value="1">Animals</option>
   <option value="2">Biology</option>
   <option value="3">Camping</option>
-  <option value="4">Chemicals</option> <!-- maybe fix -->
+  <option value="4">Germs</option> <!-- maybe fix -->
 </select>
 </p>
 <p>
-What do you think about the supernatural?
+I say, &#39;SUPERNATURAL.&#39; You say __________
 <select name="q6Response">
   <option value = "1"></option>
-  <option value="1">I wish that supernatural things were real</option>
-  <option value="2">I do not believe in anything supernatural</option>
-  <option value="3">People who believe in that stuff are dumb</option>
-  <option value="4">I believe in the supernatural</option>
+  <option value="1">Stonehenge</option>
+  <option value="2">ESP</option>
+  <option value="3">Astrology</option>
+  <option value="4">God</option>
   </select>
   </p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>

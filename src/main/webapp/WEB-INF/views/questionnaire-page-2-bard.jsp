@@ -22,17 +22,17 @@ Word association: I say, &#39;NATURE.&#39; You say __________
   <option value="1">Animals</option>
   <option value="2">Camping</option>
   <option value="3">Biology</option>
-  <option value="4">Chemicals</option> <!-- maybe fix -->
+  <option value="4">Binoculars</option> <!-- maybe fix -->
 </select>
 </p>
 <p>
-What comes to mind when you hear "Farming"?
+I say, &#39;AGRICULTURE.&#39; You say __________
 <select name="q6Response">
   <option value = "1"></option>
-  <option value="1">Efficiency</option>
-  <option value="2">People</option>
+  <option value="1">Silo</option>
+  <option value="2">Scythe</option>
   <option value="3">Drought</option>
-  <option value="4">Growth</option>
+  <option value="4">Manure</option>
 </select>
 </p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>

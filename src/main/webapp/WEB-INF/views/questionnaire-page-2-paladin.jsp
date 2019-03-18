@@ -25,13 +25,13 @@ I say, &#39;COMPETITION.&#39; You say __________
 </select>
 </p>
 <p>
-What do you think about the supernatural?
+I say, &#39;SUPERNATURAL.&#39; You say __________
 <select name="q6Response">
   <option value = "1"></option>
-  <option value="1">I do not believe in anything supernatural</option>
-  <option value="2">People who believe in that stuff are dumb</option>
-  <option value="3">I believe in the supernatural</option>
-</select>
+  <option value="1">ESP</option>
+  <option value="2">Astrology</option>
+  <option value="3">God</option>
+  </select>
 </p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>

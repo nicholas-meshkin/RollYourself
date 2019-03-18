@@ -136,7 +136,7 @@
 					<table class="table table-striped table-sm">
 						<tr><th>Armor & Other Equipment</th></tr>
 						<c:forEach var="armor" items="${armorList}">
-						<tr><td>${armor.name} armor</td></tr>
+						<tr><td>${armor.name} (armor)</td></tr>
 						</c:forEach>
 						<c:forEach var="item" items="${otherEquipmentList}">
 						<tr><td>${item.name}</td></tr>
@@ -165,7 +165,6 @@
 	
 	
 	<div class="d-flex justify-content-center col-9"><h3>Spellcasting</h3></div>
-		
 	<div class="row">
 		<div class="col-4">
 	<table class="table table-striped table-sm">

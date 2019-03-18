@@ -5,34 +5,28 @@ package rollYourself.RollYourself;
 //import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-//import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import rollYourself.RollYourself.dao.DndCharacterDao;
-import rollYourself.RollYourself.dao.QuestionResponsesDao;
+//import rollYourself.RollYourself.dao.QuestionResponsesDao;
 import rollYourself.RollYourself.dao.SpellsDao;
 import rollYourself.RollYourself.model.AbilityScore;
-//import rollYourself.RollYourself.model.AbilityScoreList;
 import rollYourself.RollYourself.model.ClassDetail;
 import rollYourself.RollYourself.model.ClassListItem;
 import rollYourself.RollYourself.model.Equipment;
-//import rollYourself.RollYourself.model.PropertyItem;
 import rollYourself.RollYourself.model.QuestionResponses;
 import rollYourself.RollYourself.model.RaceDetail;
 import rollYourself.RollYourself.model.Skill;
-//import rollYourself.RollYourself.model.SkillItem;
 import rollYourself.RollYourself.model.Spell;
 import rollYourself.RollYourself.model.SpellInfo;
 import rollYourself.RollYourself.model.Spellcasting;
-//import rollYourself.RollYourself.model.SubraceDetail;
 
 @Controller
 public class RollYourselfController {
@@ -48,8 +42,8 @@ public class RollYourselfController {
 	@Autowired
 	SkillSetter skillSetter;
 
-	@Autowired
-	QuestionResponsesDao questionResponsesDao;
+//	@Autowired
+//	QuestionResponsesDao questionResponsesDao;
 	
 	@Autowired
 	DndCharacterDao dndCharacterDao;
@@ -301,7 +295,7 @@ public class RollYourselfController {
 				&& !dndCharacter.getClassDetail().getSpellcasting().getCharClass().equals("Ranger") 
 				&& !dndCharacter.getClassDetail().getSpellcasting().getCharClass().equals("Paladin")) {
 		
-		System.out.println(dndCharacter.getClassDetail().getName());
+//		System.out.println(dndCharacter.getClassDetail().getName());
 		List<String>cantString = Arrays.asList(dndCharacter.getCantrips().split((",")));
 		List<String>firstString = Arrays.asList(dndCharacter.getFirstLevelSpells().split((",")));
 		

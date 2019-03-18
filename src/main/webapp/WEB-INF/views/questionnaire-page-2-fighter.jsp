@@ -21,17 +21,17 @@ Word association: I say, &#39;COMPETITION.&#39; You say __________?
   <option value = "1"></option>
   <option value="1">Play</option>
   <option value="2">Dominate</option>
-  <option value="3">Avoid</option> <!-- fix -->
-  <option value="4">Run</option> <!-- fix -->
+  <option value="3">Strategize</option> <!-- fix -->
+  <option value="4">Fitness</option> <!-- fix -->
 </select>
 </p>
 <p>
-What comes to mind when you hear "Farming"?
+I say, &#39;AGRICULTURE.&#39; You say __________?
 <select name="q6Response">
   <option value = "1"></option>
-  <option value="1">Cute animals!</option>
-  <option value="2">People</option>
-  <option value="3">Efficiency</option>
+  <option value="1">Husbandry</option>
+  <option value="2">Scythe</option>
+  <option value="3">Silo</option>
   <option value="4">Food</option>
 </select>
 </p>
