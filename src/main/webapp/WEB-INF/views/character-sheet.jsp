@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,25 +74,26 @@
 	<div class="row">
 		<div class="col-4">
 			<table class="table table-striped table-sm">
-				<tr><th>Skill</th><th>Bonus</th></tr>
-				<tr><td><a href=" " title="${skill1.desc}">Acrobatics:</a></td><td>${skills[0]}</td></tr>
-				<tr><td><a href=" " title="${skill2.desc}">Animal Handling:</a></td><td>${skills[1]}</td></tr>
-				<tr><td><a href=" " title="${skill3.desc}">Arcana:</a></td><td>${skills[2]}</td></tr>
-				<tr><td><a href=" " title="${skill4.desc}">Athletics:</a></td><td>${skills[3]}</td></tr>
-				<tr><td><a href=" " title="${skill5.desc}">Deception:</a></td><td>${skills[4]}</td></tr>
-				<tr><td><a href=" " title="${skill6.desc}">History:</a></td><td>${skills[5]}</td></tr>
-				<tr><td><a href=" " title="${skill7.desc}">Insight:</a></td><td>${skills[6]}</td></tr>
-				<tr><td><a href=" " title="${skill8.desc}">Intimidation:</a></td><td>${skills[7]}</td></tr>
-				<tr><td><a href=" " title="${skill9.desc}">Investigation:</a></td><td>${skills[8]}</td></tr>
-				<tr><td><a href=" " title="${skill10.desc}"> Medicine:</a></td><td>${skills[9]}</td></tr>
-				<tr><td><a href=" " title="${skill11.desc}">Nature:</a></td><td>${skills[10]}</td></tr>
-				<tr><td><a href=" " title="${skill12.desc}">Perception:</a></td><td>${skills[11]}</td></tr>
-				<tr><td><a href=" " title="${skill13.desc}">Performance:</a></td><td>${skills[12]}</td></tr>
-				<tr><td><a href=" " title="${skill14.desc}">Persuasion:</a></td><td>${skills[13]}</td></tr>
-				<tr><td><a href=" " title="${skill15.desc}">Religion:</a></td><td>${skills[14]}</td></tr>
-				<tr><td><a href=" " title="${skill16.desc}">Sleight of Hand:</a></td><td>${skills[15]}</td></tr>
-				<tr><td><a href=" " title="${skill17.desc}">Stealth:</a></td><td>${skills[16]}</td></tr>
-				<tr><td><a href=" " title="${skill18.desc}">Survival:</a></td><td>${skills[17]}</td></tr>
+				<tr><th>Prof?</th><th>Skill</th><th>Bonus</th></tr>
+				<c:set var="profNames" value="${profNames}"/>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Acrobatics\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill1.desc}">Acrobatics:</a></td><td>${skills[0]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Animal Handling\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill2.desc}">Animal Handling:</a></td><td>${skills[1]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Arcana\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill3.desc}">Arcana:</a></td><td>${skills[2]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Athletics\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill4.desc}">Athletics:</a></td><td>${skills[3]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Deception\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill5.desc}">Deception:</a></td><td>${skills[4]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"History\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill6.desc}">History:</a></td><td>${skills[5]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Insight\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill7.desc}">Insight:</a></td><td>${skills[6]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Intimidation\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill8.desc}">Intimidation:</a></td><td>${skills[7]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Investigation\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill9.desc}">Investigation:</a></td><td>${skills[8]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Medicine\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill10.desc}"> Medicine:</a></td><td>${skills[9]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Nature\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill11.desc}">Nature:</a></td><td>${skills[10]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Perception\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill12.desc}">Perception:</a></td><td>${skills[11]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Performance\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill13.desc}">Performance:</a></td><td>${skills[12]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Persuasion\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill14.desc}">Persuasion:</a></td><td>${skills[13]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Religion\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill15.desc}">Religion:</a></td><td>${skills[14]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Sleight of Hand\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill16.desc}">Sleight of Hand:</a></td><td>${skills[15]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Stealth\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill17.desc}">Stealth:</a></td><td>${skills[16]}</td></tr>
+				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Survival\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill18.desc}">Survival:</a></td><td>${skills[17]}</td></tr>
 			</table>
 		</div>
 		<div class="col-6">
@@ -123,7 +125,6 @@
 					</div>
 			</div>
 			
-			
 			<table class="table table-striped table-sm">
 				<tr><th>Weapon</th><th>Range</th><th>Attack Bonus</th><th>Damage</th><th>Damage Type</th></tr>
 				<c:forEach var="weapon" items="${weaponList}">
@@ -153,7 +154,7 @@
 			</div>
 			<table class="table table-striped table-sm">
 	<tr><th>
-	<a href="/language-detail/${character.raceDetail.index}">Languages Spoken:</a>
+	<a href="/language-detail/${character.raceDetail.index}" title="${character.raceDetail.languageDescription}">Languages Spoken:</a>
 	</th></tr>
 	<c:forEach var="lang" items="${character.raceDetail.languages}">
 	<tr><td>${lang.name}</td></tr>

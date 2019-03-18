@@ -36,9 +36,11 @@
 				<td>${character.name}</td>
 				<td>${character.race}</td>
 				<td>${character.characterClass}</td>	
-				
 				<td>
 						<form action="/displayCharacter"><input type="hidden" name="id" value="${character.id}" /><button type="submit">Details</button></form>   
+				</td>
+				<td>
+						<form action="/deleteChar"><input type="hidden" name="id" value="${character.id}" /><button type="submit">Delete</button></form>   
 				</td>
 			</tr>
 			

@@ -16,13 +16,13 @@
 <input type="hidden" name="q3Response" value="${dndCharacter.q3Response}"/>
 <input type="hidden" name="q4Response" value="${dndCharacter.q4Response}"/>
 <p>
-What comes to mind when you hear the word "Fight"?
+Word association: I say, &#39;COMPETITION.&#39; You say __________?
 <select name="q5Response">
   <option value = "1"></option>
-  <option value="1">Win</option>
-  <option value="2">Agression</option>
-  <option value="3">Avoid</option>
-  <option value="4">Run</option>
+  <option value="1">Play</option>
+  <option value="2">Dominate</option>
+  <option value="3">Avoid</option> <!-- fix -->
+  <option value="4">Run</option> <!-- fix -->
 </select>
 </p>
 <p>

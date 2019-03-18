@@ -1,13 +1,13 @@
 package rollYourself.RollYourself;
 
-import java.util.Random;
+//import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import rollYourself.RollYourself.model.ProficiencyItem;
+//import rollYourself.RollYourself.model.ProficiencyItem;
 
 @Component
 public class SkillSetter {
@@ -18,18 +18,19 @@ public class SkillSetter {
 	@Autowired
 	DecisionTree decisionTree;
 	
-	public List<ProficiencyItem> rollClassSkillProfs(DndCharacter dndCharacter){
-		List<ProficiencyItem> choices = dndCharacter.getClassDetail().getProfChoiceByIndex(0).getFrom();
-		List<ProficiencyItem> chosen = new ArrayList<>();
-		Integer numChoices = dndCharacter.getClassDetail().getProfChoiceByIndex(0).getChoose();
-		Random rand = new Random();
-		for(int i=0; i<numChoices;i++) {
-			int roll = rand.nextInt(choices.size());
-			chosen.add(choices.get(roll));
-			choices.remove(roll);
-		}
-		return chosen;
-	}
+//	public List<ProficiencyItem> rollClassSkillProfs(DndCharacter dndCharacter){
+//		List<ProficiencyItem> choices = dndCharacter.getClassDetail().getProfChoiceByIndex(0).getFrom();
+//		if(dndCharacter.getClassDetail().getIndex()==2) {}
+//		List<ProficiencyItem> chosen = new ArrayList<>();
+//		Integer numChoices = dndCharacter.getClassDetail().getProfChoiceByIndex(0).getChoose();
+//		Random rand = new Random();
+//		for(int i=0; i<numChoices;i++) {
+//			int roll = rand.nextInt(choices.size());
+//			chosen.add(choices.get(roll));
+//			choices.remove(roll);
+//		}
+//		return chosen;
+//	}
 	
 //	public List<ProficiencyItem> getProfChoices(DndCharacter dndCharacter){
 //		List<ProficiencyItem> chosen = decisionTree.chooseProfs(dndCharacter);
