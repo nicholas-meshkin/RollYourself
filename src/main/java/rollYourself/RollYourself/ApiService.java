@@ -93,7 +93,14 @@ private RestTemplate restTemplateWithUserAgent;
 		AbilityScore response = restTemplateWithUserAgent.getForObject(url, AbilityScore.class);
 		return response;
 	}
-	
+	public List<AbilityScore> getAllAbilityScores() {
+		List<AbilityScore> response = new ArrayList<>();
+		for(int i=1;i<7;i++) {
+		String url="http://www.dnd5eapi.co/api/ability-scores/"+i;
+		response.add(restTemplateWithUserAgent.getForObject(url, AbilityScore.class));
+		}
+		return response;
+	}
 	public Equipment getEquipment(Integer index) {
 		String url = "http://www.dnd5eapi.co/api/equipment/"+index;
 		Equipment response = restTemplateWithUserAgent.getForObject(url, Equipment.class);

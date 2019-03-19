@@ -25,8 +25,7 @@
       </div>
       <div class="modal-body">
        <p>You are a ${character.race} ${character.characterClass} named ${character.name}!!</p> 
-       <p>Hover over the highlighted words to get more information</p> 
-       <p>Click on a spell to get a pop-up with the spell's details</p>  
+       <p>Click on any highlighted item to get a pop-up with more details</p>  
       </div>
     </div>
   </div>
@@ -66,7 +65,22 @@
 			
 				<div class="col-6">
 					<p>Class: ${character.characterClass}</p>
-					<p> Race: <a href=" " title="${raceDetail.age} ${raceDetail.sizeDescription}">${character.race}</a></p>
+					<p><a href="#" data-toggle="modal" data-target="#modalRace">Race: ${character.race}</a></p>
+							<div class="modal fade" id="modalRace" tabindex="-1" role="dialog" aria-labelledby="raceLabel" aria-hidden="true">
+					  				<div class="modal-dialog" role="document">
+					   					 <div class="modal-content">
+					     					 <div class="modal-header">
+					       						 <h5 class="modal-title" id="raceLabel">Race</h5>
+					        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					         						 <span aria-hidden="true">&times;</span>
+					        						</button>
+					      					</div>
+					     				 	<div class="modal-body">
+					       					<p>${raceDetail.age}</p><p> ${raceDetail.sizeDescription}</p>
+					      					</div>
+					    				</div>
+					  				</div>
+								</div>
 				</div>
 				<div class="col-6">
 					<p>Alignment: ${alignment}</p><p> Experience Points: 0</p>
@@ -77,30 +91,25 @@
 				<tr>
 					<th>Ability</th><th>Score</th><th>Modifier</th>
 				</tr>		
-				<tr>
-					<td ><a href=" " title="${abilityScore1.desc}">Strength</a></td>
-					<td >${character.strength}</td><td>${abilityBonuses[0]}</td>
-				</tr>
-				<tr>
-					<td><a href=" " title="${abilityScore2.desc}">Dexterity</a></td>
-					<td>${character.dexterity}</td><td>${abilityBonuses[1]}</td>
-				</tr>
-				<tr>
-					<td><a href=" " title="${abilityScore3.desc}">Constitution</a></td>
-					<td>${character.constitution}</td><td>${abilityBonuses[2]}</td>
-				</tr>
-				<tr>
-					<td><a href=" " title="${abilityScore4.desc}">Intelligence</a></td>
-					<td>${character.intelligence}</td><td>${abilityBonuses[3]}</td>
-				</tr>
-				<tr>	
-					<td><a href=" " title="${abilityScore5.desc}">Wisdom</a></td>
-					<td>${character.wisdom}</td><td>${abilityBonuses[4]}</td>
-				</tr>
-				<tr>
-					<td><a href=" " title="${abilityScore6.desc}">Charisma</a></td>
-					<td>${character.charisma}</td><td>${abilityBonuses[5]}</td>
-				</tr>	
+						<c:forEach var="entry" items="${abMaster}">
+							<div class="modal fade" id="modalAb${entry.key.name}" tabindex="-1" role="dialog" aria-labelledby="abLabel" aria-hidden="true">
+				  				<div class="modal-dialog" role="document">
+				   					 <div class="modal-content">
+				     					 <div class="modal-header">
+				       						 <h5 class="modal-title" id="abLabel">${entry.key.name }</h5>
+				        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				         						 <span aria-hidden="true">&times;</span>
+				        						</button>
+				      					</div>
+				     				 	<div class="modal-body">
+				       					<c:forEach var="item" items="${entry.key.desc}"><p>${item}</p></c:forEach>
+				      					</div>
+				    				</div>
+				  				</div>
+							</div>
+							
+							<tr><td><a href="#" data-toggle="modal" data-target="#modalAb${entry.key.name}">${entry.key.fullName}</a></td><td>${entry.value.score}</td><td>${entry.value.bonus}</td></tr>
+						</c:forEach>
 			</table>
 		</div>
 	</div>
@@ -112,7 +121,7 @@
 				<c:set var="profNames" value="${profNames}"/>
 			<c:forEach var="entry" items="${skillMaster}">
 			
-			<div class="modal fade" id="modalSkill" tabindex="-1" role="dialog" aria-labelledby="skillLabel" aria-hidden="true">
+			<div class="modal fade" id="modalSkill${entry.key.index}" tabindex="-1" role="dialog" aria-labelledby="skillLabel" aria-hidden="true">
   				<div class="modal-dialog" role="document">
    					 <div class="modal-content">
      					 <div class="modal-header">
@@ -128,7 +137,7 @@
   				</div>
 			</div>
 			
-			<tr><td><c:choose><c:when test="${fn:contains(profNames,entry.key.name)}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href="#" data-toggle="modal" data-target="#modalSkill">${entry.key.name}</a></td><td>${entry.value}</td></tr>
+			<tr><td><c:choose><c:when test="${fn:contains(profNames,entry.key.name)}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href="#" data-toggle="modal" data-target="#modalSkill${entry.key.index}">${entry.key.name}</a></td><td>${entry.value}</td></tr>
 			</c:forEach>
 			</table>
 			
@@ -287,7 +296,7 @@
 			
 	
 	<c:forEach var="spell" items="${cantrips}">
-	<div class="modal fade" id="modalSpell0" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
+	<div class="modal fade" id="modalSpell${spell.index}" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -310,7 +319,7 @@
   </div>
 </div>
 
-	<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell0">${spell.name}</a></td></tr>
+	<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell${spell.index }">${spell.name}</a></td></tr>
 	</c:forEach>
 	</table>
 	</div>
@@ -337,7 +346,7 @@
 				</div>
 			</th></tr>
 	<c:forEach var="spell" items="${firstLevelSpells}">
-		<div class="modal fade" id="modalSpell1" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
+		<div class="modal fade" id="modalSpell${spell.index}" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
   			<div class="modal-dialog" role="document">
    				 <div class="modal-content">
       				<div class="modal-header">
@@ -360,7 +369,7 @@
   			</div>
 		</div>
 
-	<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell1">${spell.name}</a></td></tr>
+	<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell${spell.index}">${spell.name}</a></td></tr>
 	</c:forEach>
 	</table>
 	

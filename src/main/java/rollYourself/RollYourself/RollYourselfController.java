@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import rollYourself.RollYourself.dao.DndCharacterDao;
 import rollYourself.RollYourself.dao.SpellsDao;
+import rollYourself.RollYourself.model.AbScoreJoin;
 import rollYourself.RollYourself.model.AbilityScore;
 import rollYourself.RollYourself.model.AbilityScoreItem;
 import rollYourself.RollYourself.model.ClassDetail;
@@ -185,13 +186,6 @@ public class RollYourselfController {
 		ClassDetail classDetail = apiService.getClassDetail(classSelection);		
 		RaceDetail raceDetail = apiService.getRaceDetail(raceSelection);
 		
-		AbilityScore abilityScore1 = apiService.abilityScoreDetail(1);
-		AbilityScore abilityScore2 = apiService.abilityScoreDetail(2);
-		AbilityScore abilityScore3 = apiService.abilityScoreDetail(3);
-		AbilityScore abilityScore4 = apiService.abilityScoreDetail(4);
-		AbilityScore abilityScore5 = apiService.abilityScoreDetail(5);
-		AbilityScore abilityScore6 = apiService.abilityScoreDetail(6);
-		
 		dndCharacter.setCharacterClass(classDetail.getName());
 		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
@@ -205,12 +199,7 @@ public class RollYourselfController {
 		mav.addObject("classDetail", classDetail);	
 		mav.addObject("raceDetail", raceDetail);
 		
-		mav.addObject("abilityScore1", abilityScore1);
-		mav.addObject("abilityScore2", abilityScore2);
-		mav.addObject("abilityScore3", abilityScore3);
-		mav.addObject("abilityScore4", abilityScore4);
-		mav.addObject("abilityScore5", abilityScore5);
-		mav.addObject("abilityScore6", abilityScore6);
+		
 		
 		List<Skill> skillList = apiService.getAllSkills();
 		List<Integer> skills = skillSetter.setSkills(dndCharacter);
@@ -225,8 +214,26 @@ public class RollYourselfController {
 		List<Integer> savingThrows = statSetter.calculateSavingThrows(dndCharacter);
 		mav.addObject("savingThrows",savingThrows);
 				
+		
+		List<AbilityScore> abScores = apiService.getAllAbilityScores();
+		mav.addObject("abScores", abScores);
 		List<Integer> abilityBonuses = statSetter.calculateAbilityBonuses(dndCharacter);
 		mav.addObject("abilityBonuses",abilityBonuses);
+		List<AbScoreJoin> join = new ArrayList<>();
+		
+			AbScoreJoin str = new AbScoreJoin(); str.setBonus(abilityBonuses.get(0)); str.setScore(dndCharacter.getStrength());join.add(str);
+			AbScoreJoin dex = new AbScoreJoin(); dex.setBonus(abilityBonuses.get(0)); dex.setScore(dndCharacter.getDexterity());join.add(dex);
+			AbScoreJoin con = new AbScoreJoin(); con.setBonus(abilityBonuses.get(0)); con.setScore(dndCharacter.getConstitution());join.add(con);
+			AbScoreJoin in = new AbScoreJoin(); in.setBonus(abilityBonuses.get(0)); in.setScore(dndCharacter.getIntelligence());join.add(in);
+			AbScoreJoin wis = new AbScoreJoin(); wis.setBonus(abilityBonuses.get(0)); wis.setScore(dndCharacter.getWisdom());join.add(wis);
+			AbScoreJoin cha = new AbScoreJoin(); cha.setBonus(abilityBonuses.get(0)); cha.setScore(dndCharacter.getCharisma());join.add(cha);
+			
+		Map<AbilityScore,AbScoreJoin> abMaster = new LinkedHashMap<>();
+		for(int i=0;i<abScores.size();i++) {
+			abMaster.put(abScores.get(i), join.get(i));
+		}
+		mav.addObject("abMaster", abMaster);
+		
 		
 		Integer maxHp = statSetter.calculateBonus(dndCharacter.getConstitution())+dndCharacter.getClassDetail().getHitDie();
 		mav.addObject("maxHp",maxHp);
@@ -351,12 +358,6 @@ public class RollYourselfController {
 		ClassDetail classDetail = apiService.getClassDetail(classSelection);		
 		RaceDetail raceDetail = apiService.getRaceDetail(raceSelection);
 		
-		AbilityScore abilityScore1 = apiService.abilityScoreDetail(1);
-		AbilityScore abilityScore2 = apiService.abilityScoreDetail(2);
-		AbilityScore abilityScore3 = apiService.abilityScoreDetail(3);
-		AbilityScore abilityScore4 = apiService.abilityScoreDetail(4);
-		AbilityScore abilityScore5 = apiService.abilityScoreDetail(5);
-		AbilityScore abilityScore6 = apiService.abilityScoreDetail(6);
 		
 		dndCharacter.setCharacterClass(classDetail.getName());
 		dndCharacter.setRace(raceDetail.getName());
@@ -381,22 +382,28 @@ public class RollYourselfController {
 		}
 		mav.addObject("skillMaster", skillMaster);
 		
-		mav.addObject("abilityScore1", abilityScore1);
-		mav.addObject("abilityScore2", abilityScore2);
-		mav.addObject("abilityScore3", abilityScore3);
-		mav.addObject("abilityScore4", abilityScore4);
-		mav.addObject("abilityScore5", abilityScore5);
-		mav.addObject("abilityScore6", abilityScore6);
+		List<AbilityScore> abScores = apiService.getAllAbilityScores();
+		mav.addObject("abScores", abScores);
+		List<Integer> abilityBonuses = statSetter.calculateAbilityBonuses(dndCharacter);
+		mav.addObject("abilityBonuses",abilityBonuses);
+		List<AbScoreJoin> join = new ArrayList<>();
 		
+			AbScoreJoin str = new AbScoreJoin(); str.setBonus(abilityBonuses.get(0)); str.setScore(dndCharacter.getStrength());join.add(str);
+			AbScoreJoin dex = new AbScoreJoin(); dex.setBonus(abilityBonuses.get(0)); dex.setScore(dndCharacter.getDexterity());join.add(dex);
+			AbScoreJoin con = new AbScoreJoin(); con.setBonus(abilityBonuses.get(0)); con.setScore(dndCharacter.getConstitution());join.add(con);
+			AbScoreJoin in = new AbScoreJoin(); in.setBonus(abilityBonuses.get(0)); in.setScore(dndCharacter.getIntelligence());join.add(in);
+			AbScoreJoin wis = new AbScoreJoin(); wis.setBonus(abilityBonuses.get(0)); wis.setScore(dndCharacter.getWisdom());join.add(wis);
+			AbScoreJoin cha = new AbScoreJoin(); cha.setBonus(abilityBonuses.get(0)); cha.setScore(dndCharacter.getCharisma());join.add(cha);
+			
+		Map<AbilityScore,AbScoreJoin> abMaster = new LinkedHashMap<>();
+		for(int i=0;i<abScores.size();i++) {
+			abMaster.put(abScores.get(i), join.get(i));
+		}
+		mav.addObject("abMaster", abMaster);		
 		
 		List<Integer> savingThrows = statSetter.calculateSavingThrows(dndCharacter);
 		mav.addObject("savingThrows",savingThrows);
 				
-		List<Integer> abilityBonuses = statSetter.calculateAbilityBonuses(dndCharacter);
-		mav.addObject("abilityBonuses",abilityBonuses);
-		
-		
-		
 		Integer maxHp = statSetter.calculateBonus(dndCharacter.getConstitution())+dndCharacter.getClassDetail().getHitDie();
 		mav.addObject("maxHp",maxHp);
 		
