@@ -13,7 +13,6 @@
 
 <div class="container">
 <body>
-<!-- Modal -->
 
 <div class="modal fade" id="congrats" tabindex="-1" role="dialog" aria-labelledby="congratsLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -27,17 +26,18 @@
       <div class="modal-body">
        <p>You are a ${character.race} ${character.characterClass} named ${character.name}!!</p> 
        <p>Hover over the highlighted words to get more information</p> 
-       <p>Click on spells (if any) to go to a spell detail page</p>  
+       <p>Click on a spell to get a pop-up with the spell's details</p>  
       </div>
     </div>
   </div>
 </div>
 	<div class="row">
 		<div class="col-4">
-			<h3>Character Name: ${character.name}</h3>
+			<h3 class="mt-4">Character Name: ${character.name}</h3>
 		</div>
 		<div class="col-6">
-			<div class="row">
+			<!--  <div class="row">
+			
 				<div class="col-6">
 					<p>Class: ${character.characterClass}</p>
 					<p> Race: <a href=" " title="${raceDetail.age} ${raceDetail.sizeDescription}">${character.race}</a></p>
@@ -45,7 +45,8 @@
 				<div class="col-6">
 					<p>Alignment: ${alignment}</p><p> Experience Points: 0</p>
 				</div>
-			</div>
+				
+			</div>-->
 		</div>
 	</div>
 	
@@ -58,8 +59,20 @@
 			<div class="bubble"><p class="value">2</p><p class="label">Proficiency Bonus</p></div>
 			<div class="bubble"><p class="value">${aC}</p><p class="label">Armor Class</p></div>
 			<div class="bubble"><p class="value">${passivePerception}</p><p class="label">Passive Perception</p></div>
+			<p></p>
 		</div>
 		<div class="col-6">
+		<div class="row">
+			
+				<div class="col-6">
+					<p>Class: ${character.characterClass}</p>
+					<p> Race: <a href=" " title="${raceDetail.age} ${raceDetail.sizeDescription}">${character.race}</a></p>
+				</div>
+				<div class="col-6">
+					<p>Alignment: ${alignment}</p><p> Experience Points: 0</p>
+				</div>
+				
+			</div>
 			<table class="table table-striped table-sm ">
 				<tr>
 					<th>Ability</th><th>Score</th><th>Modifier</th>
@@ -97,25 +110,28 @@
 			<table class="table table-striped table-sm">
 				<tr><th></th><th>Skill</th><th>Bonus</th></tr>
 				<c:set var="profNames" value="${profNames}"/>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Acrobatics\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill1.desc}">Acrobatics:</a></td><td>${skills[0]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Animal Handling\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill2.desc}">Animal Handling:</a></td><td>${skills[1]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Arcana\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill3.desc}">Arcana:</a></td><td>${skills[2]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Athletics\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill4.desc}">Athletics:</a></td><td>${skills[3]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Deception\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill5.desc}">Deception:</a></td><td>${skills[4]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"History\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill6.desc}">History:</a></td><td>${skills[5]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Insight\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill7.desc}">Insight:</a></td><td>${skills[6]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Intimidation\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill8.desc}">Intimidation:</a></td><td>${skills[7]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Investigation\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill9.desc}">Investigation:</a></td><td>${skills[8]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Medicine\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill10.desc}"> Medicine:</a></td><td>${skills[9]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Nature\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill11.desc}">Nature:</a></td><td>${skills[10]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Perception\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill12.desc}">Perception:</a></td><td>${skills[11]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Performance\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill13.desc}">Performance:</a></td><td>${skills[12]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Persuasion\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill14.desc}">Persuasion:</a></td><td>${skills[13]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Religion\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill15.desc}">Religion:</a></td><td>${skills[14]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Sleight of Hand\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill16.desc}">Sleight of Hand:</a></td><td>${skills[15]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Stealth\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill17.desc}">Stealth:</a></td><td>${skills[16]}</td></tr>
-				<tr><td><c:choose><c:when test="${fn:contains(profNames,\"Survival\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href=" " title="${skill18.desc}">Survival:</a></td><td>${skills[17]}</td></tr>
+			<c:forEach var="entry" items="${skillMaster}">
+			
+			<div class="modal fade" id="modalSkill" tabindex="-1" role="dialog" aria-labelledby="skillLabel" aria-hidden="true">
+  				<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+     					 <div class="modal-header">
+       						 <h5 class="modal-title" id="skillLabel">${entry.key.name }</h5>
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         						 <span aria-hidden="true">&times;</span>
+        						</button>
+      					</div>
+     				 	<div class="modal-body">
+       					<c:forEach var="item" items="${entry.key.desc}"><p>${item}</p></c:forEach>
+      					</div>
+    				</div>
+  				</div>
+			</div>
+			
+			<tr><td><c:choose><c:when test="${fn:contains(profNames,entry.key.name)}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href="#" data-toggle="modal" data-target="#modalSkill">${entry.key.name}</a></td><td>${entry.value}</td></tr>
+			</c:forEach>
 			</table>
+			
 		</div>
 		<div class="col-6">
 		
@@ -175,7 +191,22 @@
 			</div>
 			<table class="table table-striped table-sm">
 	<tr><th>
-	<a href="/language-detail/${character.raceDetail.index}" title="${character.raceDetail.languageDescription}">Languages Spoken:</a>
+	<a href="#" data-toggle="modal" data-target="#modalLang">Languages Spoken:</a>
+		<div class="modal fade" id="modalLang" tabindex="-1" role="dialog" aria-labelledby="langLabel" aria-hidden="true">
+  				<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+     					 <div class="modal-header">
+       						 <h5 class="modal-title" id="langLabel">Language</h5>
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         						 <span aria-hidden="true">&times;</span>
+        						</button>
+      					</div>
+     				 	<div class="modal-body">
+       					<p>${character.raceDetail.languageDescription}</p>
+      					</div>
+    				</div>
+  				</div>
+			</div>
 	</th></tr>
 	<c:forEach var="lang" items="${character.raceDetail.languages}">
 	<tr><td>${lang.name}</td></tr>
@@ -189,35 +220,158 @@
 	<div class="row">
 		<div class="col-4">
 	<table class="table table-striped table-sm">
-		<tr><td><a href="" title="${spellcasting.info[3].desc}">Spellcasting Ability:</a> ${spellInfo.spellcastingAbility}</td></tr>
+		<tr><td><a href="#" data-toggle="modal" data-target="#modalCastAB">Spellcasting Ability: </a>${spellInfo.spellcastingAbility}
+		<div class="modal fade" id="modalCastAB" tabindex="-1" role="dialog" aria-labelledby="castABLabel" aria-hidden="true">
+  				<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+     					 <div class="modal-header">
+       						 <h5 class="modal-title" id="castABLabel">Spellcasting Ability</h5>
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         						 <span aria-hidden="true">&times;</span>
+        						</button>
+      					</div>
+     				 	<div class="modal-body">
+     				 	<c:forEach items="${spellcasting.info[3].desc}" var="thing">
+       					<p>${thing}</p>
+       					</c:forEach>
+      					</div>
+    				</div>
+  				</div>
+			</div>
+		</td></tr>
 		<tr><td><p>Spell Attack Modifier: ${spellInfo.spellAttackModifier}</p></td></tr>
 		<tr><td><p>Spell Save DC: ${spellInfo.spellSaveDc}</p></td></tr>
-		<tr><td><a>Spell Slots: ${spellInfo.firstLevelSlots}</a></td></tr>
+		<tr><td><a href="#" data-toggle="modal" data-target="#modalSlots">Spell Slots:</a>${spellInfo.firstLevelSlots}
+		<div class="modal fade" id="modalSlots" tabindex="-1" role="dialog" aria-labelledby="slotsLabel" aria-hidden="true">
+  				<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+     					 <div class="modal-header">
+       						 <h5 class="modal-title" id="slotsLabel">Spell Slots</h5>
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         						 <span aria-hidden="true">&times;</span>
+        						</button>
+      					</div>
+     				 	<div class="modal-body">
+     				 	<c:forEach items="${spellcasting.info[2].desc}" var="thing">
+       					<p>${thing}</p>
+       					</c:forEach>
+      					</div>
+    				</div>
+  				</div>
+			</div>
+			</td></tr>
 	</table>
 	</div>
+	
 	<div class="col-3">
 	<table class="table table-striped table-sm">
-	<tr><th><a href="" title="${spellcasting.info[0].desc}">Cantrips Known:</a></th></tr>
+		<tr><th><a href="#" data-toggle="modal" data-target="#modalCants">Cantrips Known:</a>
+		<div class="modal fade" id="modalCants" tabindex="-1" role="dialog" aria-labelledby="cantsLabel" aria-hidden="true">
+  				<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+     					 <div class="modal-header">
+       						 <h5 class="modal-title" id="cantsLabel">Cantrips</h5>
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         						 <span aria-hidden="true">&times;</span>
+        						</button>
+      					</div>
+     				 	<div class="modal-body">
+     				 	<c:forEach items="${spellcasting.info[0].desc}" var="thing">
+       					<p>${thing}</p>
+       					</c:forEach>
+      					</div>
+    				</div>
+  				</div>
+			</div>
+			</th></tr>
+			
+	
 	<c:forEach var="spell" items="${cantrips}">
-	<tr><td><a href="/spell-detail/${spell.index}">${spell.name}</a></td></tr>
+	<div class="modal fade" id="modalSpell0" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">${spell.name }</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       	<c:forEach var="item" items="${spell.desc}"><p>${item}</p></c:forEach>
+      	<p>Range: ${spell.range} </p>
+		<p>Components: ${spell.components}</p>
+		<p>Duration: ${spell.duration}</p>
+		<p>Casting Time: ${spell.castingTime}</p>
+		<p>School: ${spell.school.name}</p>
+		<p>Ritual: ${spell.ritual}</p>
+		<p>Concentration: ${spell.concentration}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+	<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell0">${spell.name}</a></td></tr>
 	</c:forEach>
 	</table>
 	</div>
+	
 	<div class="col-3">
 	<table class="table table-striped table-sm">
-	<tr><th><a href="" title="${spellcasting.info[1].desc}">First Level Spells Known:</a></th></tr>
+		<tr><th><a href="#" data-toggle="modal" data-target="#modalFirst">First Level Spells Known:</a>
+			<div class="modal fade" id="modalFirst" tabindex="-1" role="dialog" aria-labelledby="firstLabel" aria-hidden="true">
+	  				<div class="modal-dialog" role="document">
+	   					 <div class="modal-content">
+	     					 <div class="modal-header">
+	       						 <h5 class="modal-title" id="firstLabel">First Level Spells</h5>
+	        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	         						 <span aria-hidden="true">&times;</span>
+	        						</button>
+	      					</div>
+	     				 	<div class="modal-body">
+	     				 	<c:forEach items="${spellcasting.info[1].desc}" var="thing">
+	       					<p>${thing}</p>
+	       					</c:forEach>
+	      					</div>
+	    				</div>
+	  				</div>
+				</div>
+			</th></tr>
 	<c:forEach var="spell" items="${firstLevelSpells}">
-	<tr><td><a href="/spell-detail/${spell.index}">${spell.name}</a></td></tr>
+		<div class="modal fade" id="modalSpell1" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
+  			<div class="modal-dialog" role="document">
+   				 <div class="modal-content">
+      				<div class="modal-header">
+        				<h5 class="modal-title" id="exampleModalLabel">${spell.name }</h5>
+       					 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          				 <span aria-hidden="true">&times;</span>
+       					 </button>
+     				 </div>
+     				 <div class="modal-body">
+       					<c:forEach var="item" items="${spell.desc}"><p>${item}</p></c:forEach>
+					      	<p>Range: ${spell.range} </p>
+							<p>Components: ${spell.components}</p>
+							<p>Duration: ${spell.duration}</p>
+							<p>Casting Time: ${spell.castingTime}</p>
+							<p>School: ${spell.school.name}</p>
+							<p>Ritual: ${spell.ritual}</p>
+							<p>Concentration: ${spell.concentration}</p>
+     				 </div>
+   				 </div>
+  			</div>
+		</div>
+
+	<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell1">${spell.name}</a></td></tr>
 	</c:forEach>
 	</table>
+	
 	</div>
 	</div>
-		
+	
 	<a href="/" class="btn btn-secondary mb-5" >Home</a>
 	&nbsp; &nbsp; <!-- adds space between buttons -->
     <a href="/viewCharacterList" class="btn btn-secondary mb-5">Character List</a>
 	
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <c:if test="${newChar}"><script>$('#congrats').modal()</script></c:if>

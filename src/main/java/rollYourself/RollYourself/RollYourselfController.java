@@ -2,7 +2,10 @@ package rollYourself.RollYourself;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +60,7 @@ public class RollYourselfController {
 		
 		List<ClassListItem> classList = apiService.getClassList();
 		mav.addObject("classList", classList);
-//		decisionTree.spellsDB(); TODO change this to if statement that checks for empty table
+//		decisionTree.spellsDB();// TODO change this to if statement that checks for empty table
 		return mav;
 		
 	}
@@ -144,6 +147,8 @@ public class RollYourselfController {
 		// method that selects name from name bank according to character's race
 		dndCharacter.setName(names.selectName(dndCharacter));
 		
+		
+		//select spells
 		List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
 		String myCantrips="";
 		for(int i=0;i<cantrips.size();i++) {
@@ -154,7 +159,6 @@ public class RollYourselfController {
 		for(int i=0;i<firstLevelSpells.size();i++) {
 			myFirstLvlSpells += firstLevelSpells.get(i).getIndex()+",";
 		}
-		
 		dndCharacter.setCantrips(myCantrips);
 		dndCharacter.setFirstLevelSpells(myFirstLvlSpells);
 		
@@ -163,6 +167,8 @@ public class RollYourselfController {
 	
 		Long id = dndCharacter.getId();
 //		ModelAndView mav = new ModelAndView("redirect:/displayCharacter");
+		
+		//go to loading page
 		ModelAndView mav = new ModelAndView("testloader");
 		mav.addObject("id", id);
 		return mav;
@@ -186,25 +192,6 @@ public class RollYourselfController {
 		AbilityScore abilityScore5 = apiService.abilityScoreDetail(5);
 		AbilityScore abilityScore6 = apiService.abilityScoreDetail(6);
 		
-		Skill skill1 = apiService.getSkill(1);
-		Skill skill2 = apiService.getSkill(2);
-		Skill skill3 = apiService.getSkill(3);
-		Skill skill4 = apiService.getSkill(4);
-		Skill skill5 = apiService.getSkill(5);
-		Skill skill6 = apiService.getSkill(6);
-		Skill skill7 = apiService.getSkill(7);
-		Skill skill8 = apiService.getSkill(8);
-		Skill skill9 = apiService.getSkill(9);
-		Skill skill10 = apiService.getSkill(10);
-		Skill skill11 = apiService.getSkill(11);
-		Skill skill12 = apiService.getSkill(12);
-		Skill skill13 = apiService.getSkill(13);
-		Skill skill14 = apiService.getSkill(14);
-		Skill skill15 = apiService.getSkill(15);
-		Skill skill16 = apiService.getSkill(16);
-		Skill skill17 = apiService.getSkill(17);
-		Skill skill18 = apiService.getSkill(18);
-		
 		dndCharacter.setCharacterClass(classDetail.getName());
 		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
@@ -213,8 +200,8 @@ public class RollYourselfController {
 		statSetter.raceStatAdjust(dndCharacter);
 		
 		ModelAndView mav = new ModelAndView("character-sheet");
-		mav.addObject("character", dndCharacter);
 		
+		mav.addObject("character", dndCharacter);
 		mav.addObject("classDetail", classDetail);	
 		mav.addObject("raceDetail", raceDetail);
 		
@@ -225,33 +212,21 @@ public class RollYourselfController {
 		mav.addObject("abilityScore5", abilityScore5);
 		mav.addObject("abilityScore6", abilityScore6);
 		
-		mav.addObject("skill1", skill1);
-		mav.addObject("skill2", skill2);
-		mav.addObject("skill3", skill3);
-		mav.addObject("skill4", skill4);
-		mav.addObject("skill5", skill5);
-		mav.addObject("skill6", skill6);
-		mav.addObject("skill7", skill7);
-		mav.addObject("skill8", skill8);
-		mav.addObject("skill9", skill9);
-		mav.addObject("skill10", skill10);
-		mav.addObject("skill11", skill11);
-		mav.addObject("skill12", skill12);
-		mav.addObject("skill13", skill13);
-		mav.addObject("skill14", skill14);
-		mav.addObject("skill15", skill15);
-		mav.addObject("skill16", skill16);
-		mav.addObject("skill17", skill17);
-		mav.addObject("skill18", skill18);
+		List<Skill> skillList = apiService.getAllSkills();
+		List<Integer> skills = skillSetter.setSkills(dndCharacter);
+		mav.addObject("skillList", skillList);
+		mav.addObject("skills",skills);
+		Map<Skill,Integer> skillMaster = new LinkedHashMap<>();
+		for(int i=0;i<skillList.size();i++) {
+			skillMaster.put(skillList.get(i), skills.get(i));
+		}
+		mav.addObject("skillMaster", skillMaster);
 		
 		List<Integer> savingThrows = statSetter.calculateSavingThrows(dndCharacter);
 		mav.addObject("savingThrows",savingThrows);
 				
 		List<Integer> abilityBonuses = statSetter.calculateAbilityBonuses(dndCharacter);
 		mav.addObject("abilityBonuses",abilityBonuses);
-		
-		List<Integer> skills = skillSetter.setSkills(dndCharacter);
-		mav.addObject("skills",skills);
 		
 		Integer maxHp = statSetter.calculateBonus(dndCharacter.getConstitution())+dndCharacter.getClassDetail().getHitDie();
 		mav.addObject("maxHp",maxHp);
@@ -383,25 +358,6 @@ public class RollYourselfController {
 		AbilityScore abilityScore5 = apiService.abilityScoreDetail(5);
 		AbilityScore abilityScore6 = apiService.abilityScoreDetail(6);
 		
-		Skill skill1 = apiService.getSkill(1);
-		Skill skill2 = apiService.getSkill(2);
-		Skill skill3 = apiService.getSkill(3);
-		Skill skill4 = apiService.getSkill(4);
-		Skill skill5 = apiService.getSkill(5);
-		Skill skill6 = apiService.getSkill(6);
-		Skill skill7 = apiService.getSkill(7);
-		Skill skill8 = apiService.getSkill(8);
-		Skill skill9 = apiService.getSkill(9);
-		Skill skill10 = apiService.getSkill(10);
-		Skill skill11 = apiService.getSkill(11);
-		Skill skill12 = apiService.getSkill(12);
-		Skill skill13 = apiService.getSkill(13);
-		Skill skill14 = apiService.getSkill(14);
-		Skill skill15 = apiService.getSkill(15);
-		Skill skill16 = apiService.getSkill(16);
-		Skill skill17 = apiService.getSkill(17);
-		Skill skill18 = apiService.getSkill(18);
-		
 		dndCharacter.setCharacterClass(classDetail.getName());
 		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
@@ -415,6 +371,16 @@ public class RollYourselfController {
 		mav.addObject("classDetail", classDetail);	
 		mav.addObject("raceDetail", raceDetail);
 		
+		List<Skill> skillList = apiService.getAllSkills();
+		List<Integer> skills = skillSetter.setSkills(dndCharacter);
+		mav.addObject("skillList", skillList);
+		mav.addObject("skills",skills);
+		Map<Skill,Integer> skillMaster = new LinkedHashMap<>();
+		for(int i=0;i<skillList.size();i++) {
+			skillMaster.put(skillList.get(i), skills.get(i));
+		}
+		mav.addObject("skillMaster", skillMaster);
+		
 		mav.addObject("abilityScore1", abilityScore1);
 		mav.addObject("abilityScore2", abilityScore2);
 		mav.addObject("abilityScore3", abilityScore3);
@@ -422,24 +388,6 @@ public class RollYourselfController {
 		mav.addObject("abilityScore5", abilityScore5);
 		mav.addObject("abilityScore6", abilityScore6);
 		
-		mav.addObject("skill1", skill1);
-		mav.addObject("skill2", skill2);
-		mav.addObject("skill3", skill3);
-		mav.addObject("skill4", skill4);
-		mav.addObject("skill5", skill5);
-		mav.addObject("skill6", skill6);
-		mav.addObject("skill7", skill7);
-		mav.addObject("skill8", skill8);
-		mav.addObject("skill9", skill9);
-		mav.addObject("skill10", skill10);
-		mav.addObject("skill11", skill11);
-		mav.addObject("skill12", skill12);
-		mav.addObject("skill13", skill13);
-		mav.addObject("skill14", skill14);
-		mav.addObject("skill15", skill15);
-		mav.addObject("skill16", skill16);
-		mav.addObject("skill17", skill17);
-		mav.addObject("skill18", skill18);
 		
 		List<Integer> savingThrows = statSetter.calculateSavingThrows(dndCharacter);
 		mav.addObject("savingThrows",savingThrows);
@@ -447,8 +395,7 @@ public class RollYourselfController {
 		List<Integer> abilityBonuses = statSetter.calculateAbilityBonuses(dndCharacter);
 		mav.addObject("abilityBonuses",abilityBonuses);
 		
-		List<Integer> skills = skillSetter.setSkills(dndCharacter);
-		mav.addObject("skills",skills);
+		
 		
 		Integer maxHp = statSetter.calculateBonus(dndCharacter.getConstitution())+dndCharacter.getClassDetail().getHitDie();
 		mav.addObject("maxHp",maxHp);

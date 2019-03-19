@@ -74,6 +74,15 @@ private RestTemplate restTemplateWithUserAgent;
 		return response;
 	}
 	
+	public List<Skill> getAllSkills() {
+		List<Skill> response = new ArrayList<>();
+		for(int i=1;i<19;i++) {
+		String url="http://www.dnd5eapi.co/api/skills/"+i;
+		response.add(restTemplateWithUserAgent.getForObject(url, Skill.class));
+		}
+		return response;
+	}
+	
 	public List<AbilityScoreItem> getSavingThrowList(){
 		String url="http://www.dnd5eapi.co/api/ability-scores";
 		AbilityScoreList response  = restTemplateWithUserAgent.getForObject(url, AbilityScoreList.class);

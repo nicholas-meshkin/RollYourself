@@ -4,13 +4,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Questionnaire 2</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel="stylesheet" href="style.css">
 </head>
 <div class="container">
 <body>
 <form action="/questionnaire-page-3">
+<br><br><br>
+<div class="row">
+<div class="col-2"></div>
+<div class="col-6">
 <input type="hidden" name="q1Response" value="${dndCharacter.q1Response}"/>
 <input type="hidden" name="q2Response" value="${dndCharacter.q2Response}"/>
 <input type="hidden" name="q3Response" value="${dndCharacter.q3Response}"/>
@@ -26,7 +30,7 @@ I say, &#39;NATURE.&#39; You say __________
 </select>
 </p>
 <p>
- I say, &#39;COMPETITION.&#39; You say __________?
+ I say, &#39;COMPETITION.&#39; You say __________
 <select name="q6Response">
   <option value = "1"></option>
   <option value="1">Play</option>
@@ -35,6 +39,8 @@ I say, &#39;NATURE.&#39; You say __________
 </select>
 </p>
 <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+</div>
+</div>
 </form>
 </body>
 </div>
