@@ -21,9 +21,9 @@
 What do you think of cats?
 <select name="q7Response">
   <option value = "1"></option>
-  <option value="1">OMG! I LOVE THEM AND THEIR CUTE LITTLE FACES!</option>
+  <option value="1">OMG! I love them and their cute little faces!</option>
   <option value="2">I can take 'em or leave 'em.</option>
-  <option value="3">i loathe cats.</option>
+  <option value="3">I loathe cats...</option>
 </select>
 </p>
 <p>

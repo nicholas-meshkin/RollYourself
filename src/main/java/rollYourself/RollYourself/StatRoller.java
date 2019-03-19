@@ -10,9 +10,13 @@ import org.springframework.stereotype.Component;
 public class StatRoller {
 	public List<Integer> getStatList(){
         List<Integer> statList = new ArrayList<>();
+        int statSum=0;
+        while(statSum<68) {
         for (int i = 0;i<6;i++) {
             statList.add(getStat());
-        }//TODO add method to reroll if total is below a certain level
+        	}
+        statSum=sum(statList);
+        }
         return statList;
     }
     public static int getStat() {

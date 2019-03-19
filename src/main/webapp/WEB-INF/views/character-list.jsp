@@ -14,7 +14,7 @@
 
 <h1>Character List</h1>
 		
-	<table  class="table table-striped">
+	<table  class="table table-striped table-sm">
 	
   			<col>
   			<col>

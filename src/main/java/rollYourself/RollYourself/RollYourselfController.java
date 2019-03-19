@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import rollYourself.RollYourself.dao.DndCharacterDao;
 import rollYourself.RollYourself.dao.SpellsDao;
 import rollYourself.RollYourself.model.AbilityScore;
+import rollYourself.RollYourself.model.AbilityScoreItem;
 import rollYourself.RollYourself.model.ClassDetail;
 import rollYourself.RollYourself.model.ClassListItem;
 import rollYourself.RollYourself.model.Equipment;
@@ -298,6 +299,12 @@ public class RollYourselfController {
 			mav.addObject("spellInfo",spellInfo);
 			mav.addObject("spellcasting",spellcasting);
 		}
+		List<AbilityScoreItem> abList = dndCharacter.getClassDetail().getSavingThrows();
+		List<String> stNames = new ArrayList<>();
+		for(AbilityScoreItem i : abList) {
+			stNames.add(i.getName());
+		}
+		mav.addObject("stNames",stNames);
 		Boolean newChar = false;
 		mav.addObject("newChar", newChar);
 		return mav;
@@ -465,6 +472,13 @@ public class RollYourselfController {
 		mav.addObject("profNames", profNames);
 		List<Equipment> otherEquipmentList = decisionTree.selectOtherEquipment(classSelection);
 		mav.addObject("otherEquipmentList", otherEquipmentList);
+		
+		List<AbilityScoreItem> abList = dndCharacter.getClassDetail().getSavingThrows();
+		List<String> stNames = new ArrayList<>();
+		for(AbilityScoreItem i : abList) {
+			stNames.add(i.getName());
+		}
+		mav.addObject("stNames",stNames);
 		
 		if(dndCharacter.getClassDetail().getSpellcasting()!=null 
 				&& !dndCharacter.getClassDetail().getSpellcasting().getCharClass().equals("Ranger") 

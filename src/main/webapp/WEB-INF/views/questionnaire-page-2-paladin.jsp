@@ -15,6 +15,7 @@
 <input type="hidden" name="q2Response" value="${dndCharacter.q2Response}"/>
 <input type="hidden" name="q3Response" value="${dndCharacter.q3Response}"/>
 <input type="hidden" name="q4Response" value="${dndCharacter.q4Response}"/>
+<p>Word association: </p>
 <p>
 I say, &#39;COMPETITION.&#39; You say __________
 <select name="q5Response">
