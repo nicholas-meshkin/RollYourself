@@ -1,1 +1,39 @@
 @charset "ISO-8859-1";
+.bubble {
+	border-radius: 25px;
+	padding: 1px;
+	margin: 1px;
+	width: 140px;
+	height: 84px;
+	display: inline-block;
+}
+
+.bubble2 {
+	border-radius: 25px;
+	padding: 1px;
+	margin: 1px;
+	width: 210px;
+	height: 80px;
+}
+
+.value {
+	font-size: 35px;
+	text-align: center;
+	padding: 1px;
+	margin: 1px;
+	border-radius: 25px;
+	border: brown solid 2px;
+}
+
+.value2 {
+	font-size: 35px;
+	padding:  1px;
+	margin: 1px;
+}
+
+.label {
+	font-size: 15px;
+	text-align: center;
+	padding: 1px;
+	margin: 1px;
+}

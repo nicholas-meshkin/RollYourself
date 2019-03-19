@@ -8,6 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Character Sheet</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <div class="container">
@@ -48,13 +49,13 @@
 	
 	<div class="row">
 		<div class="col-4">
-			<p>Max HP: ${maxHp}</p>
-			<p>Initiative: ${abilityBonuses[1]}</p>
-			<p>Speed: ${character.raceDetail.speed}</p>
-			<p>Hit Dice: 1d${character.classDetail.hitDie}</p>
-			<p>Proficiency Bonus: 2</p>
-			<p>Armor Class: ${aC}</p>
-			<p>Passive Perception: ${passivePerception}</p>
+			<div class="bubble"><p class="value">${maxHp}</p><p class="label">Max HP</p></div>
+			<div class="bubble"><p class="value">${abilityBonuses[1]}</p><p class="label">Initiative</p></div>
+			<div class="bubble"><p class="value">${character.raceDetail.speed}</p><p class="label">Speed</p></div>
+			<div class="bubble"><p class="value">1d${character.classDetail.hitDie}</p><p class="label">Hit Dice</p></div>
+			<div class="bubble"><p class="value">2</p><p class="label">Proficiency Bonus</p></div>
+			<div class="bubble"><p class="value">${aC}</p><p class="label">Armor Class</p></div>
+			<div class="bubble"><p class="value">${passivePerception}</p><p class="label">Passive Perception</p></div>
 		</div>
 		<div class="col-6">
 			<table class="table table-striped table-sm">
