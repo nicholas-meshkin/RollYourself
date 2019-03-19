@@ -44,3 +44,12 @@
 .selections3{
 	width: 350px;
 }
+#charTable tbody tr:nth-child(odd) {
+ background-color: #F4F4F4;
+}
+#charCont{
+	background-color: #FFFFFF;
+}
+.charBody{
+	background-color: #FFFDD3;
+}

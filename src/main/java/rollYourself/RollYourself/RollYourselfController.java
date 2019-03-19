@@ -389,11 +389,11 @@ public class RollYourselfController {
 		List<AbScoreJoin> join = new ArrayList<>();
 		
 			AbScoreJoin str = new AbScoreJoin(); str.setBonus(abilityBonuses.get(0)); str.setScore(dndCharacter.getStrength());join.add(str);
-			AbScoreJoin dex = new AbScoreJoin(); dex.setBonus(abilityBonuses.get(0)); dex.setScore(dndCharacter.getDexterity());join.add(dex);
-			AbScoreJoin con = new AbScoreJoin(); con.setBonus(abilityBonuses.get(0)); con.setScore(dndCharacter.getConstitution());join.add(con);
-			AbScoreJoin in = new AbScoreJoin(); in.setBonus(abilityBonuses.get(0)); in.setScore(dndCharacter.getIntelligence());join.add(in);
-			AbScoreJoin wis = new AbScoreJoin(); wis.setBonus(abilityBonuses.get(0)); wis.setScore(dndCharacter.getWisdom());join.add(wis);
-			AbScoreJoin cha = new AbScoreJoin(); cha.setBonus(abilityBonuses.get(0)); cha.setScore(dndCharacter.getCharisma());join.add(cha);
+			AbScoreJoin dex = new AbScoreJoin(); dex.setBonus(abilityBonuses.get(1)); dex.setScore(dndCharacter.getDexterity());join.add(dex);
+			AbScoreJoin con = new AbScoreJoin(); con.setBonus(abilityBonuses.get(2)); con.setScore(dndCharacter.getConstitution());join.add(con);
+			AbScoreJoin in = new AbScoreJoin(); in.setBonus(abilityBonuses.get(3)); in.setScore(dndCharacter.getIntelligence());join.add(in);
+			AbScoreJoin wis = new AbScoreJoin(); wis.setBonus(abilityBonuses.get(4)); wis.setScore(dndCharacter.getWisdom());join.add(wis);
+			AbScoreJoin cha = new AbScoreJoin(); cha.setBonus(abilityBonuses.get(5)); cha.setScore(dndCharacter.getCharisma());join.add(cha);
 			
 		Map<AbilityScore,AbScoreJoin> abMaster = new LinkedHashMap<>();
 		for(int i=0;i<abScores.size();i++) {
