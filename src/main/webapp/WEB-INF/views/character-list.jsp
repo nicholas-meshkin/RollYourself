@@ -7,10 +7,12 @@
 <meta charset="ISO-8859-1">
 <title>character list</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
 </head>
 <div class="container">
 
-<body>
+<body  id="page">
 
 <h1>Character List</h1>
 		
@@ -37,11 +39,11 @@
 				<td>${character.race}</td>
 				<td>${character.characterClass}</td>	
 				<td>
-						<form action="/displayCharacter"><input type="hidden" name="id" value="${character.id}" /><button type="submit">Details</button></form>   
+						<form action="/displayCharacter"><input type="hidden" name="id" value="${character.id}" /><button type="submit" id="details">Details</button></form>   
 				</td>
 				
 				<td>
-						<form action="/deleteChar"><input type="hidden" name="id" value="${character.id}" /><button type="submit" onclick="return confirm('Are you sure?')">Delete</button></form>   
+						<form action="/deleteChar"><input type="hidden" name="id" value="${character.id}" /><button type="submit" onclick="return confirm('Are you sure?')" id="delete">Delete</button></form>   
 				</td>
 
 			</tr>

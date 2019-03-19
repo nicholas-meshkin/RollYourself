@@ -38,9 +38,57 @@
 	margin: 1px;
 }
 
+
 .selections1{
 	width: 600px;
 }
 .selections3{
 	width: 350px;
 }
+
+#rolltitle {
+	font-family: "Palatino Linotype", "Book Antiqua", "Bookman Old Style", serif;
+}
+
+#page {
+	background-color: #FFF4D8;
+}
+
+#details {
+	background-color: #DDAE92;
+	color: #42342B;
+}
+
+#delete {
+	background-color: #DDAE92;
+	color: #D80808;
+}
+
+.thead-dark {
+	background-color: #432818;
+}
+
+#listtable tbody tr:nth-child(odd) {
+  background-color: #F7D2AA;
+  color: #432818;
+  font-weight:bold;
+}
+
+#listtable tbody tr:nth-child(even) {
+  background-color: #FFEEBF;
+  color: #432818;
+  font-weight:bold;
+}
+
+table.table-bordered{
+    border:3px solid #400000;
+    margin-top:20px;
+}
+  
+table.table-bordered > thead > tr > th{
+    border:1px solid #804000;
+}
+
+/*table.table-bordered > tbody > tr > td{
+    border:1px solid #804000;
+}*/
