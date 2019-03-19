@@ -229,7 +229,7 @@
 	<div class="row">
 		<div class="col-4">
 	<table class="table table-striped table-sm">
-		<tr><td><a href="#" data-toggle="modal" data-target="#modalCastAB">Spellcasting Ability: </a>${spellInfo.spellcastingAbility}
+		<tr><th><a href="#" data-toggle="modal" data-target="#modalCastAB">Spellcasting Ability: </a>${spellInfo.spellcastingAbility}
 		<div class="modal fade" id="modalCastAB" tabindex="-1" role="dialog" aria-labelledby="castABLabel" aria-hidden="true">
   				<div class="modal-dialog" role="document">
    					 <div class="modal-content">
@@ -247,10 +247,10 @@
     				</div>
   				</div>
 			</div>
-		</td></tr>
+		</th></tr>
 		<tr><td><p>Spell Attack Modifier: ${spellInfo.spellAttackModifier}</p></td></tr>
 		<tr><td><p>Spell Save DC: ${spellInfo.spellSaveDc}</p></td></tr>
-		<tr><td><a href="#" data-toggle="modal" data-target="#modalSlots">Spell Slots:</a>${spellInfo.firstLevelSlots}
+		<tr><td><a href="#" data-toggle="modal" data-target="#modalSlots">Spell Slots: </a>${spellInfo.firstLevelSlots}
 		<div class="modal fade" id="modalSlots" tabindex="-1" role="dialog" aria-labelledby="slotsLabel" aria-hidden="true">
   				<div class="modal-dialog" role="document">
    					 <div class="modal-content">
