@@ -2,7 +2,6 @@ package rollYourself.RollYourself;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,8 +58,8 @@ public class RollYourselfController {
 	public ModelAndView home() {
 		ModelAndView mav = new ModelAndView("index");
 		
-		List<ClassListItem> classList = apiService.getClassList();
-		mav.addObject("classList", classList);
+//		List<ClassListItem> classList = apiService.getClassList();
+//		mav.addObject("classList", classList);
 //		decisionTree.spellsDB();// TODO change this to if statement that checks for empty table
 		return mav;
 		

@@ -59,7 +59,7 @@ background-repeat no-repeat
 <div class="row">
 <h1 >Welcome to</h1>&nbsp;&nbsp;<h1 id="logo"> RollYourself</h1></div>
 
-<a id="button1" class="btn btn-info" href="/questionnaire">Create your personal D&D avatar.</a>
+<a id="button1" class="btn btn-info" href="/questionnaire">Create your personal D&D avatar</a>
 <p></p>
 <a id="button2" class="btn btn-info" href="/viewCharacterList">List of saved characters</a>
 <div id="artcredit" class="mb-2">art by michael a. seaton</div>
