@@ -12,7 +12,7 @@
 </head>
 <div class="container">
 
-<body  id="page">
+<body id="page">
 
 <h1>Character List</h1>
 		

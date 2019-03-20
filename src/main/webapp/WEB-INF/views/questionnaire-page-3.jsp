@@ -43,7 +43,7 @@ How do you think political change should come about?
 </select>
 </div>
 <br>
-<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+<button type="submit" class="btn btn-info" value="Submit">Submit</button>
 </div>
 </div>
 </form>

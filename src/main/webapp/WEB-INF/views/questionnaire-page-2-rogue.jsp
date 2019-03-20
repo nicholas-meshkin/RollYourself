@@ -40,7 +40,7 @@ I say, &#39;SUPERNATURAL.&#39; You say __________
   <option value="4">Ouija</option>
   </select>
 </p>
-<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+<button type="submit" class="btn btn-info" value="Submit">Submit</button>
 </div>
 </div>
 </form>

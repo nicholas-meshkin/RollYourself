@@ -61,7 +61,7 @@ Which best describes your attitude toward learning?
 </div>
 <p></p>
 <div>
-<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+<button type="submit" class="btn btn-info" value="Submit">Submit</button>
 </div>
 </div>
 <div class="col-2"></div>
