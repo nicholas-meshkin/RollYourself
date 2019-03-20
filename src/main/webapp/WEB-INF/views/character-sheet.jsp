@@ -11,8 +11,9 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<div class="container">
-<body>
+<div class="container" id="charCont">
+<br><br>
+<body class="charBody">
 
 <div class="modal fade" id="congrats" tabindex="-1" role="dialog" aria-labelledby="congratsLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -25,32 +26,18 @@
       </div>
       <div class="modal-body">
        <p>You are a ${character.race} ${character.characterClass} named ${character.name}!!</p> 
-       <p>Hover over the highlighted words to get more information</p> 
-       <p>Click on a spell to get a pop-up with the spell's details</p>  
+       <p>Click on any highlighted item to get a pop-up with more details</p>  
       </div>
     </div>
   </div>
 </div>
 	<div class="row">
-		<div class="col-4">
-			<h3 class="mt-4">Character Name: ${character.name}</h3>
-		</div>
-		<div class="col-6">
-			<!--  <div class="row">
-			
-				<div class="col-6">
-					<p>Class: ${character.characterClass}</p>
-					<p> Race: <a href=" " title="${raceDetail.age} ${raceDetail.sizeDescription}">${character.race}</a></p>
-				</div>
-				<div class="col-6">
-					<p>Alignment: ${alignment}</p><p> Experience Points: 0</p>
-				</div>
-				
-			</div>-->
-		</div>
+	<div class="col-1"></div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<h3>Character Name: ${character.name}</h3>
+
 	</div>
-	
 	<div class="row">
+	<div class="col-1"></div>
 		<div class="col-4">
 			<div class="bubble"><p class="value">${maxHp}</p><p class="label">Max HP</p></div>
 			<div class="bubble"><p class="value">${abilityBonuses[1]}</p><p class="label">Initiative</p></div>
@@ -66,53 +53,64 @@
 			
 				<div class="col-6">
 					<p>Class: ${character.characterClass}</p>
-					<p> Race: <a href=" " title="${raceDetail.age} ${raceDetail.sizeDescription}">${character.race}</a></p>
+					<p><a href="#" data-toggle="modal" data-target="#modalRace">Race: ${character.race}</a></p>
+							<div class="modal fade" id="modalRace" tabindex="-1" role="dialog" aria-labelledby="raceLabel" aria-hidden="true">
+					  				<div class="modal-dialog" role="document">
+					   					 <div class="modal-content">
+					     					 <div class="modal-header">
+					       						 <h5 class="modal-title" id="raceLabel">Race</h5>
+					        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					         						 <span aria-hidden="true">&times;</span>
+					        						</button>
+					      					</div>
+					     				 	<div class="modal-body">
+					       					<p>${raceDetail.age}</p><p> ${raceDetail.sizeDescription}</p>
+					      					</div>
+					    				</div>
+					  				</div>
+								</div>
 				</div>
 				<div class="col-6">
 					<p>Alignment: ${alignment}</p><p> Experience Points: 0</p>
 				</div>
 				
 			</div>
-			<table class="table table-striped table-sm ">
+			<table id="charTable" class="table table-striped table-sm ">
 				<tr>
 					<th>Ability</th><th>Score</th><th>Modifier</th>
 				</tr>		
-				<tr>
-					<td ><a href=" " title="${abilityScore1.desc}">Strength</a></td>
-					<td >${character.strength}</td><td>${abilityBonuses[0]}</td>
-				</tr>
-				<tr>
-					<td><a href=" " title="${abilityScore2.desc}">Dexterity</a></td>
-					<td>${character.dexterity}</td><td>${abilityBonuses[1]}</td>
-				</tr>
-				<tr>
-					<td><a href=" " title="${abilityScore3.desc}">Constitution</a></td>
-					<td>${character.constitution}</td><td>${abilityBonuses[2]}</td>
-				</tr>
-				<tr>
-					<td><a href=" " title="${abilityScore4.desc}">Intelligence</a></td>
-					<td>${character.intelligence}</td><td>${abilityBonuses[3]}</td>
-				</tr>
-				<tr>	
-					<td><a href=" " title="${abilityScore5.desc}">Wisdom</a></td>
-					<td>${character.wisdom}</td><td>${abilityBonuses[4]}</td>
-				</tr>
-				<tr>
-					<td><a href=" " title="${abilityScore6.desc}">Charisma</a></td>
-					<td>${character.charisma}</td><td>${abilityBonuses[5]}</td>
-				</tr>	
+						<c:forEach var="entry" items="${abMaster}">
+							<div class="modal fade" id="modalAb${entry.key.name}" tabindex="-1" role="dialog" aria-labelledby="abLabel" aria-hidden="true">
+				  				<div class="modal-dialog" role="document">
+				   					 <div class="modal-content">
+				     					 <div class="modal-header">
+				       						 <h5 class="modal-title" id="abLabel">${entry.key.name }</h5>
+				        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				         						 <span aria-hidden="true">&times;</span>
+				        						</button>
+				      					</div>
+				     				 	<div class="modal-body">
+				       					<c:forEach var="item" items="${entry.key.desc}"><p>${item}</p></c:forEach>
+				      					</div>
+				    				</div>
+				  				</div>
+							</div>
+							
+							<tr><td><a href="#" data-toggle="modal" data-target="#modalAb${entry.key.name}">${entry.key.fullName}</a></td><td>${entry.value.score}</td><td>${entry.value.bonus}</td></tr>
+						</c:forEach>
 			</table>
 		</div>
 	</div>
 	
 	<div class="row">
+	<div class="col-1"></div>
 		<div class="col-4">
-			<table class="table table-striped table-sm">
+			<table id="charTable" class="table table-striped table-sm">
 				<tr><th></th><th>Skill</th><th>Bonus</th></tr>
 				<c:set var="profNames" value="${profNames}"/>
 			<c:forEach var="entry" items="${skillMaster}">
 			
-			<div class="modal fade" id="modalSkill" tabindex="-1" role="dialog" aria-labelledby="skillLabel" aria-hidden="true">
+			<div class="modal fade" id="modalSkill${entry.key.index}" tabindex="-1" role="dialog" aria-labelledby="skillLabel" aria-hidden="true">
   				<div class="modal-dialog" role="document">
    					 <div class="modal-content">
      					 <div class="modal-header">
@@ -128,7 +126,7 @@
   				</div>
 			</div>
 			
-			<tr><td><c:choose><c:when test="${fn:contains(profNames,entry.key.name)}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href="#" data-toggle="modal" data-target="#modalSkill">${entry.key.name}</a></td><td>${entry.value}</td></tr>
+			<tr><td><c:choose><c:when test="${fn:contains(profNames,entry.key.name)}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td><a href="#" data-toggle="modal" data-target="#modalSkill${entry.key.index}">${entry.key.name}</a></td><td>${entry.value}</td></tr>
 			</c:forEach>
 			</table>
 			
@@ -138,7 +136,7 @@
 		
 		<div class="row">
 		<div class="col-6">
-			<table class="table table-striped table-sm">
+			<table id="charTable" class="table table-striped table-sm">
 				<tr><th></th><th>Saving Throws</th><th>Bonus</th></tr>
 				<tr><td><c:choose><c:when test="${fn:contains(stNames,\"STR\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td>STR:</td><td>${savingThrows[0]}</td></tr>
 				<tr><td><c:choose><c:when test="${fn:contains(stNames,\"DEX\")}">&#9679;</c:when><c:otherwise>&#9675;</c:otherwise></c:choose></td><td>DEX:</td><td>${savingThrows[1]}</td></tr>
@@ -150,7 +148,7 @@
 			
 			</div>
 			<div class="col-6">
-			<table class="table table-striped table-sm">
+			<table id="charTable" class="table table-striped table-sm">
 						<tr><th>Proficiencies:</th></tr>
 						<c:forEach var="prof" items="${character.classDetail.proficiencies}">
 						<tr><td>${prof.name}</td></tr>
@@ -162,7 +160,7 @@
 					</div>
 			</div>
 			
-			<table class="table table-striped table-sm">
+			<table id="charTable" class="table table-striped table-sm">
 				<tr><th>Weapon</th><th>Range</th><th>Attack Bonus</th><th>Damage</th><th>Damage Type</th></tr>
 				<c:forEach var="weapon" items="${weaponList}">
 				<tr><td>${weapon.name}</td><td>${weapon.weaponRange}</td><td>+ ${weapon.atkBonus}</td><td>${weapon.damage.diceCount}d${weapon.damage.diceValue} + ${weapon.dmgBonus}</td><td>${weapon.damage.damageTypeItem.name}</td></tr>
@@ -170,7 +168,7 @@
 			</table>
 			<div class="row">
 				<div class="col-7">
-					<table class="table table-striped table-sm">
+					<table id="charTable" class="table table-striped table-sm">
 						<tr><th>Armor & Other Equipment</th></tr>
 						<c:forEach var="armor" items="${armorList}">
 						<tr><td>${armor.name} (armor)</td></tr>
@@ -181,7 +179,7 @@
 					</table>
 				</div>
 				<div class="col-5">
-					<table class="table table-striped table-sm">
+					<table id="charTable" class="table table-striped table-sm">
 						<tr><th>Traits:</th></tr>
 						<c:forEach var="trait" items="${character.raceDetail.traits}">
 						<tr><td>${trait.name}</td></tr>
@@ -189,17 +187,17 @@
 					</table>
 				</div>
 			</div>
-			<table class="table table-striped table-sm">
-	<tr><th>
-	<a href="#" data-toggle="modal" data-target="#modalLang">Languages Spoken:</a>
-		<div class="modal fade" id="modalLang" tabindex="-1" role="dialog" aria-labelledby="langLabel" aria-hidden="true">
-  				<div class="modal-dialog" role="document">
-   					 <div class="modal-content">
-     					 <div class="modal-header">
-       						 <h5 class="modal-title" id="langLabel">Language</h5>
-        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         						 <span aria-hidden="true">&times;</span>
-        						</button>
+			<table id="charTable" class="table table-striped table-sm">
+				<tr><th>
+				<a href="#" data-toggle="modal" data-target="#modalLang">Languages Spoken:</a>
+					<div class="modal fade" id="modalLang" tabindex="-1" role="dialog" aria-labelledby="langLabel" aria-hidden="true">
+			  				<div class="modal-dialog" role="document">
+			   					 <div class="modal-content">
+			     					 <div class="modal-header">
+			       						 <h5 class="modal-title" id="langLabel">Language</h5>
+			        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			         						 <span aria-hidden="true">&times;</span>
+			        						</button>
       					</div>
      				 	<div class="modal-body">
        					<p>${character.raceDetail.languageDescription}</p>
@@ -216,11 +214,14 @@
 	</div>
 	
 	
-	<div class="d-flex justify-content-center col-9"><h3>Spellcasting</h3></div>
 	<div class="row">
+		<div class= "col-5"></div><h3>Spellcasting</h3>
+	</div>
+	<div class="row">
+	<div class="col-1"></div>
 		<div class="col-4">
-	<table class="table table-striped table-sm">
-		<tr><td><a href="#" data-toggle="modal" data-target="#modalCastAB">Spellcasting Ability: </a>${spellInfo.spellcastingAbility}
+	<table id="charTable" class="table table-striped table-sm">
+		<tr><th><a href="#" data-toggle="modal" data-target="#modalCastAB">Spellcasting Ability: </a>${spellInfo.spellcastingAbility}
 		<div class="modal fade" id="modalCastAB" tabindex="-1" role="dialog" aria-labelledby="castABLabel" aria-hidden="true">
   				<div class="modal-dialog" role="document">
    					 <div class="modal-content">
@@ -238,10 +239,10 @@
     				</div>
   				</div>
 			</div>
-		</td></tr>
+		</th></tr>
 		<tr><td><p>Spell Attack Modifier: ${spellInfo.spellAttackModifier}</p></td></tr>
 		<tr><td><p>Spell Save DC: ${spellInfo.spellSaveDc}</p></td></tr>
-		<tr><td><a href="#" data-toggle="modal" data-target="#modalSlots">Spell Slots:</a>${spellInfo.firstLevelSlots}
+		<tr><td><a href="#" data-toggle="modal" data-target="#modalSlots">Spell Slots: </a>${spellInfo.firstLevelSlots}
 		<div class="modal fade" id="modalSlots" tabindex="-1" role="dialog" aria-labelledby="slotsLabel" aria-hidden="true">
   				<div class="modal-dialog" role="document">
    					 <div class="modal-content">
@@ -252,7 +253,7 @@
         						</button>
       					</div>
      				 	<div class="modal-body">
-     				 	<c:forEach items="${spellcasting.info[2].desc}" var="thing">
+     				 	<c:forEach items="${spellcasting.info[1].desc}" var="thing">
        					<p>${thing}</p>
        					</c:forEach>
       					</div>
@@ -264,59 +265,58 @@
 	</div>
 	
 	<div class="col-3">
-	<table class="table table-striped table-sm">
-		<tr><th><a href="#" data-toggle="modal" data-target="#modalCants">Cantrips Known:</a>
-		<div class="modal fade" id="modalCants" tabindex="-1" role="dialog" aria-labelledby="cantsLabel" aria-hidden="true">
-  				<div class="modal-dialog" role="document">
-   					 <div class="modal-content">
-     					 <div class="modal-header">
-       						 <h5 class="modal-title" id="cantsLabel">Cantrips</h5>
-        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         						 <span aria-hidden="true">&times;</span>
-        						</button>
-      					</div>
-     				 	<div class="modal-body">
-     				 	<c:forEach items="${spellcasting.info[0].desc}" var="thing">
-       					<p>${thing}</p>
-       					</c:forEach>
-      					</div>
-    				</div>
-  				</div>
-			</div>
-			</th></tr>
-			
-	
-	<c:forEach var="spell" items="${cantrips}">
-	<div class="modal fade" id="modalSpell0" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">${spell.name }</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       	<c:forEach var="item" items="${spell.desc}"><p>${item}</p></c:forEach>
-      	<p>Range: ${spell.range} </p>
-		<p>Components: ${spell.components}</p>
-		<p>Duration: ${spell.duration}</p>
-		<p>Casting Time: ${spell.castingTime}</p>
-		<p>School: ${spell.school.name}</p>
-		<p>Ritual: ${spell.ritual}</p>
-		<p>Concentration: ${spell.concentration}</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-	<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell0">${spell.name}</a></td></tr>
-	</c:forEach>
-	</table>
+			<table id="charTable" class="table table-striped table-sm">
+				<tr><th><a href="#" data-toggle="modal" data-target="#modalCants">Cantrips Known:</a>
+				<div class="modal fade" id="modalCants" tabindex="-1" role="dialog" aria-labelledby="cantsLabel" aria-hidden="true">
+		  				<div class="modal-dialog" role="document">
+		   					 <div class="modal-content">
+		     					 <div class="modal-header">
+		       						 <h5 class="modal-title" id="cantsLabel">Cantrips</h5>
+		        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		         						 <span aria-hidden="true">&times;</span>
+		        						</button>
+		      					</div>
+		     				 	<div class="modal-body">
+		     				 	<c:forEach items="${spellcasting.info[0].desc}" var="thing">
+		       					<p>${thing}</p>
+		       					</c:forEach>
+		      					</div>
+		    				</div>
+		  				</div>
+					</div>
+					</th></tr>
+				
+		
+			<c:forEach var="spell" items="${cantrips}">
+						<div class="modal fade" id="modalSpell${spell.index}" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">${spell.name }</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					       	<c:forEach var="item" items="${spell.desc}"><p>${item}</p></c:forEach>
+					      	<p>Range: ${spell.range} </p>
+							<p>Components: ${spell.components}</p>
+							<p>Duration: ${spell.duration}</p>
+							<p>Casting Time: ${spell.castingTime}</p>
+							<p>School: ${spell.school.name}</p>
+							<p>Ritual: ${spell.ritual}</p>
+							<p>Concentration: ${spell.concentration}</p>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell${spell.index }">${spell.name}</a></td></tr>
+			</c:forEach>
+		</table>
 	</div>
 	
 	<div class="col-3">
-	<table class="table table-striped table-sm">
+	<table id="charTable" class="table table-striped table-sm">
 		<tr><th><a href="#" data-toggle="modal" data-target="#modalFirst">First Level Spells Known:</a>
 			<div class="modal fade" id="modalFirst" tabindex="-1" role="dialog" aria-labelledby="firstLabel" aria-hidden="true">
 	  				<div class="modal-dialog" role="document">
@@ -328,7 +328,7 @@
 	        						</button>
 	      					</div>
 	     				 	<div class="modal-body">
-	     				 	<c:forEach items="${spellcasting.info[1].desc}" var="thing">
+	     				 	<c:forEach items="${spellcasting.info[2].desc}" var="thing">
 	       					<p>${thing}</p>
 	       					</c:forEach>
 	      					</div>
@@ -337,7 +337,7 @@
 				</div>
 			</th></tr>
 	<c:forEach var="spell" items="${firstLevelSpells}">
-		<div class="modal fade" id="modalSpell1" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
+		<div class="modal fade" id="modalSpell${spell.index}" tabindex="-1" role="dialog" aria-labelledby="spellLabel" aria-hidden="true">
   			<div class="modal-dialog" role="document">
    				 <div class="modal-content">
       				<div class="modal-header">
@@ -360,17 +360,19 @@
   			</div>
 		</div>
 
-	<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell1">${spell.name}</a></td></tr>
+	<tr><td><a href="#" data-toggle="modal" data-target="#modalSpell${spell.index}">${spell.name}</a></td></tr>
 	</c:forEach>
 	</table>
 	
 	</div>
 	</div>
-	
-	<a href="/" class="btn btn-secondary mb-5" >Home</a>
-	&nbsp; &nbsp; <!-- adds space between buttons -->
-    <a href="/viewCharacterList" class="btn btn-secondary mb-5">Character List</a>
-	
+	<div class="row">
+		<div class="col-1"></div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/" class="btn btn-secondary mb-5" >Home</a>
+			&nbsp; &nbsp; <!-- adds space between buttons -->
+		    <a href="/viewCharacterList" class="btn btn-secondary mb-5">Character List</a>
+	</div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

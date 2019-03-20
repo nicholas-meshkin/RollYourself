@@ -46,6 +46,7 @@
 	width: 350px;
 }
 
+
 #rolltitle {
 	font-family: "Palatino Linotype", "Book Antiqua", "Bookman Old Style", serif;
 }
@@ -80,7 +81,7 @@
   font-weight:bold;
 }
 
-table.table-bordered{
+table.table-bordered {
     border:3px solid #400000;
     margin-top:20px;
 }
@@ -92,3 +93,15 @@ table.table-bordered > thead > tr > th{
 /*table.table-bordered > tbody > tr > td{
     border:1px solid #804000;
 }*/
+
+
+#charTable tbody tr:nth-child(odd) {
+ background-color: #F4F4F4;
+}
+#charCont{
+	background-color: #FFFFFF;
+}
+.charBody{
+	background-color: #FFFDD3;
+}
+
