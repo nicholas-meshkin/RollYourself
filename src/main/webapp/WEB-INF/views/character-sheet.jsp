@@ -27,6 +27,7 @@
       <div class="modal-body">
        <p>You are a ${character.race} ${character.characterClass} named ${character.name}!!</p> 
        <p>Click on any highlighted item to get a pop-up with more details</p>  
+       <p>Ctl + p to print to PDF</p>
       </div>
     </div>
   </div>
