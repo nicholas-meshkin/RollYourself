@@ -6,6 +6,7 @@ public class Town {
 	private List<Person> population;
 	private String name;
 	private Integer size;
+	private String svType;
 	private List<String> establishments;
 	private Integer affluenceRating;
 	private Boolean rural;
@@ -66,6 +67,12 @@ public class Town {
 	}
 	public void setCoastal(Boolean coastal) {
 		this.coastal = coastal;
+	}
+	public String getSvType() {
+		return svType;
+	}
+	public void setSvType(String svType) {
+		this.svType = svType;
 	}
 	
 }

@@ -26,6 +26,13 @@
 			</select>
 		</p>
 		<p>
+			<label for="famjob">Family Profession?</label> <select class="inputbox" id="famjob"
+				name="famjob">
+			<option value="true">Yes</option>
+			<option value="false">No</option>
+			</select>
+		</p>
+		<p>
 			<button>Submit</button>
 		</p>
 	</form>

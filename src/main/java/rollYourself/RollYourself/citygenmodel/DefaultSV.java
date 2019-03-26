@@ -15,6 +15,7 @@ public class DefaultSV {
 	private String townType;
 	private Integer sv;
 	private String title;
+	private Boolean famjob;
 	public Long getId() {
 		return id;
 	}
@@ -38,6 +39,12 @@ public class DefaultSV {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public Boolean getFamjob() {
+		return famjob;
+	}
+	public void setFamjob(Boolean famjob) {
+		this.famjob = famjob;
 	}
 	@Override
 	public String toString() {
