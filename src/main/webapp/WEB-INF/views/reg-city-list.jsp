@@ -12,7 +12,7 @@
 <a href="/city-generator-index">Home</a>
 	<table>
 	<tr><th>Title</th><th>SV</th><th>Type</th><th>Family Profession?</th></tr>
-	<c:forEach items="${list}" var="thing">
+	<c:forEach items="${listAll}" var="thing">
 		<tr><td>${thing.title}</td>
 			<td>${thing.sv}</td>
 			<td>${thing.townType}</td>

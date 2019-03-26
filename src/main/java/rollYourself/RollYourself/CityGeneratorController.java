@@ -77,11 +77,13 @@ public class CityGeneratorController {
 	@PostMapping("/sv-editor")
 	public ModelAndView svSubmit(@RequestParam("title") String title,
 								@RequestParam("sv") Integer sv,
-								@RequestParam("townType") String townType) {
+								@RequestParam("townType") String townType,
+								@RequestParam("famjob") Boolean famjob) {
 		DefaultSV newSV = new DefaultSV();
 		newSV.setSv(sv);
 		newSV.setTitle(title);
 		newSV.setTownType(townType);
+		newSV.setFamjob(famjob);
 		svDao.create(newSV);
 		ModelAndView mav = new ModelAndView("redirect:/sv-editor");
 		return mav;
@@ -91,6 +93,16 @@ public class CityGeneratorController {
 	public ModelAndView regCityList() {
 		ModelAndView mav = new ModelAndView("reg-city-list");
 		List<DefaultSV> listAll = svDao.findByTownType("ActualCity");
+		System.out.println(listAll);
+		mav.addObject("listAll", listAll);
+		return mav;
+	}
+	
+	@RequestMapping("/rural-city-list")
+	public ModelAndView ruralCityList() {
+		ModelAndView mav = new ModelAndView("reg-city-list");
+		List<DefaultSV> listAll = svDao.findByTownType("RuralCommunity");
+		System.out.println(listAll);
 		mav.addObject("listAll", listAll);
 		return mav;
 	}
