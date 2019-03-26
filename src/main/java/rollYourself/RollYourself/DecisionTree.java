@@ -634,4 +634,46 @@ public class DecisionTree {
 			spellsDao.create(x);
 		}
 	}
+	
+	public DndCharacter setRace(Integer raceSelection, DndCharacter dndCharacter) {
+		if (raceSelection == 1){ dndCharacter.setQ1Response(3);dndCharacter.setQ2Response(2);}
+		if (raceSelection == 2){ dndCharacter.setQ1Response(3);dndCharacter.setQ2Response(1);}
+		if (raceSelection == 3){ dndCharacter.setQ1Response(2);dndCharacter.setQ2Response(3);}
+		if (raceSelection == 4){ dndCharacter.setQ1Response(1);dndCharacter.setQ2Response(3);}
+		if (raceSelection == 5){ dndCharacter.setQ1Response(1);dndCharacter.setQ2Response(2);}
+		if (raceSelection == 6){ dndCharacter.setQ1Response(3);dndCharacter.setQ2Response(3);}
+		if (raceSelection == 7){ dndCharacter.setQ1Response(2);dndCharacter.setQ2Response(2);}
+		if (raceSelection == 8){ dndCharacter.setQ1Response(1);dndCharacter.setQ2Response(1);}
+		if (raceSelection == 9){ dndCharacter.setQ1Response(2);dndCharacter.setQ2Response(1);}
+		return dndCharacter;
+	}
+	public DndCharacter setClass(Integer classSelection,DndCharacter dndCharacter) {
+		if (classSelection == 1){ dndCharacter.setQ3Response(1);dndCharacter.setQ4Response(1);}
+		if (classSelection == 2){ dndCharacter.setQ3Response(4);dndCharacter.setQ4Response(1);}
+		if (classSelection == 3){ dndCharacter.setQ3Response(4);dndCharacter.setQ4Response(3);}
+		if (classSelection == 4){ dndCharacter.setQ3Response(2);dndCharacter.setQ4Response(3);}
+		if (classSelection == 5){ dndCharacter.setQ3Response(1);dndCharacter.setQ4Response(2);}
+		if (classSelection == 6){ dndCharacter.setQ3Response(1);dndCharacter.setQ4Response(3);}
+		if (classSelection == 7){ dndCharacter.setQ3Response(4);dndCharacter.setQ4Response(2);}
+		if (classSelection == 8){ dndCharacter.setQ3Response(2);dndCharacter.setQ4Response(2);}
+		if (classSelection == 9){ dndCharacter.setQ3Response(2);dndCharacter.setQ4Response(1);}
+		if (classSelection == 10){ dndCharacter.setQ3Response(3);dndCharacter.setQ4Response(1);}
+		if (classSelection == 11){ dndCharacter.setQ3Response(3);dndCharacter.setQ4Response(2);}
+		if (classSelection == 12){ dndCharacter.setQ3Response(3);dndCharacter.setQ4Response(3);}
+		return dndCharacter;
+	}
+	public DndCharacter setAlign(Integer charAlign, DndCharacter dndCharacter) {
+		if (charAlign == 1){ dndCharacter.setQ7Response(1);dndCharacter.setQ8Response(1);}
+		if (charAlign == 2){ dndCharacter.setQ7Response(1);dndCharacter.setQ8Response(2);}
+		if (charAlign == 3){ dndCharacter.setQ7Response(1);dndCharacter.setQ8Response(3);}
+		if (charAlign == 4){ dndCharacter.setQ7Response(2);dndCharacter.setQ8Response(1);}
+		if (charAlign == 5){ dndCharacter.setQ7Response(2);dndCharacter.setQ8Response(2);}
+		if (charAlign == 6){ dndCharacter.setQ7Response(2);dndCharacter.setQ8Response(3);}
+		if (charAlign == 7){ dndCharacter.setQ7Response(3);dndCharacter.setQ8Response(1);}
+		if (charAlign == 8){ dndCharacter.setQ7Response(3);dndCharacter.setQ8Response(2);}
+		if (charAlign == 9){ dndCharacter.setQ7Response(3);dndCharacter.setQ8Response(3);}
+		return dndCharacter;
+	}
+	
+	
 }

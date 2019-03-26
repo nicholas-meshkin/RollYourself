@@ -19,7 +19,7 @@ import rollYourself.RollYourself.model.AbScoreJoin;
 import rollYourself.RollYourself.model.AbilityScore;
 import rollYourself.RollYourself.model.AbilityScoreItem;
 import rollYourself.RollYourself.model.ClassDetail;
-import rollYourself.RollYourself.model.ClassListItem;
+//import rollYourself.RollYourself.model.ClassListItem;
 import rollYourself.RollYourself.model.Equipment;
 import rollYourself.RollYourself.model.QuestionResponses;
 import rollYourself.RollYourself.model.RaceDetail;
@@ -461,6 +461,47 @@ public class RollYourselfController {
 		Boolean newChar = true;
 		mav.addObject("newChar", newChar);
 		
+		return mav;
+	}
+	
+	
+	
+	@RequestMapping("/buildChar")
+	public ModelAndView buildChar(@RequestParam("charClass") Integer charClass,
+									@RequestParam("charRace") Integer charRace,
+									@RequestParam("charAlign") Integer charAlign){
+		DndCharacter dndCharacter = new DndCharacter();
+		decisionTree.setClass(charClass, dndCharacter);
+		decisionTree.setRace(charRace, dndCharacter);
+		decisionTree.setAlign(charAlign, dndCharacter);
+		dndCharacter.setQ5Response(1);
+		dndCharacter.setQ6Response(1);
+		Integer raceSelection = decisionTree.selectRace(dndCharacter);
+		Integer classSelection = decisionTree.selectClass(dndCharacter);
+		ClassDetail classDetail = apiService.getClassDetail(classSelection);		
+		RaceDetail raceDetail = apiService.getRaceDetail(raceSelection);
+		dndCharacter.setCharacterClass(classDetail.getName());
+		dndCharacter.setRace(raceDetail.getName());
+		dndCharacter.setRaceDetail(raceDetail);
+		dndCharacter.setClassDetail(classDetail);
+		statSetter.setStats(dndCharacter);
+		dndCharacter.setName(names.selectName(dndCharacter));
+		List<Spell> cantrips = decisionTree.chooseCantrips(dndCharacter);
+		String myCantrips="";
+		for(int i=0;i<cantrips.size();i++) {
+			myCantrips += cantrips.get(i).getIndex()+",";
+		}
+		List<Spell> firstLevelSpells = decisionTree.chooseFirstLevelSpells(dndCharacter);
+		String myFirstLvlSpells="";
+		for(int i=0;i<firstLevelSpells.size();i++) {
+			myFirstLvlSpells += firstLevelSpells.get(i).getIndex()+",";
+		}
+		dndCharacter.setCantrips(myCantrips);
+		dndCharacter.setFirstLevelSpells(myFirstLvlSpells);
+		dndCharacterDao.create(dndCharacter);
+		Long id = dndCharacter.getId();
+		ModelAndView mav = new ModelAndView("testloader");
+		mav.addObject("id", id);
 		return mav;
 	}
 }

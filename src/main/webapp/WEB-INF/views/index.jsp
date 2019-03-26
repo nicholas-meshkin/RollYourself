@@ -62,6 +62,8 @@ background-repeat no-repeat
 <a id="button1" class="btn btn-info" href="/questionnaire">Create your personal D&D avatar</a>
 <p></p>
 <a id="button2" class="btn btn-info" href="/viewCharacterList">List of saved characters</a>
+<a id="button3" class="btn btn-info" href="/city-generator-index">DM Tools</a>
+<p></p>
 <div id="artcredit" class="mb-2">art by michael a. seaton</div>
 </div>
 </body>
