@@ -9,6 +9,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="townBuilder2">
+		<p>
+		Town Size:<input class="inputbox" id="size" required
+				name="size"  pattern="[0-9]*" />
+		</p>
+		<p>
+			Town Type:<select class="inputbox" id="svType"
+				name="svType" >
+			<option value="ActualCity">Actual City (uses default SVs)</option>
+			<option value="RuralCommunity">Rural Community (uses modified SVs)</option>
+			</select>
+		</p>
+		<p>
+			<button>Submit</button>
+		</p>
+</form>
 <a href="/">Home</a>
 </body>
 </html>

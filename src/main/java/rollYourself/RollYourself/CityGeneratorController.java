@@ -183,37 +183,34 @@ public class CityGeneratorController {
 	@RequestMapping("/townBuilder")
 	public ModelAndView townBuilder() {
 		ModelAndView mav = new ModelAndView("town-builder-pg1");
-		//tester
-				Town town = new Town();
-				town.setSize(100);
-				town.setSvType("ActualCity");
-				List<DefaultSV> svList = calculator.jobList(town);
-				List<String> jobs = new ArrayList<>();
-				for(int i=0;i<svList.size();i++) {
-					jobs.add(svList.get(i).getTitle());
-				}
-				
-				System.out.println(jobs);
-				
-				List<Family> testTown = calculator.createTown(100);
-				testTown = calculator.assignJobs(svList, testTown);
-				for(int i=0;i<testTown.size();i++) {
-					for(int j=0;j<testTown.get(i).getMembers().size();j++) {
-						Person tempPerson = testTown.get(i).getMembers().get(j);
-						System.out.println(tempPerson.getAge() + "," + tempPerson.getJob() + "," + tempPerson.getGender()
-						+ "," + tempPerson.getSpecies().getName());
-					}
-					System.out.println();
-				}
-				//end tester
+		
 
 		return mav;
 	}
 	
 	@RequestMapping("/townBuilder2")
-	public ModelAndView townBuilder2() {
+	public ModelAndView townBuilder2(@RequestParam("svType") String svType,
+									@RequestParam("size") Integer size) {
 			ModelAndView mav = new ModelAndView("town-builder-pg2");
+			Town town = new Town();
+			town.setSize(size);
+			town.setSvType(svType);
+			List<DefaultSV> svList = calculator.jobList(town);
+			List<String> jobs = new ArrayList<>();
+			for(int i=0;i<svList.size();i++) {
+				jobs.add(svList.get(i).getTitle());
+			}
 			
+			List<Family> testTown = calculator.createTown(100);
+			testTown = calculator.assignJobs(svList, testTown);
+			for(int i=0;i<testTown.size();i++) {
+				for(int j=0;j<testTown.get(i).getMembers().size();j++) {
+					Person tempPerson = testTown.get(i).getMembers().get(j);
+					System.out.println(tempPerson.getAge() + "," + tempPerson.getJob() + "," + tempPerson.getGender()
+					+ "," + tempPerson.getSpecies().getName());
+				}
+			}
+			mav.addObject("testTown", testTown);
 			return mav;
 	}
 }

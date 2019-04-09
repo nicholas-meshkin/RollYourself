@@ -10,12 +10,16 @@
 <body>
 <a href="/">Home</a>
 <table>
-<tr><th>Species</th><th>PCT</th>
-<c:forEach items="${popDist.popDist}" var="thing">
-<tr>
-<td>${thing.species.name}</td>
-<td>${thing.pct}</td>
-</tr>
+<tr><th>Species</th><th>Age</th><th>Gender</th><th>Job</th></tr>
+<c:forEach items="${testTown}" var="thing">
+	<c:forEach items="${thing.members}" var="person">
+		<tr>
+		<td>${person.species.name}</td>
+		<td>${person.age}</td>
+		<td>${person.gender}</td>
+		<td>${person.job}</td>
+		</tr>
+	</c:forEach>
 </c:forEach>
 </table>
 </body>
