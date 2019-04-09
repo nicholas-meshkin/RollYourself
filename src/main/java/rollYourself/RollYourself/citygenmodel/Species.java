@@ -1,12 +1,39 @@
 package rollYourself.RollYourself.citygenmodel;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table
 public class Species {
 
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String name;
 	private Integer famAvg;
 	private Integer famStDev;
 	private Integer ageStDev;
 	private Integer ageMean;
 	private Integer fertAge;
+	private Integer popPct;
+	
+	public Integer getPopPct() {
+		return popPct;
+	}
+	public void setPopPct(Integer popPct) {
+		this.popPct = popPct;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}

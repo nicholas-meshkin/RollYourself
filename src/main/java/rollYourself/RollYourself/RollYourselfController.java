@@ -504,4 +504,21 @@ public class RollYourselfController {
 		mav.addObject("id", id);
 		return mav;
 	}
+	
+	@RequestMapping("/spell-lister")
+	public ModelAndView spellLister() {
+		ModelAndView mav = new ModelAndView("spell-lister");
+		return mav;
+	}
+	
+	@RequestMapping("/spellPage")
+	public ModelAndView spellPage(@RequestParam Integer charClass,
+									@RequestParam Integer level) {
+		ModelAndView mav = new ModelAndView("spell-results");
+		DndCharacter dndCharacter = new DndCharacter();
+		dndCharacter.setClassDetail(apiService.getClassDetail(charClass));
+		List<Spell> spells = decisionTree.getAllClassSpellsUnderLevel(dndCharacter, level);
+		mav.addObject("spells", spells);
+		return mav;
+	}
 }

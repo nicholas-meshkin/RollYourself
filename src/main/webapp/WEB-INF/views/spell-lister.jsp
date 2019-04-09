@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Character Builder</title>
+<title>Insert title here</title>
 </head>
 <body>
-
 <div class="container">
-	<form action="/buildChar">
+	<form action="/spellPage">
 		<div class="row">
 			<div class="col-6">
 				<div>
@@ -32,36 +31,21 @@
 				</div>
 				
 				<div>
-				Select a Race
-				<select class="selections1" name="charRace" >
+				Select a Spell Level
+				<select class="selections1" name="level" >
 				<option value = "1"></option>
-				<option value="1">Dwarf</option>
-				<option value="2">Elf</option>
-				<option value="3">Halfling</option>
-				<option value="4">Human</option>
-				<option value="5">Dragonborn</option>
-				<option value="6">Gnome</option>
-				<option value="7">Half-Elf</option>
-				<option value="8">Half-Orc</option>
-				<option value="9">Tiefling</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
 				</select>
 				</div>
 				
-				<div>
-				Select an alignment
-				<select class="selections1" name="charAlign" >
-				<option value = "1"></option>
-				<option value="1">Lawful Good</option>
-				<option value="2">Neutral Good</option>
-				<option value="3">Chaotic Good</option>
-				<option value="4">Lawful Neutral</option>
-				<option value="5">True Neutral</option>
-				<option value="6">Chaotic Neutral</option>
-				<option value="7">Lawful Evil</option>
-				<option value="8">Neutral Evil</option>
-				<option value="9">Chaotic Evil</option>
-				</select>
-				</div>
 				
 				<div>
 				<button type="submit" class="btn btn-info" value="Submit">Submit</button>

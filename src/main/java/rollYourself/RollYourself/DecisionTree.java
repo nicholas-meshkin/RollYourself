@@ -266,6 +266,17 @@ public class DecisionTree {
 		return mySpells;
 	}
 	
+	public List<Spell> getAllClassSpellsUnderLevel(DndCharacter dndCharacter, Integer level){
+		List<Spell> mySpells = new ArrayList<>();
+		for(int i=0;i<level+1;i++) {
+			List<Spell> tempSpells = getAllClassSpellsByLevel(dndCharacter,i);
+			for(int j=0;j<tempSpells.size();j++) {
+				mySpells.add(tempSpells.get(j));
+			}
+		}
+		return mySpells;
+	}
+	
 	public List<Spell> chooseCantrips(DndCharacter dndCharacter){
 		Random rand = new Random();
 		List<Spell> classCantrips = getAllClassSpellsByLevel(dndCharacter, 0);

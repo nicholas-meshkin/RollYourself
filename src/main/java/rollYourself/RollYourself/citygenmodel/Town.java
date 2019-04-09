@@ -1,9 +1,10 @@
 package rollYourself.RollYourself.citygenmodel;
+import java.util.HashMap;
 import java.util.List;
 
 public class Town {
 
-	private List<Person> population;
+	private List<Family> population;
 	private String name;
 	private Integer size;
 	private String svType;
@@ -26,10 +27,10 @@ public class Town {
 	public void setMountainous(Boolean mountainous) {
 		this.mountainous = mountainous;
 	}
-	public List<Person> getPopulation() {
+	public List<Family> getPopulation() {
 		return population;
 	}
-	public void setPopulation(List<Person> population) {
+	public void setPopulation(List<Family> population) {
 		this.population = population;
 	}
 	public String getName() {

@@ -1,6 +1,8 @@
 package rollYourself.RollYourself.CityGenerator;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,16 @@ import rollYourself.RollYourself.citygenmodel.Person;
 import rollYourself.RollYourself.citygenmodel.Species;
 import rollYourself.RollYourself.citygenmodel.Town;
 import rollYourself.RollYourself.dao.SVDao;
+import rollYourself.RollYourself.dao.SpeciesDao;
 
 @Component
 public class Calculator {
 
 	@Autowired
 	SVDao svDao;
+	
+	@Autowired
+	SpeciesDao speciesDao;
 	
 	public List<Double> generateAges(int numPpl, int stDev, int mean){
 		List<Double> ageList = new ArrayList<>();
@@ -64,19 +70,44 @@ public class Calculator {
 	public List<Family> createTown(Integer townSize){
 		List<Family> townspeople = new ArrayList<>();
 		int currSum = 0;
-		Species testSpec = new Species();
-		testSpec.setAgeMean(20);
-		testSpec.setAgeStDev(25);
-		testSpec.setFamAvg(4);
-		testSpec.setFamStDev(2);
-		testSpec.setFertAge(18);
 		while(currSum<townSize) {
+			Species testSpec = specSelector();
 			Family fam = getFam(testSpec);
 			townspeople.add(fam);
 			currSum+=fam.getSize();
 		}
 		
 		return townspeople;
+	}
+	
+//	public Species specSelector(LinkedHashMap<Species,Integer> specList) {
+//		Random rand = new Random();
+//		int x = rand.nextInt(100)+1;
+//		Species species = new Species();
+//		int currSum=0;
+//		for(Map.Entry<Species, Integer> entry : specList.entrySet()) {
+//			currSum+=entry.getValue();
+//			if(x<=currSum) {
+//				species = entry.getKey();
+//				return species;
+//			}
+//		}
+//		return species;
+//	}
+	public Species specSelector() {
+		List<Species> specList = speciesDao.findAll();
+		Random rand = new Random();
+		int x = rand.nextInt(100)+1;
+		Species species = new Species();
+		int currSum=0;
+		for(int i=0;i<specList.size();i++) {
+			currSum+=specList.get(i).getPopPct();
+			if(x<=currSum) {
+				species = specList.get(i);
+				return species;
+			}
+		}
+		return species;
 	}
 	
 	public Family getFam(Species famSpecies) {
