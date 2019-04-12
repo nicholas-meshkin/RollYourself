@@ -27,11 +27,6 @@ public class SpellsDao {
 	}
 	
 	public List<SpellsDetails> findByClassAndLevel(String classes, Integer level) {
-//		List<SpellsDetails> spellList = new ArrayList<>();
-//		em.createQuery("FROM SpellsDetails WHERE level=:level AND classes LIKE :classes", SpellsDetails.class)
-//		.setParameter("level", level).setParameter("classes", "%"+classes+"%").getResultList();
 		return em.createQuery("FROM SpellsDetails WHERE level = :level AND classes LIKE :classes", SpellsDetails.class).setParameter("level", level).setParameter("classes", "%"+classes+"%").getResultList();
-//		System.out.println(spellList.get(0));
-//		return spellList;
 	}
 }

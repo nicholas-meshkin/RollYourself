@@ -10,9 +10,11 @@ import org.springframework.stereotype.Component;
 
 import rollYourself.RollYourself.citygenmodel.DefaultSV;
 import rollYourself.RollYourself.citygenmodel.Family;
+import rollYourself.RollYourself.citygenmodel.NameItem;
 import rollYourself.RollYourself.citygenmodel.Person;
 import rollYourself.RollYourself.citygenmodel.Species;
 import rollYourself.RollYourself.citygenmodel.Town;
+import rollYourself.RollYourself.dao.NamesDao;
 import rollYourself.RollYourself.dao.SVDao;
 import rollYourself.RollYourself.dao.SpeciesDao;
 
@@ -24,6 +26,9 @@ public class Calculator {
 	
 	@Autowired
 	SpeciesDao speciesDao;
+	
+	@Autowired
+	NamesDao namesDao;
 	
 	public List<Double> generateAges(int numPpl, int stDev, int mean){
 		List<Double> ageList = new ArrayList<>();
@@ -290,6 +295,31 @@ public class Calculator {
 //		}
 		
 		return famListNew;
+	}
+	
+	public void assignNames(Family family, Integer cultureId) {
+		Random rand = new Random();
+		List<NameItem> lastList = namesDao.findNames(cultureId, "S", "E");
+		List<NameItem> mFirst = namesDao.findNames(cultureId, "F", "M");
+		List<NameItem> fFirst =namesDao.findNames(cultureId, "F", "F");
+		List<NameItem> allFirst = new ArrayList<>();
+		allFirst.addAll(mFirst);
+		allFirst.addAll(fFirst);
+		int x = rand.nextInt(lastList.size());
+		String lastname = lastList.get(x).getName();
+		for (int i=0;i<family.getMembers().size();i++) {
+			family.getMembers().get(i).setLastName(lastname);
+			if(family.getMembers().get(i).getGender().equalsIgnoreCase("male")){
+				int y = rand.nextInt(mFirst.size());
+				family.getMembers().get(i).setFirstName(mFirst.get(y).getName());
+			}else if(family.getMembers().get(i).getGender().equalsIgnoreCase("female")){
+				int y = rand.nextInt(fFirst.size());
+				family.getMembers().get(i).setFirstName(fFirst.get(y).getName());
+			}else {
+				int y = rand.nextInt(allFirst.size());
+				family.getMembers().get(i).setFirstName(allFirst.get(y).getName());
+			}
+		}
 	}
 
 }

@@ -133,12 +133,10 @@ public class RollYourselfController {
 		
 		ClassDetail classDetail = apiService.getClassDetail(classSelection);		
 		RaceDetail raceDetail = apiService.getRaceDetail(raceSelection);
-//		SubraceDetail subraceDetail = apiService.getSubraceDetail(/*TODO add param*/);
 		
 		dndCharacter.setCharacterClass(classDetail.getName());
 		dndCharacter.setRace(raceDetail.getName());
 		dndCharacter.setRaceDetail(raceDetail);
-//		dndCharacter.setSubraceDetail(subraceDetail);
 		dndCharacter.setClassDetail(classDetail);
 
 		//call method that rolls stats and assigns them / set stat values on character
@@ -166,7 +164,6 @@ public class RollYourselfController {
 		dndCharacterDao.create(dndCharacter);
 	
 		Long id = dndCharacter.getId();
-//		ModelAndView mav = new ModelAndView("redirect:/displayCharacter");
 		
 		//go to loading page
 		ModelAndView mav = new ModelAndView("testloader");
@@ -306,16 +303,6 @@ public class RollYourselfController {
 		return mav;
 	}
 		
-	
-//	@RequestMapping("/race-details/{index}")
-//	public ModelAndView raceDetailsPage(@PathVariable("index") Integer index) {
-//		ModelAndView mav = new ModelAndView("race-details-page");
-//		RaceDetail raceDetail = apiService.getRaceDetail(index);
-////		SubraceDetail subraceDetail = apiService.getSubraceDetail(/**/);
-//		mav.addObject("raceDetail",raceDetail);
-////		mav.addObject("subraceDetail",subraceDetail);
-//		return mav;
-//	}
 	@RequestMapping("language-detail/{index}")
 	public ModelAndView languageDedailPage(@PathVariable("index") Integer index) {
 		ModelAndView mav = new ModelAndView("language-detail");
@@ -323,21 +310,6 @@ public class RollYourselfController {
 		mav.addObject("raceDetail",raceDetail);
 		return mav;
 	}
-//	@RequestMapping("/skill-detail/{index}")
-//	public ModelAndView skillDetailsPage(@PathVariable("index") Integer index) {
-//		ModelAndView mav = new ModelAndView("skill-detail");
-//		Skill skill = apiService.getSkill(index);
-//		mav.addObject("skill", skill);
-//		return mav;
-//	}
-	
-//	@RequestMapping("/ability-detail/{index}")
-//	public ModelAndView abilityDetailsPage(@PathVariable("index") Integer index) {
-//		ModelAndView mav = new ModelAndView("ability-score-detail");
-//		AbilityScore abilityScore = apiService.abilityScoreDetail(index);
-//		mav.addObject("abilityScore", abilityScore);
-//		return mav;
-//	}
 	
 	@RequestMapping("/spell-detail/{index}")
 	public ModelAndView spellDetailPage(@PathVariable("index") Integer index) {

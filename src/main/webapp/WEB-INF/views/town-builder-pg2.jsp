@@ -10,7 +10,7 @@
 <body>
 <a href="/">Home</a>
 <table>
-<tr><th>Species</th><th>Age</th><th>Gender</th><th>Job</th></tr>
+<tr><th>Species</th><th>Age</th><th>Gender</th><th>Job</th><th>First Name</th><th>Last Name</th></tr>
 <c:forEach items="${testTown}" var="thing">
 	<c:forEach items="${thing.members}" var="person">
 		<tr>
@@ -18,6 +18,8 @@
 		<td>${person.age}</td>
 		<td>${person.gender}</td>
 		<td>${person.job}</td>
+		<td>${person.firstName}</td>
+		<td>${person.lastName}</td>
 		</tr>
 	</c:forEach>
 </c:forEach>

@@ -17,6 +17,7 @@ import rollYourself.RollYourself.citygenmodel.Family;
 import rollYourself.RollYourself.citygenmodel.Person;
 import rollYourself.RollYourself.citygenmodel.Species;
 import rollYourself.RollYourself.citygenmodel.Town;
+import rollYourself.RollYourself.dao.NamesDao;
 import rollYourself.RollYourself.dao.SVDao;
 import rollYourself.RollYourself.dao.SpeciesDao;
 
@@ -30,6 +31,9 @@ public class CityGeneratorController {
 	
 	@Autowired
 	Calculator calculator;
+	
+	@Autowired
+	NamesDao namesDao;
 	
 	@RequestMapping("/buildCharPage")
 	public ModelAndView buildCharPage(){
@@ -201,14 +205,24 @@ public class CityGeneratorController {
 				jobs.add(svList.get(i).getTitle());
 			}
 			
-			List<Family> testTown = calculator.createTown(100);
+			List<Family> testTown = calculator.createTown(size);
+			
+			
 			testTown = calculator.assignJobs(svList, testTown);
-			for(int i=0;i<testTown.size();i++) {
+			
+			/*	TESTER
+			 * for(int i=0;i<testTown.size();i++) {
 				for(int j=0;j<testTown.get(i).getMembers().size();j++) {
 					Person tempPerson = testTown.get(i).getMembers().get(j);
 					System.out.println(tempPerson.getAge() + "," + tempPerson.getJob() + "," + tempPerson.getGender()
 					+ "," + tempPerson.getSpecies().getName());
 				}
+			}*/
+			
+			/*Tester*/
+			Integer cultureId = 2;
+			for(int i=0;i<testTown.size();i++) {
+				calculator.assignNames(testTown.get(i), cultureId);
 			}
 			mav.addObject("testTown", testTown);
 			return mav;
