@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import rollYourself.RollYourself.CityGenerator.Calculator;
+import rollYourself.RollYourself.citygenmodel.Culture;
 import rollYourself.RollYourself.citygenmodel.DefaultSV;
 import rollYourself.RollYourself.citygenmodel.Family;
 import rollYourself.RollYourself.citygenmodel.Person;
 import rollYourself.RollYourself.citygenmodel.Species;
 import rollYourself.RollYourself.citygenmodel.Town;
+import rollYourself.RollYourself.dao.CultureDao;
 import rollYourself.RollYourself.dao.NamesDao;
 import rollYourself.RollYourself.dao.SVDao;
 import rollYourself.RollYourself.dao.SpeciesDao;
@@ -34,6 +36,8 @@ public class CityGeneratorController {
 	
 	@Autowired
 	NamesDao namesDao;
+	@Autowired
+	CultureDao cultureDao;
 	
 	@RequestMapping("/buildCharPage")
 	public ModelAndView buildCharPage(){
@@ -187,25 +191,54 @@ public class CityGeneratorController {
 	@RequestMapping("/townBuilder")
 	public ModelAndView townBuilder() {
 		ModelAndView mav = new ModelAndView("town-builder-pg1");
-		
+		List<Species> specList = speciesDao.findAll();
+		mav.addObject("specList", specList);
 
 		return mav;
 	}
-	
 	@RequestMapping("/townBuilder2")
 	public ModelAndView townBuilder2(@RequestParam("svType") String svType,
-									@RequestParam("size") Integer size) {
-			ModelAndView mav = new ModelAndView("town-builder-pg2");
+			@RequestParam("size") Integer size,
+			@RequestParam("specIds") List<Long> specIds) {
+		ModelAndView mav = new ModelAndView("town-builder-pg2");
+		mav.addObject("svType", svType);
+		mav.addObject("size", size);
+		List<Species> specList = new ArrayList<>();
+		for (int i=0;i<specIds.size();i++) {
+			specList.add(speciesDao.findById(specIds.get(i)));
+		}
+		mav.addObject("specList", specList);
+		List<Culture> cultureList = cultureDao.findAll();
+		mav.addObject("cultureList", cultureList);
+		return mav;
+	}
+	@RequestMapping("/townBuilder3")
+	public ModelAndView townBuilder3(@RequestParam("svType") String svType,
+									@RequestParam("size") Integer size,
+									@RequestParam("specIds") List<Long> specIds,
+									@RequestParam("popList") List<Integer> popList,
+									@RequestParam("cultureList") List<Long> cultureList) {
+			ModelAndView mav = new ModelAndView("town-builder-pg3");
 			Town town = new Town();
+			System.out.println(cultureList.size());
 			town.setSize(size);
 			town.setSvType(svType);
+			List<Species> specList = new ArrayList<>();
+			for (int i=0;i<specIds.size();i++) {
+				specList.add(speciesDao.findById(specIds.get(i)));
+			}
+			List<Culture> cultList = new ArrayList<>();
+			for (int i=0;i<cultureList.size();i++) {
+				cultList.add(cultureDao.findById(cultureList.get(i)));
+			}
+			
 			List<DefaultSV> svList = calculator.jobList(town);
 			List<String> jobs = new ArrayList<>();
 			for(int i=0;i<svList.size();i++) {
 				jobs.add(svList.get(i).getTitle());
 			}
 			
-			List<Family> testTown = calculator.createTown(size);
+			List<Family> testTown = calculator.createTown(size,specList,popList,cultList);
 			
 			
 			testTown = calculator.assignJobs(svList, testTown);
@@ -220,10 +253,10 @@ public class CityGeneratorController {
 			}*/
 			
 			/*Tester*/
-			Integer cultureId = 2;
-			for(int i=0;i<testTown.size();i++) {
-				calculator.assignNames(testTown.get(i), cultureId);
-			}
+//			Integer cultureId = 2;
+//			for(int i=0;i<testTown.size();i++) {
+//				calculator.assignNames(testTown.get(i));
+//			}
 			mav.addObject("testTown", testTown);
 			return mav;
 	}

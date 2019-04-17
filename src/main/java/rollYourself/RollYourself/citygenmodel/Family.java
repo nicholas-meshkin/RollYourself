@@ -7,7 +7,22 @@ public class Family {
 	private Integer size;
 	private Boolean isNoble;
 	private Integer affluenceRating;
+	private Culture culture;
+	private Species species;
 	
+	
+	public Culture getCulture() {
+		return culture;
+	}
+	public void setCulture(Culture culture) {
+		this.culture = culture;
+	}
+	public Species getSpecies() {
+		return species;
+	}
+	public void setSpecies(Species species) {
+		this.species = species;
+	}
 	public Boolean getIsNoble() {
 		return isNoble;
 	}

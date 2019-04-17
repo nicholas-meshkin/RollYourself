@@ -8,6 +8,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import rollYourself.RollYourself.citygenmodel.Culture;
 import rollYourself.RollYourself.citygenmodel.DefaultSV;
 import rollYourself.RollYourself.citygenmodel.Family;
 import rollYourself.RollYourself.citygenmodel.NameItem;
@@ -29,6 +30,8 @@ public class Calculator {
 	
 	@Autowired
 	NamesDao namesDao;
+	
+	@Autowired NameAssign nameAssign;
 	
 	public List<Double> generateAges(int numPpl, int stDev, int mean){
 		List<Double> ageList = new ArrayList<>();
@@ -72,16 +75,19 @@ public class Calculator {
 		return age;
 	}
 	
-	public List<Family> createTown(Integer townSize){
+	public List<Family> createTown(Integer townSize, List<Species> specList, List<Integer> popList, List<Culture> cultList){
 		List<Family> townspeople = new ArrayList<>();
 		int currSum = 0;
 		while(currSum<townSize) {
-			Species testSpec = specSelector();
+			Species testSpec = specSelector(specList,popList);
 			Family fam = getFam(testSpec);
+			Culture culture = cultList.get(specList.indexOf(testSpec));
+			fam.setSpecies(testSpec);
+			fam.setCulture(culture);
 			townspeople.add(fam);
 			currSum+=fam.getSize();
 		}
-		
+		nameAssign.assignNames(townspeople);
 		return townspeople;
 	}
 	
@@ -99,14 +105,13 @@ public class Calculator {
 //		}
 //		return species;
 //	}
-	public Species specSelector() {
-		List<Species> specList = speciesDao.findAll();
+	public Species specSelector(List<Species> specList, List<Integer> popList) {
 		Random rand = new Random();
 		int x = rand.nextInt(100)+1;
 		Species species = new Species();
 		int currSum=0;
 		for(int i=0;i<specList.size();i++) {
-			currSum+=specList.get(i).getPopPct();
+			currSum+=popList.get(i);
 			if(x<=currSum) {
 				species = specList.get(i);
 				return species;
@@ -297,29 +302,104 @@ public class Calculator {
 		return famListNew;
 	}
 	
-	public void assignNames(Family family, Integer cultureId) {
-		Random rand = new Random();
-		List<NameItem> lastList = namesDao.findNames(cultureId, "S", "E");
-		List<NameItem> mFirst = namesDao.findNames(cultureId, "F", "M");
-		List<NameItem> fFirst =namesDao.findNames(cultureId, "F", "F");
-		List<NameItem> allFirst = new ArrayList<>();
-		allFirst.addAll(mFirst);
-		allFirst.addAll(fFirst);
-		int x = rand.nextInt(lastList.size());
-		String lastname = lastList.get(x).getName();
-		for (int i=0;i<family.getMembers().size();i++) {
-			family.getMembers().get(i).setLastName(lastname);
-			if(family.getMembers().get(i).getGender().equalsIgnoreCase("male")){
-				int y = rand.nextInt(mFirst.size());
-				family.getMembers().get(i).setFirstName(mFirst.get(y).getName());
-			}else if(family.getMembers().get(i).getGender().equalsIgnoreCase("female")){
-				int y = rand.nextInt(fFirst.size());
-				family.getMembers().get(i).setFirstName(fFirst.get(y).getName());
-			}else {
-				int y = rand.nextInt(allFirst.size());
-				family.getMembers().get(i).setFirstName(allFirst.get(y).getName());
-			}
-		}
-	}
+//	public void assignNames(Family family) {
+//		Random rand = new Random();
+//		Long cultureId = family.getCulture().getId();
+//		
+//		//For cultures with only personal names
+//		if(cultureId==1) {
+//			List<NameItem> mFirst = namesDao.findNames(cultureId, "F", "M");
+//			List<NameItem> fFirst =namesDao.findNames(cultureId, "F", "F");
+//			List<NameItem> allFirst = new ArrayList<>();
+//			allFirst.addAll(mFirst);
+//			allFirst.addAll(fFirst);
+//				for (int i=0;i<family.getMembers().size();i++) {
+//				if(family.getMembers().get(i).getGender().equalsIgnoreCase("male")){
+//					int y = rand.nextInt(mFirst.size());
+//					family.getMembers().get(i).setFirstName(mFirst.get(y).getName());
+//				}else if(family.getMembers().get(i).getGender().equalsIgnoreCase("female")){
+//					int y = rand.nextInt(fFirst.size());
+//					family.getMembers().get(i).setFirstName(fFirst.get(y).getName());
+//				}else {
+//					int y = rand.nextInt(allFirst.size());
+//					family.getMembers().get(i).setFirstName(allFirst.get(y).getName());
+//				}
+//				}
+//		}
+//		
+//		//For cultures with personal name and family name
+//		if(cultureId==2) {
+//			List<NameItem> lastList = namesDao.findNames(cultureId, "S", "E");
+//			List<NameItem> mFirst = namesDao.findNames(cultureId, "F", "M");
+//			List<NameItem> fFirst =namesDao.findNames(cultureId, "F", "F");
+//			List<NameItem> allFirst = new ArrayList<>();
+//			allFirst.addAll(mFirst);
+//			allFirst.addAll(fFirst);
+//			int x = rand.nextInt(lastList.size());
+//			String lastname = lastList.get(x).getName();
+//				for (int i=0;i<family.getMembers().size();i++) {
+//					family.getMembers().get(i).setLastName(lastname);
+//					if(family.getMembers().get(i).getGender().equalsIgnoreCase("male")){
+//						int y = rand.nextInt(mFirst.size());
+//						family.getMembers().get(i).setFirstName(mFirst.get(y).getName());
+//					}else if(family.getMembers().get(i).getGender().equalsIgnoreCase("female")){
+//						int y = rand.nextInt(fFirst.size());
+//						family.getMembers().get(i).setFirstName(fFirst.get(y).getName());
+//					}else {
+//						int y = rand.nextInt(allFirst.size());
+//						family.getMembers().get(i).setFirstName(allFirst.get(y).getName());
+//					}
+//				}
+//		}
+//		
+//		//For cultures with personal name and tribal name
+//		if(cultureId==3) {
+//			List<NameItem> tribeList = namesDao.findNames(cultureId, "T", "E");
+//			List<NameItem> mFirst = namesDao.findNames(cultureId, "F", "M");
+//			List<NameItem> fFirst =namesDao.findNames(cultureId, "F", "F");
+//			List<NameItem> allFirst = new ArrayList<>();
+//			allFirst.addAll(mFirst);
+//			allFirst.addAll(fFirst);
+//			int x = rand.nextInt(tribeList.size());
+//			String lastname = tribeList.get(x).getName();
+//			for (int i=0;i<family.getMembers().size();i++) {
+//				family.getMembers().get(i).setLastName(lastname);
+//				if(family.getMembers().get(i).getGender().equalsIgnoreCase("male")){
+//					int y = rand.nextInt(mFirst.size());
+//					family.getMembers().get(i).setFirstName(mFirst.get(y).getName());
+//				}else if(family.getMembers().get(i).getGender().equalsIgnoreCase("female")){
+//					int y = rand.nextInt(fFirst.size());
+//					family.getMembers().get(i).setFirstName(fFirst.get(y).getName());
+//				}else {
+//					int y = rand.nextInt(allFirst.size());
+//					family.getMembers().get(i).setFirstName(allFirst.get(y).getName());
+//				}
+//			}
+//			
+//		}
+//		if(cultureId==4) {}
+//		if(cultureId==5) {}
+//		List<NameItem> lastList = namesDao.findNames(cultureId, "S", "E");
+//		List<NameItem> mFirst = namesDao.findNames(cultureId, "F", "M");
+//		List<NameItem> fFirst =namesDao.findNames(cultureId, "F", "F");
+//		List<NameItem> allFirst = new ArrayList<>();
+//		allFirst.addAll(mFirst);
+//		allFirst.addAll(fFirst);
+//		int x = rand.nextInt(lastList.size());
+//		String lastname = lastList.get(x).getName();
+//		for (int i=0;i<family.getMembers().size();i++) {
+//			family.getMembers().get(i).setLastName(lastname);
+//			if(family.getMembers().get(i).getGender().equalsIgnoreCase("male")){
+//				int y = rand.nextInt(mFirst.size());
+//				family.getMembers().get(i).setFirstName(mFirst.get(y).getName());
+//			}else if(family.getMembers().get(i).getGender().equalsIgnoreCase("female")){
+//				int y = rand.nextInt(fFirst.size());
+//				family.getMembers().get(i).setFirstName(fFirst.get(y).getName());
+//			}else {
+//				int y = rand.nextInt(allFirst.size());
+//				family.getMembers().get(i).setFirstName(allFirst.get(y).getName());
+//			}
+//		}
+//	}
 
 }

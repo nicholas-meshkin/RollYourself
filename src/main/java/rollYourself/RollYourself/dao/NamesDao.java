@@ -16,7 +16,8 @@ public class NamesDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public List<NameItem> findNames(Integer cultureId, String type, String gender) {
+	public List<NameItem> findNames(Long cId, String type, String gender) {
+		Integer cultureId = Math.toIntExact(cId);
 		return em.createQuery("FROM NameItem WHERE cultureId = :cultureId AND type = :type AND gender = :gender", NameItem.class)
 				.setParameter("cultureId", cultureId).setParameter("type", type).setParameter("gender", gender)
 				.getResultList();

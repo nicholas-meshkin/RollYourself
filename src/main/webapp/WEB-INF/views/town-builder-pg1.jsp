@@ -21,6 +21,9 @@
 			<option value="RuralCommunity">Rural Community (uses modified SVs)</option>
 			</select>
 		</p>
+		<c:forEach var="spec" items="${specList}">
+		<p>${spec.name}<input type="checkbox" name="specIds" value="${spec.id}"/></p>
+		</c:forEach>
 		<p>
 			<button>Submit</button>
 		</p>

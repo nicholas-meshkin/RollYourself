@@ -9,20 +9,28 @@
 </head>
 <body>
 <a href="/">Home</a>
+
+<form action="townBuilder3">
+<input type="hidden" name="size" value="${size}"/>
+<input type="hidden" name="svType" value="${svType}"/>
 <table>
-<tr><th>Species</th><th>Age</th><th>Gender</th><th>Job</th><th>First Name</th><th>Last Name</th></tr>
-<c:forEach items="${testTown}" var="thing">
-	<c:forEach items="${thing.members}" var="person">
-		<tr>
-		<td>${person.species.name}</td>
-		<td>${person.age}</td>
-		<td>${person.gender}</td>
-		<td>${person.job}</td>
-		<td>${person.firstName}</td>
-		<td>${person.lastName}</td>
-		</tr>
-	</c:forEach>
+<tr><th>Species</th><th>PCT of Population</th><th>Culture for names</th></tr>
+<c:forEach var="species" items="${specList}">
+	<tr>
+	<td><input type="hidden" name="specIds" value="${species.id}">${species.name}</td>
+	<td> <input name="popList" class="inputbox" required  pattern="[0-9]*" /></td>
+	<td>
+		<select name="cultureList">
+			<c:forEach var="culture" items="${cultureList}">
+			 <option value = "${culture.id}">${culture.culture}</option>
+			</c:forEach>
+		</select>
+	</td>
+	</tr>
 </c:forEach>
 </table>
+<p><button>Submit</button></p>
+</form>
+
 </body>
 </html>
